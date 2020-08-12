@@ -1,6 +1,7 @@
 /.DS_Store
 /.vscode
 /unit-test.pstats
+/acph-logbook-local.ini
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -128,18 +129,3 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
-# Pyre type checker
-.pyre/
-© 2020 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
