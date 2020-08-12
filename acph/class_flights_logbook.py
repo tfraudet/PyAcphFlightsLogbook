@@ -211,7 +211,8 @@ class FlightsLogBook:
 		nearest_airport_distance = 9999999
 		nearest_airpot_icao = None
 		for airport in self.airports.values():
-			distance_to_airport = distance.geodesic((latitude, longitude), (airport['lat'],airport['lon']), ellipsoid='WGS-84').km
+			# distance_to_airport = distance.geodesic((latitude, longitude), (airport['lat'],airport['lon']), ellipsoid='WGS-84').km
+			distance_to_airport = distance.great_circle((latitude, longitude), (airport['lat'],airport['lon'])).km
 			if (distance_to_airport < nearest_airport_distance and distance_to_airport <= distance_threshold):
 				nearest_airport_distance = distance_to_airport
 				nearest_airpot_icao = airport['icao']

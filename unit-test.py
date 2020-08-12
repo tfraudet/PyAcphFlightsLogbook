@@ -54,9 +54,8 @@ def main():
 	# create the ACPH Flight logbook and build the logbook for LFHA
 	logbook = FlightsLogBook(airports_icao={'LFHA'}, ogndb = ogndb, pdo_engine = pdo_engine)
 	# logbook.airports = {k: v for k, v in airports.items() if k[:2] == 'LF'}		# filter only some french airports for test purpose
-	# logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA', 'LFHR', 'LFHT', 'LFHP'}}		# filter only some french airports for test purpose
-	logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA'}}		# filter only some french airports for test purpose
-
+	logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA', 'LFHR', 'LFHT', 'LFHP'}}		# filter only some french airports for test purpose
+	# logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA'}}		# filter only some french airports for test purpose
 
 	# build the reg-ex to extract raw data from the log
 	aprs_reg = re.compile(r'raw data:\s(.*)')
