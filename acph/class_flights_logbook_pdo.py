@@ -11,6 +11,7 @@ from acph.setup_db import TABLES_NAME
 class FlightLogPDO(ABC):
 	def __init__(self):
 		self.logger = logging.getLogger(__name__)
+		self.logger.debug("PDO Engine is of type {}".format(self.__class__.__name__))
 
 	@staticmethod
 	def factory(target) -> FlightLogPDO:
@@ -50,10 +51,19 @@ class MysqlFlightLogPDO(FlightLogPDO):
 		super().__init__()
 		self.cnx = None
 
+	# Inspiration here: https://bitworks.software/en/2019-03-12-tornado-persistent-mysql-connection-strategy.html
+	def get_cursor(self):
+		try:
+			self.cnx.ping(reconnect=True, attempts=3, delay=5)
+		except mysql.connector.Error as err:
+			self.logger.warning("Connection with MySql DB probably loose following the session time-out, try to reconnect. Error is {}".format(err))
+			self.open(False)
+		return self.cnx.cursor()
+
 	def saveLogbookForDate(self, date :str, logbook: dict) -> None:
 		super().saveLogbookForDate(date, logbook)
 		try:
-			cursor = self.cnx.cursor()
+			cursor = self.get_cursor()
 			# query = ("INSERT INTO {tablename} "
 			# 		 "(date, status, aircraft_id, aircraft_type, aircraft_model, registration, cn, tracked, identified, takeoff_time, takeoff_airport, landing_time, landing_airport, flight_duration, launch_type)"
 			# 		 " VALUES (%(date)s, %(status)s, %(aircraft_id)s, %(aircraft_type)s, %(aircraft_model)s, %(registration)s, %(cn)s, %(tracked)s, %(identified)s, %(takeoff_time)s, %(takeoff_airport)s, %(landing_time)s, %(landing_airport)s, %(flight_duration)s, %(launch_type)s) ")
@@ -114,15 +124,15 @@ class MysqlFlightLogPDO(FlightLogPDO):
 		finally:
 			cursor.close()
 
-	def open(self):
+	def open(self, checkTablesExisting = True):
 		super().open()
 		try:
 			self.cnx = mysql.connector.connect(option_files='./acph-logbook.ini', option_groups='mysql_connector_python')
-			if not self.isTablesExists():
+			if checkTablesExisting and not self.isTablesExists():
 				self.logger.critical('Required tables doesn\'t exists.')
 				raise(SystemExit(1))
 		except mysql.connector.Error as err:
-			self.logger.critical(err)
+			self.logger.critical('Exception while opening the MySql connection: {}'.format(err))
 			raise(SystemExit(1))
 
 	def close(self):
@@ -130,6 +140,8 @@ class MysqlFlightLogPDO(FlightLogPDO):
 		if self.cnx is not None:
 			try:
 				self.cnx.close()
+			except mysql.connector.Error as err:
+				self.logger.critical('Exception while closing the MySql connection: {}'.format(err))
 			finally:
 				self.cnx = None
 

@@ -2,6 +2,7 @@
 /.vscode
 /unit-test.pstats
 /acph-logbook-local.ini
+/unit-test.ini
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

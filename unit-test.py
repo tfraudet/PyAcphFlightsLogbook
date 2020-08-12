@@ -6,6 +6,7 @@ import time
 import datetime
 from datetime import timedelta
 import logging
+import logging.config
 import logging.handlers
 
 from acph.class_aprs import AcphAprsClient
@@ -18,19 +19,9 @@ def main():
 	date_of_data = filepath[len(filepath)-14:len(filepath)-4]
 
 	# create logger fo the main
-	logger = logging.getLogger('acph-logbook-test')
-	logger.setLevel(logging.INFO)
+	logging.config.fileConfig('unit-test.ini')
+	logger = logging.getLogger('acph.main')
 
-	# create formatter
-	formatter = logging.Formatter('[%(asctime)s] %(name)s.%(levelname)s: %(message)s')
-
-	# create console handler and set level to debug
-	ch = logging.StreamHandler()
-	ch.setLevel(logging.DEBUG)
-	ch.setFormatter(formatter)
-
-	# add logger handlers for tracing/debuging
-	logger.addHandler(ch)
 
 	# load the OGN devices database from a local file for test purpose
 	try:
@@ -59,16 +50,13 @@ def main():
 	# Create the PDO Engine to store the results on the fly: could be JSON or MySql
 	# pdo_engine = FlightLogPDO.factory('JSON')
 	pdo_engine = FlightLogPDO.factory('MYSQL')
-	pdo_engine.logger.addHandler(ch)
-	pdo_engine.logger.setLevel(logging.WARNING)
 
 	# create the ACPH Flight logbook and build the logbook for LFHA
 	logbook = FlightsLogBook(airports_icao={'LFHA'}, ogndb = ogndb, pdo_engine = pdo_engine)
-	logbook.logger.addHandler(ch)
 	# logbook.airports = {k: v for k, v in airports.items() if k[:2] == 'LF'}		# filter only some french airports for test purpose
 	# logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA', 'LFHR', 'LFHT', 'LFHP'}}		# filter only some french airports for test purpose
 	logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA'}}		# filter only some french airports for test purpose
-	logbook.logger.setLevel(logging.WARNING)
+
 
 	# build the reg-ex to extract raw data from the log
 	aprs_reg = re.compile(r'raw data:\s(.*)')
