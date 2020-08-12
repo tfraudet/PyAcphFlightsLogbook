@@ -1,0 +1,1334 @@
+{
+    "data": [
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:14:06",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 08:59:18",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 08:45:12",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8E99",
+            "aircraft_model": "ASK-21",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "0:17:34",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 09:02:44",
+            "launch_type": "winch tow or autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CIAT",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 08:45:10",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:14:00",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 09:33:12",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 09:19:12",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8E99",
+            "aircraft_model": "ASK-21",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "0:18:32",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 09:37:41",
+            "launch_type": "F-GAVX",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CIAT",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 09:19:09",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDE727",
+            "aircraft_model": "Astir CS-77",
+            "aircraft_type": "glider",
+            "cn": "77",
+            "flight_duration": "1:01:29",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 12:18:50",
+            "launch_type": "F-GAVX",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "D-9649",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:17:21",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:13:14",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 10:04:49",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 09:51:35",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8E99",
+            "aircraft_model": "ASK-21",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "0:17:37",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 10:09:12",
+            "launch_type": "winch tow or autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CIAT",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 09:51:35",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDD346",
+            "aircraft_model": "Ventus",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "0:30:38",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 11:12:11",
+            "launch_type": "F-GAVX",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CEDQ",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 10:41:33",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:05:18",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 10:46:51",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 10:41:33",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8E99",
+            "aircraft_model": "ASK-21",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "3:50:59",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 16:03:47",
+            "launch_type": "F-GAVX",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CIAT",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 12:12:48",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED2",
+            "aircraft_model": "Janus C",
+            "aircraft_type": "glider",
+            "cn": "DT",
+            "flight_duration": "0:24:07",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 12:12:11",
+            "launch_type": "F-BSKP",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CJDT",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:48:04",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDBB2C",
+            "aircraft_model": "Nimbus 4D",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "2:21:12",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 13:15:32",
+            "launch_type": "winch tow or autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CJAC",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 10:54:20",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDE307",
+            "aircraft_model": "#unknown",
+            "aircraft_type": "glider",
+            "cn": "#unknown",
+            "flight_duration": "6:30:32",
+            "identified": "N",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 17:20:03",
+            "launch_type": "winch tow or autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "#unknown",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 10:49:31",
+            "tracked": "N"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:06:19",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 11:00:38",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 10:54:19",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDE7FD",
+            "aircraft_model": "MS-893 Commodore",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:06:53",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 11:09:06",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-BSKP",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:02:13",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD9A17",
+            "aircraft_model": "LAK 19",
+            "aircraft_type": "glider",
+            "cn": "NP",
+            "flight_duration": "5:22:54",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 17:03:13",
+            "launch_type": "F-BSKP",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CHNP",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:40:19",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8E24",
+            "aircraft_model": "Marianne",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "1:29:44",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 13:00:00",
+            "launch_type": "winch tow or autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CGTQ",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:30:16",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "D002A6",
+            "aircraft_model": "PW-5",
+            "aircraft_type": "glider",
+            "cn": "RG",
+            "flight_duration": "6:10:59",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 17:13:08",
+            "launch_type": "F-BSKP",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "D-0060",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:02:09",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:06:05",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 11:23:29",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:17:24",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED1",
+            "aircraft_model": "LS-6 18",
+            "aircraft_type": "glider",
+            "cn": "Z16",
+            "flight_duration": "4:25:07",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 16:24:43",
+            "launch_type": "F-GAVX",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CGUP",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:59:36",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED5",
+            "aircraft_model": "Pegase",
+            "aircraft_type": "glider",
+            "cn": "X",
+            "flight_duration": "5:03:01",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 16:34:57",
+            "launch_type": "F-BSKP",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CGOL",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:31:56",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD9543",
+            "aircraft_model": "LS-4",
+            "aircraft_type": "glider",
+            "cn": "GH",
+            "flight_duration": "5:11:29",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 16:23:44",
+            "launch_type": "F-BSKP",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "D-1792",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:12:15",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDE7FD",
+            "aircraft_model": "MS-893 Commodore",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:06:05",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 11:18:21",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-BSKP",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:12:16",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8E77",
+            "aircraft_model": "Pegase",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "0:47:09",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 12:44:06",
+            "launch_type": "F-BSKP",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CGBF",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:56:57",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDD346",
+            "aircraft_model": "Ventus",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CEDQ",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8DC9",
+            "aircraft_model": "Alliance 34",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "1:19:25",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 13:02:09",
+            "launch_type": "F-GAVX",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CJBH",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:42:44",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "D0014B",
+            "aircraft_model": "ASW-15",
+            "aircraft_type": "glider",
+            "cn": "MB",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "winch tow or autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "OO-ZMB",
+            "status": "air",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:21:06",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDE7FD",
+            "aircraft_model": "MS-893 Commodore",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:05:06",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 11:26:14",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-BSKP",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:21:08",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:08:26",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 11:38:41",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:30:15",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "EA1807",
+            "aircraft_model": "#unknown",
+            "aircraft_type": "glider",
+            "cn": "#unknown",
+            "flight_duration": "",
+            "identified": "N",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "#unknown",
+            "status": "?",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "N"
+        },
+        {
+            "aircraft_id": "DDE7FD",
+            "aircraft_model": "MS-893 Commodore",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:05:21",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 11:37:19",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-BSKP",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:31:58",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDEB24",
+            "aircraft_model": "Ventus 2CX",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "5:07:21",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 16:59:21",
+            "launch_type": "F-GAVX",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CIGJ",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:52:00",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDE7FD",
+            "aircraft_model": "MS-893 Commodore",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:05:09",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 11:45:25",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-BSKP",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:40:16",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:06:10",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 11:48:57",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:42:47",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "D0099D",
+            "aircraft_model": "JS-3 18M",
+            "aircraft_type": "glider",
+            "cn": "KM",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CAKM",
+            "status": "?",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDE7FD",
+            "aircraft_model": "MS-893 Commodore",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:05:40",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 11:53:45",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-BSKP",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:48:05",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:04:53",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 11:56:52",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:51:59",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDE7FD",
+            "aircraft_model": "MS-893 Commodore",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:04:11",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 12:01:09",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-BSKP",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:56:58",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:05:54",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 12:05:27",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 11:59:33",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDEB11",
+            "aircraft_model": "ASH-25",
+            "aircraft_type": "glider",
+            "cn": "IU",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CHIU",
+            "status": "?",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDE7FD",
+            "aircraft_model": "MS-893 Commodore",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-BSKP",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDA2F2",
+            "aircraft_model": "DG-300",
+            "aircraft_type": "glider",
+            "cn": "A9",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "D-1444",
+            "status": "?",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:08:04",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 12:20:53",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 12:12:49",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8C99",
+            "aircraft_model": "MS-893 Commodore",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-BSAV",
+            "status": "?",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED2",
+            "aircraft_model": "Janus C",
+            "aircraft_type": "glider",
+            "cn": "DT",
+            "flight_duration": "0:00:18",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 16:43:03",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CJDT",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 16:42:45",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDEAE1",
+            "aircraft_model": "Arcus M",
+            "aircraft_type": "glider",
+            "cn": "IT",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "D- KHRD",
+            "status": "?",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDE727",
+            "aircraft_model": "Astir CS-77",
+            "aircraft_type": "glider",
+            "cn": "77",
+            "flight_duration": "0:00:27",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 16:22:32",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "D-9649",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 16:22:05",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:08:35",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 13:21:45",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 13:13:10",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8E77",
+            "aircraft_model": "Pegase",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CGBF",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8E24",
+            "aircraft_model": "Marianne",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "0:00:27",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 16:28:58",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CGTQ",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 16:28:31",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8DC9",
+            "aircraft_model": "Alliance 34",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "F-GAVX",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CJBH",
+            "status": "air",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 13:29:30",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8F0E",
+            "aircraft_model": "Twin Astir II",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CFHX",
+            "status": "?",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDBB2C",
+            "aircraft_model": "Nimbus 4D",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "0:00:26",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 16:30:55",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CJAC",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 16:30:29",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:06:43",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 13:36:14",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 13:29:31",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDED74",
+            "aircraft_model": "ASG-29E",
+            "aircraft_type": "glider",
+            "cn": "-1L",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "",
+            "status": "?",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDA91D",
+            "aircraft_model": "Ka-6 cr",
+            "aircraft_type": "glider",
+            "cn": "TT",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 16:58:10",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "D-5188",
+            "status": "landed",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8E99",
+            "aircraft_model": "ASK-21",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CIAT",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDE727",
+            "aircraft_model": "Astir CS-77",
+            "aircraft_type": "glider",
+            "cn": "77",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "D-9649",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD9543",
+            "aircraft_model": "LS-4",
+            "aircraft_type": "glider",
+            "cn": "GH",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "D-1792",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED1",
+            "aircraft_model": "LS-6 18",
+            "aircraft_type": "glider",
+            "cn": "Z16",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CGUP",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8E24",
+            "aircraft_model": "Marianne",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CGTQ",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDBB2C",
+            "aircraft_model": "Nimbus 4D",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CJAC",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED5",
+            "aircraft_model": "Pegase",
+            "aircraft_type": "glider",
+            "cn": "X",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CGOL",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED2",
+            "aircraft_model": "Janus C",
+            "aircraft_type": "glider",
+            "cn": "DT",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CJDT",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDA91D",
+            "aircraft_model": "Ka-6 cr",
+            "aircraft_type": "glider",
+            "cn": "TT",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "D-5188",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDEB24",
+            "aircraft_model": "Ventus 2CX",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CIGJ",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD9A17",
+            "aircraft_model": "LAK 19",
+            "aircraft_type": "glider",
+            "cn": "NP",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CHNP",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "D002A6",
+            "aircraft_model": "PW-5",
+            "aircraft_type": "glider",
+            "cn": "RG",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "D-0060",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DDE307",
+            "aircraft_model": "#unknown",
+            "aircraft_type": "glider",
+            "cn": "#unknown",
+            "flight_duration": "",
+            "identified": "N",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "#unknown",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "N"
+        }
+    ]
+}

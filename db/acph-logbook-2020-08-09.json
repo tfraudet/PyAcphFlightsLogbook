@@ -1,0 +1,213 @@
+{
+    "data": [
+        {
+            "aircraft_id": "DDE260",
+            "aircraft_model": "ASH-25",
+            "aircraft_type": "glider",
+            "cn": "66",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CIRB",
+            "status": "?",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "39AD63",
+            "aircraft_model": "#unknown",
+            "aircraft_type": "powered_aircraft",
+            "cn": "#unknown",
+            "flight_duration": "",
+            "identified": "N",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "#unknown",
+            "status": "?",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "N"
+        },
+        {
+            "aircraft_id": "DD8DC9",
+            "aircraft_model": "Alliance 34",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "0:09:40",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 14:57:34",
+            "launch_type": "F-GAVX",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CJBH",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 14:47:54",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:06:36",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 14:54:28",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 14:47:52",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:04:58",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 15:19:03",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 15:14:05",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8DC9",
+            "aircraft_model": "Alliance 34",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "0:06:14",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 15:20:19",
+            "launch_type": "F-GAVX",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CJBH",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 15:14:05",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "3D0AD3",
+            "aircraft_model": "#unknown",
+            "aircraft_type": "glider",
+            "cn": "#unknown",
+            "flight_duration": "",
+            "identified": "N",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "#unknown",
+            "status": "?",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "N"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "0:04:55",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 15:40:30",
+            "launch_type": "autonome",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 15:35:35",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8DC9",
+            "aircraft_model": "Alliance 34",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "0:06:16",
+            "identified": "Y",
+            "landing_airport": "LFHA",
+            "landing_time": "2020-08-10 15:41:51",
+            "launch_type": "F-GAVX",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CJBH",
+            "status": "landed",
+            "takeoff_airport": "LFHA",
+            "takeoff_time": "2020-08-10 15:35:35",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8ED6",
+            "aircraft_model": "DR-400",
+            "aircraft_type": "tow_plane",
+            "cn": "",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-GAVX",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        },
+        {
+            "aircraft_id": "DD8DC9",
+            "aircraft_model": "Alliance 34",
+            "aircraft_type": "glider",
+            "cn": "",
+            "flight_duration": "",
+            "identified": "Y",
+            "landing_airport": "",
+            "landing_time": "",
+            "launch_type": "#unknown",
+            "receivers": [
+                "LFHA"
+            ],
+            "registration": "F-CJBH",
+            "status": "ground",
+            "takeoff_airport": "",
+            "takeoff_time": "",
+            "tracked": "Y"
+        }
+    ]
+}

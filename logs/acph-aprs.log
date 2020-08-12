@@ -1,0 +1,21 @@
+[2020-08-12 11:18:40,879] acph.main.WARNING: ACPH APRS logger starting (process id is 16453).
+[2020-08-12 11:18:41,095] ogn.client.client.INFO: Connect to OGN as ACPH with filter 'r/45.5138/3.2661/200'
+[2020-08-12 11:18:41,095] acph.class_aprs.INFO: Connect to OGN as ACPH with filter 'r/45.5138/3.2661/200'
+[2020-08-12 11:18:59,133] acph.class_flights_logbook_pdo.INFO: Open PDO engine.
+[2020-08-12 11:18:59,183] acph.class_flights_logbook.INFO: handle beacon comment, raw data: # aprsc 2.1.5-g8af3cdc
+[2020-08-12 11:18:59,220] acph.class_flights_logbook.INFO: handle beacon comment, raw data: # logresp ACPH verified, server GLIDERN5
+[2020-08-12 11:19:01,239] acph.class_flights_logbook.INFO: handle aircraft beacon position, raw data: FLRDD8E99>APRS,qAS,LFHA:/091855h4531.46N/00316.01E'210/031/A=005760 !W53! id06DD8E99 -118fpm -0.4rot 5.0dB 0e -14.4kHz gps2x3
+[2020-08-12 11:19:01,277] acph.class_flights_logbook.INFO: handle aircraft beacon position, raw data: FLRDD8ED6>APRS,qAS,LFHA:/091855h4531.24N/00318.17E'054/124/A=004005 !W63! id0ADD8ED6 -1821fpm -1.8rot 10.5dB 0e -15.6kHz gps3x3
+[2020-08-12 11:19:06,900] acph.class_flights_logbook.INFO: handle aircraft beacon position, raw data: FLRDD8ED6>APRS,qAS,LFHA:/091900h4531.39N/00318.32E'027/130/A=003864 !W37! id0ADD8ED6 -1504fpm -1.7rot 18.2dB 0e -15.6kHz gps3x4
+[2020-08-12 11:19:08,122] acph.class_flights_logbook.INFO: handle aircraft beacon position, raw data: FLRDD8E99>APRS,qAS,LFHA:/091901h4531.42N/00315.98E'200/027/A=005753 !W06! id06DD8E99 -019fpm -0.1rot 11.2dB 0e -14.4kHz gps2x3
+[2020-08-12 11:19:09,998] acph.class_flights_logbook.INFO: handle aircraft beacon position, raw data: FLRDD8ED6>APRS,qAS,LFHA:/091903h4531.50N/00318.36E'013/130/A=003795 !W19! id0ADD8ED6 -1345fpm -1.5rot 21.2dB 0e -15.5kHz gps3x4
+[2020-08-12 11:19:11,978] acph.class_flights_logbook.INFO: handle aircraft beacon position, raw data: FLRDD8ED6>APRS,qAS,LFHA:/091905h4531.57N/00318.37E'004/128/A=003752 !W58! id0ADD8ED6 -1504fpm -1.4rot 26.2dB 0e -15.5kHz gps3x4
+[2020-08-12 11:19:12,912] acph.class_flights_logbook.INFO: handle aircraft beacon position, raw data: FLRDD8E99>APRS,qAS,LFHA:/091906h4531.38N/00315.96E'200/025/A=005750 !W59! id06DD8E99 -197fpm +0.7rot 8.8dB 0e -14.4kHz gps2x3
+[2020-08-12 11:19:14,066] acph.class_flights_logbook.INFO: handle aircraft beacon position, raw data: FLRDD8E99>APRS,qAS,LFHA:/091907h4531.37N/00315.96E'214/024/A=005747 !W84! id06DD8E99 -237fpm +2.2rot 12.2dB 0e -14.4kHz gps2x3
+[2020-08-12 11:19:14,105] acph.class_flights_logbook.INFO: handle aircraft beacon position, raw data: FLRDD8ED6>APRS,qAS,LFHA:/091907h4531.64N/00318.37E'356/127/A=003697 !W84! id0ADD8ED6 -1425fpm -1.1rot 22.2dB 0e -15.5kHz gps3x4
+[2020-08-12 11:19:14,878] acph.class_flights_logbook.INFO: handle aircraft beacon position, raw data: FLRDD8E99>APRS,qAS,LFHA:/091908h4531.37N/00315.95E'234/027/A=005740 !W36! id06DD8E99 -474fpm +3.8rot 5.0dB 0e -14.4kHz gps2x3
+[2020-08-12 11:19:16,869] acph.class_flights_logbook.INFO: handle aircraft beacon position, raw data: FLRDD8E99>APRS,qAS,LFHA:/091910h4531.36N/00315.93E'249/032/A=005717 !W82! id06DD8E99 -553fpm -0.8rot 2.8dB 5e -14.4kHz gps2x3
+[2020-08-12 11:19:17,877] acph.class_flights_logbook.INFO: handle aircraft beacon position, raw data: FLRDD8E99>APRS,qAS,LFHA:/091911h4531.36N/00315.92E'228/027/A=005710 !W50! id06DD8E99 -474fpm -3.5rot 5.2dB 0e -14.4kHz gps2x3
+[2020-08-12 11:19:18,786] acph.main.WARNING: ACPH APRS logger stopped...
+[2020-08-12 11:19:18,786] acph.class_flights_logbook_pdo.INFO: Close PDO engine.
+[2020-08-12 11:19:18,786] acph.class_aprs.INFO: Disconnect
