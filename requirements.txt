@@ -1,0 +1,7 @@
+geographiclib==1.50
+geopy==2.0.0
+mysql-connector-python==8.0.21
+ogn-client==0.9.7
+pid==3.0.4
+protobuf==3.12.4
+
