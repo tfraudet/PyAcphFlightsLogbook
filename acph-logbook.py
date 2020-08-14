@@ -17,6 +17,7 @@ from acph.class_aprs import AcphAprsClient
 from acph.class_flights_logbook import FlightsLogBook
 from acph.class_ogn_db import OgnDevicesDatabase
 from acph.class_flights_logbook_pdo import FlightLogPDO
+from acph.class_airport_db import AirportDatabase
 
 def handle_exit(signal, frame):
 	raise(SystemExit)
@@ -42,9 +43,16 @@ def main():
 
 	# load the airport database from a local file for test purpose
 	try:
-		airports_db_file = 'airports.json'
-		with open(airports_db_file) as airports_json_file:
-			airports = json.load(airports_json_file)
+		airports_db_file = 'airport-codes.json'
+		airports_db = AirportDatabase.withJsonFile(airports_db_file)
+
+		#  Airports DB only with european airports.
+		# listOfAirportsFiltered = airports_db.filterByContinent('EU')
+		# logger.info('After filtering on european airport, size of airport code database is {}'.format(len(listOfAirportsFiltered)))
+
+		# Airports DB only with french airports.
+		listOfAirportsFiltered = airports_db.filterByCountry('FR')
+		logger.info('After filtering on French airport, size of airport code database is {}'.format(len(listOfAirportsFiltered)))
 	except IOError:
 		logger.error("File {} does not exist. Exiting...".format(airports_db_file))
 		sys.exit()
@@ -57,16 +65,13 @@ def main():
 	pdo_engine = FlightLogPDO.factory('MYSQL')
 
 	# client = AprsClient(aprs_user='N0CALL')
-	# client = AprsClient(aprs_user='ACPH', aprs_filter='r/45.5138/3.2661/200')
-	client = AcphAprsClient(aprs_user='ACPH', aprs_passcode='25321', aprs_filter='r/45.5138/3.2661/200')
+	# client = AcphAprsClient(aprs_user='ACPH', aprs_passcode='25321')						# Full feed
+	client = AcphAprsClient(aprs_user='ACPH', aprs_passcode='25321', aprs_filter='r/45.5138/3.2661/400')
 	client.connect()
 
 	# create the ACPH Flight logbook
 	# logbook = FlightsLogBook(airports_icao={'LFHA', 'LFHP'})
-	logbook = FlightsLogBook(airports_icao={'LFHA'}, ogndb=ogndb, pdo_engine = pdo_engine)
-
-	# logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA', 'LFHR', 'LFHT', 'LFHP'}}		# filter only some french airports for test purpose
-	logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA'}}		# filter only some french airports for test purpose
+	logbook = FlightsLogBook(airports_icao=None, ogndb=ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
 
 	# open the Logbook persistent engine
 	logbook.pdo_engine.open()

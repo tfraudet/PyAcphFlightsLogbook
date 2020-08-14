@@ -13,6 +13,7 @@ from acph.class_aprs import AcphAprsClient
 from acph.class_flights_logbook import FlightsLogBook
 from acph.class_ogn_db import OgnDevicesDatabase
 from acph.class_flights_logbook_pdo import FlightLogPDO
+from acph.class_airport_db import AirportDatabase
 
 def main():
 	filepath = sys.argv[1]
@@ -35,9 +36,18 @@ def main():
 
 	# load the airport database from a local file for test purpose
 	try:
-		airports_db_file = 'airports.json'
-		with open(airports_db_file) as airports_json_file:
-			airports = json.load(airports_json_file)
+		# airports_db = AirportDatabase.withPackageUrl()
+		airports_db_file = 'airport-codes.json'
+		airports_db = AirportDatabase.withJsonFile(airports_db_file)
+
+		#  Airports DB only with european airports.
+		# listOfAirportsFiltered = airports_db.filterByContinent('EU')
+		# logger.info('After filtering on european airport, size of airport code database is {}'.format(len(listOfAirportsFiltered)))
+
+		# Airports DB only with french airports.
+		listOfAirportsFiltered = airports_db.filterByCountry('FR')
+		logger.info('After filtering on French airport, size of airport code database is {}'.format(len(listOfAirportsFiltered)))
+
 	except IOError:
 		logger.error("File {} does not exist. Exiting...".format(airports_db_file))
 		sys.exit()
@@ -52,9 +62,13 @@ def main():
 	pdo_engine = FlightLogPDO.factory('MYSQL')
 
 	# create the ACPH Flight logbook and build the logbook for LFHA
-	logbook = FlightsLogBook(airports_icao={'LFHA'}, ogndb = ogndb, pdo_engine = pdo_engine)
+	# logbook = FlightsLogBook(airports_icao={'LFHA'}, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
+
+	# create the ACPH Flight logbook and handling all the beacons received
+	logbook = FlightsLogBook(airports_icao=None, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
+
 	# logbook.airports = {k: v for k, v in airports.items() if k[:2] == 'LF'}		# filter only some french airports for test purpose
-	logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA', 'LFHR', 'LFHT', 'LFHP'}}		# filter only some french airports for test purpose
+	# logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA', 'LFHR', 'LFHT', 'LFHP'}}		# filter only some french airports for test purpose
 	# logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA'}}		# filter only some french airports for test purpose
 
 	# build the reg-ex to extract raw data from the log
@@ -98,8 +112,8 @@ def main():
 
 	# Log the result to output file
 	with open('./htdoc/result.json', 'w') as fp:
-		# json.dump(logbook.aircrafts_logbook, fp, indent=4, sort_keys=True, default = lambda obj: obj.__str__() if isinstance(obj, datetime.datetime) )
-		json.dump(logbook.aircrafts_logbook, fp, indent=4, sort_keys=True, default = json_converter )
+		# json.dump(logbook.logbook, fp, indent=4, sort_keys=True, default = lambda obj: obj.__str__() if isinstance(obj, datetime.datetime) )
+		json.dump(logbook.logbook, fp, indent=4, sort_keys=True, default = json_converter )
 
 def json_converter(obj):
 	if isinstance(obj, datetime.datetime):

@@ -3,29 +3,31 @@ import mysql.connector
 from mysql.connector import errorcode
 
 TABLES_NAME = {}
-TABLES_NAME['logbook'] = 'acph_logbook'
+TABLES_NAME['logbook-by-aircraft'] = 'acph_aircraft_logbook'
 TABLES_NAME['logbook-by-icao'] = 'acph_icao_logbook'
 
 TABLES = {}
-TABLES['logbook'] = (
-	"CREATE TABLE `acph_logbook` ("
-	"  `id` BIGINT NOT NULL AUTO_INCREMENT,"
+TABLES['logbook-by-aircraft'] = (
+	"CREATE TABLE `acph_aircraft_logbook` ("
 	"  `date` DATE NOT NULL,"
-	"  `status` enum('?','ground', 'air', 'landed') NOT NULL,"
 	"  `aircraft_id` VARCHAR(6) NOT NULL,"
+	"  `flight_id` INT NOT NULL,"
+	"  `status` VARCHAR(8) NOT NULL,"
+	"  `status_last_airport` VARCHAR(4),"
 	"  `aircraft_type` VARCHAR(255),"
 	"  `aircraft_model` VARCHAR(255),"
-	"  `registration` LONGTEXT,"
+	"  `registration` VARCHAR(255),"
 	"  `cn` VARCHAR(2),"
-	"  `tracked` enum('Y', 'N'),"
-	"  `identified` enum('Y', 'N'),"
-	"  `takeoff_time` DATETIME,"
+	"  `tracked` VARCHAR(1),"
+	"  `identified` VARCHAR(1),"
+	"  `takeoff_time` DATETIME NULL DEFAULT NULL,"
 	"  `takeoff_airport` VARCHAR(4),"
-	"  `landing_time` DATETIME,"
+	"  `landing_time` DATETIME NULL DEFAULT NULL,"
 	"  `landing_airport` VARCHAR(4),"
 	"  `flight_duration` TIME DEFAULT 0,"
 	"  `launch_type` VARCHAR(255),"
-	"  PRIMARY KEY (`id`)"
+	"  `receivers` MEDIUMTEXT,"
+	"  PRIMARY KEY  (`date`, `aircraft_id`, `flight_id`)"
 	") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci")
 
 TABLES['logbook-by-icao'] = (

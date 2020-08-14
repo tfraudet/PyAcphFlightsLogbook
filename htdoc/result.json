@@ -1,1011 +1,3293 @@
 {
-    "2020-08-08": [
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 09:57:51",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:06:51",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 12:08:57",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:02:06",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDFB38",
-            "aircraft_model": "#unknown",
-            "aircraft_type": "powered_aircraft",
-            "cn": "#unknown",
-            "flight_duration": "",
-            "identified": "N",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 10:40:41",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "#unknown",
-            "status": "landed",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "N"
-        },
-        {
-            "aircraft_id": "DDFB38",
-            "aircraft_model": "#unknown",
-            "aircraft_type": "powered_aircraft",
-            "cn": "#unknown",
-            "flight_duration": "1:00:35",
-            "identified": "N",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 12:06:48",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "#unknown",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 11:06:13",
-            "tracked": "N"
-        },
-        {
-            "aircraft_id": "DE0171",
-            "aircraft_model": "#unknown",
-            "aircraft_type": "powered_aircraft",
-            "cn": "#unknown",
-            "flight_duration": "",
-            "identified": "N",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "#unknown",
-            "status": "?",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "N"
-        },
-        {
-            "aircraft_id": "DD8E99",
-            "aircraft_model": "ASK-21",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "2:45:43",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 14:59:34",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CIAT",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:13:51",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDE307",
-            "aircraft_model": "#unknown",
-            "aircraft_type": "glider",
-            "cn": "#unknown",
-            "flight_duration": "5:36:10",
-            "identified": "N",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 17:06:37",
-            "launch_type": "winch tow or autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "#unknown",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 11:30:27",
-            "tracked": "N"
-        },
-        {
-            "aircraft_id": "DD8DC9",
-            "aircraft_model": "Alliance 34",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "0:14:38",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 13:46:34",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CJBH",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 13:31:56",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED1",
-            "aircraft_model": "LS-6 18",
-            "aircraft_type": "glider",
-            "cn": "Z16",
-            "flight_duration": "3:54:02",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 15:56:10",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CGUP",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:02:08",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8E77",
-            "aircraft_model": "Pegase",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "0:44:08",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 13:22:06",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CGBF",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:37:58",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED5",
-            "aircraft_model": "Pegase",
-            "aircraft_type": "glider",
-            "cn": "X",
-            "flight_duration": "0:55:22",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 13:25:25",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CGOL",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:30:03",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDEB24",
-            "aircraft_model": "Ventus 2CX",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "3:45:51",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 16:32:00",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CIGJ",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:46:09",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED2",
-            "aircraft_model": "Janus C",
-            "aircraft_type": "glider",
-            "cn": "DT",
-            "flight_duration": "1:10:29",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 14:24:24",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CJDT",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 13:13:55",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDBB2C",
-            "aircraft_model": "Nimbus 4D",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "1:41:27",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 14:04:03",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CJAC",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:22:36",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8E24",
-            "aircraft_model": "Marianne",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "0:59:25",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 14:01:32",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CGTQ",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 13:02:07",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDFB38",
-            "aircraft_model": "#unknown",
-            "aircraft_type": "powered_aircraft",
-            "cn": "#unknown",
-            "flight_duration": "",
-            "identified": "N",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "#unknown",
-            "status": "air",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 14:27:49",
-            "tracked": "N"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:06:45",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 12:20:36",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:13:51",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:05:17",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 12:27:58",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:22:41",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:06:05",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 12:36:07",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:30:02",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8E75",
-            "aircraft_model": "AK-2R",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-PAPH",
-            "status": "ground",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:06:06",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 12:44:00",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:37:54",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDAD63",
-            "aircraft_model": "Discus 2cT",
-            "aircraft_type": "glider",
-            "cn": "2Y",
-            "flight_duration": "3:59:21",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 16:53:25",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:54:04",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:06:10",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 12:52:18",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:46:08",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:06:00",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 13:00:04",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 12:54:04",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:09:20",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 13:11:26",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 13:02:06",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:09:57",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 13:23:52",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 13:13:55",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8E77",
-            "aircraft_model": "Pegase",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CGBF",
-            "status": "ground",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:08:51",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 13:40:45",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 13:31:54",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED5",
-            "aircraft_model": "Pegase",
-            "aircraft_type": "glider",
-            "cn": "X",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CGOL",
-            "status": "ground",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:08:17",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 14:30:07",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 14:21:50",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8DC9",
-            "aircraft_model": "Alliance 34",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "1:24:39",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 15:46:30",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CJBH",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 14:21:51",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8E24",
-            "aircraft_model": "Marianne",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "1:26:00",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 16:28:33",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CGTQ",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 15:02:33",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDBB2C",
-            "aircraft_model": "Nimbus 4D",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "1:12:51",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 15:45:36",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CJAC",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 14:32:45",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDD970",
-            "aircraft_model": "LS-6 18",
-            "aircraft_type": "glider",
-            "cn": "16",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CFTP",
-            "status": "?",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED2",
-            "aircraft_model": "Janus C",
-            "aircraft_type": "glider",
-            "cn": "DT",
-            "flight_duration": "0:53:23",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 16:07:24",
-            "launch_type": "winch tow or autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CJDT",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 15:14:01",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:08:02",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 14:40:48",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 14:32:46",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:08:43",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 15:11:16",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 15:02:33",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8E99",
-            "aircraft_model": "ASK-21",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CIAT",
-            "status": "ground",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8F0E",
-            "aircraft_model": "Twin Astir II",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CFHX",
-            "status": "?",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:06:47",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 15:20:48",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 15:14:01",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDD972",
-            "aircraft_model": "LS-4",
-            "aircraft_type": "glider",
-            "cn": "DE",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CIRI",
-            "status": "?",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "0:06:46",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 16:11:10",
-            "launch_type": "autonome",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 16:04:24",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDBB2C",
-            "aircraft_model": "Nimbus 4D",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "0:44:54",
-            "identified": "Y",
-            "landing_airport": "LFHA",
-            "landing_time": "2020-08-12 16:49:18",
-            "launch_type": "F-GAVX",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CJAC",
-            "status": "landed",
-            "takeoff_airport": "LFHA",
-            "takeoff_time": "2020-08-12 16:04:24",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8DC9",
-            "aircraft_model": "Alliance 34",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CJBH",
-            "status": "ground",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED1",
-            "aircraft_model": "LS-6 18",
-            "aircraft_type": "glider",
-            "cn": "Z16",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CGUP",
-            "status": "ground",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8ED2",
-            "aircraft_model": "Janus C",
-            "aircraft_type": "glider",
-            "cn": "DT",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CJDT",
-            "status": "ground",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8DEC",
-            "aircraft_model": "#unknown",
-            "aircraft_type": "glider",
-            "cn": "#unknown",
-            "flight_duration": "",
-            "identified": "N",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "#unknown",
-            "status": "?",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "N"
-        },
-        {
-            "aircraft_id": "DD8ED6",
-            "aircraft_model": "DR-400",
-            "aircraft_type": "tow_plane",
-            "cn": "",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-GAVX",
-            "status": "ground",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DD8E24",
-            "aircraft_model": "Marianne",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CGTQ",
-            "status": "ground",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDEB24",
-            "aircraft_model": "Ventus 2CX",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CIGJ",
-            "status": "ground",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDBB2C",
-            "aircraft_model": "Nimbus 4D",
-            "aircraft_type": "glider",
-            "cn": "",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "F-CJAC",
-            "status": "ground",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDAD63",
-            "aircraft_model": "Discus 2cT",
-            "aircraft_type": "glider",
-            "cn": "2Y",
-            "flight_duration": "",
-            "identified": "Y",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "",
-            "status": "ground",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "Y"
-        },
-        {
-            "aircraft_id": "DDE307",
-            "aircraft_model": "#unknown",
-            "aircraft_type": "glider",
-            "cn": "#unknown",
-            "flight_duration": "",
-            "identified": "N",
-            "landing_airport": "",
-            "landing_time": "",
-            "launch_type": "#unknown",
-            "receivers": [
-                "LFHA"
-            ],
-            "registration": "#unknown",
-            "status": "ground",
-            "takeoff_airport": "",
-            "takeoff_time": "",
-            "tracked": "N"
-        }
-    ]
+    "2020-08-14": {
+        "38593D": [
+            {
+                "aircraft_id": "38593D",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "autonome",
+                "receivers": [
+                    "LFNH",
+                    "LFNT",
+                    "LFHD"
+                ],
+                "registration": "#unknown",
+                "status": "air",
+                "status_last_airport": "LFNH",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "38C59B": [
+            {
+                "aircraft_id": "38C59B",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "SerreChe1",
+                    "LFNC",
+                    "SerreCheN"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "38F27B": [
+            {
+                "aircraft_id": "38F27B",
+                "aircraft_model": "Duo Discus",
+                "aircraft_type": "glider",
+                "cn": "ED",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMX"
+                ],
+                "registration": "F-CJED",
+                "status": "ground",
+                "status_last_airport": "LFMX",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "390D59": [
+            {
+                "aircraft_id": "390D59",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFIH"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "39721C": [
+            {
+                "aircraft_id": "39721C",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "helicopter_rotorcraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNH"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "39A963": [
+            {
+                "aircraft_id": "39A963",
+                "aircraft_model": "Cirrus SR20",
+                "aircraft_type": "powered_aircraft",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "cerizay"
+                ],
+                "registration": "F-HKLD",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "39F67C": [
+            {
+                "aircraft_id": "39F67C",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "cerizay"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "3A17BC": [
+            {
+                "aircraft_id": "3A17BC",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFCQ",
+                    "LFMG"
+                ],
+                "registration": "#unknown",
+                "status": "air",
+                "status_last_airport": "LFCQ",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "3D32E0": [
+            {
+                "aircraft_id": "3D32E0",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Solothurn",
+                    "Bern",
+                    "Bern3",
+                    "Melchenbu",
+                    "Guemligen",
+                    "LSZB"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "3E6CF1": [
+            {
+                "aircraft_id": "3E6CF1",
+                "aircraft_model": "Ventus 3F",
+                "aircraft_type": "glider",
+                "cn": "LL",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNF"
+                ],
+                "registration": "D-KGLL",
+                "status": "ground",
+                "status_last_airport": "LFNF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "3ECE84": [
+            {
+                "aircraft_id": "3ECE84",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMX"
+                ],
+                "registration": "#unknown",
+                "status": "ground",
+                "status_last_airport": "LFMX",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "3EE357": [
+            {
+                "aircraft_id": "3EE357",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFTP"
+                ],
+                "registration": "#unknown",
+                "status": "ground",
+                "status_last_airport": "LFTP",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "3FF483": [
+            {
+                "aircraft_id": "3FF483",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "cerizay"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "4055C9": [
+            {
+                "aircraft_id": "4055C9",
+                "aircraft_model": "Ventus ct",
+                "aircraft_type": "glider",
+                "cn": "109",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNS"
+                ],
+                "registration": "G-YUGE",
+                "status": "ground",
+                "status_last_airport": "LFNS",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "406CFD": [
+            {
+                "aircraft_id": "406CFD",
+                "aircraft_model": "Grob G109",
+                "aircraft_type": "glider",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "cerizay"
+                ],
+                "registration": "G-CINO",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4855F6": [
+            {
+                "aircraft_id": "4855F6",
+                "aircraft_model": "Motorplane",
+                "aircraft_type": "powered_aircraft",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "cerizay"
+                ],
+                "registration": "PH-PNX",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "49B002": [
+            {
+                "aircraft_id": "49B002",
+                "aircraft_model": "DG-1000",
+                "aircraft_type": "glider",
+                "cn": "VB",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNF"
+                ],
+                "registration": "F-CPVB",
+                "status": "ground",
+                "status_last_airport": "LFNF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B06F9": [
+            {
+                "aircraft_id": "4B06F9",
+                "aircraft_model": "Cessna 172",
+                "aircraft_type": "powered_aircraft",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "HB9GFVogn",
+                    "LSGT",
+                    "LSGN"
+                ],
+                "registration": "HB-CQR",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B07CF": [
+            {
+                "aircraft_id": "4B07CF",
+                "aircraft_model": "Cessna 152",
+                "aircraft_type": "powered_aircraft",
+                "cn": "CYX",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "SoloStdby",
+                    "Solothurn",
+                    "LSPO",
+                    "LSZG"
+                ],
+                "registration": "HB-CYX",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B1AA5": [
+            {
+                "aircraft_id": "4B1AA5",
+                "aircraft_model": "DR-400",
+                "aircraft_type": "powered_aircraft",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LSPL",
+                    "Solothurn",
+                    "SoloStdby",
+                    "Rigi"
+                ],
+                "registration": "HB-KCJ",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B1AE7": [
+            {
+                "aircraft_id": "4B1AE7",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LSGS",
+                    "Agettes",
+                    "Vetroz",
+                    "Leuk",
+                    "LSGB"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "4B1AED": [
+            {
+                "aircraft_id": "4B1AED",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LSGN",
+                    "Morrens",
+                    "LSGB",
+                    "MONTREUX",
+                    "Leuk",
+                    "LSGS",
+                    "Vetroz"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "4B1AF8": [
+            {
+                "aircraft_id": "4B1AF8",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LSGN"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "4B1AF9": [
+            {
+                "aircraft_id": "4B1AF9",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LSGN"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "4B1B2C": [
+            {
+                "aircraft_id": "4B1B2C",
+                "aircraft_model": "DR-400",
+                "aircraft_type": "tow_plane",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LSPL"
+                ],
+                "registration": "HB-KHO",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B1B33": [
+            {
+                "aircraft_id": "4B1B33",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Bern",
+                    "Guemligen",
+                    "Bern3",
+                    "Melchenbu"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "4B1BAF": [
+            {
+                "aircraft_id": "4B1BAF",
+                "aircraft_model": "Cirrus SR22",
+                "aircraft_type": "powered_aircraft",
+                "cn": "FOC",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LSZG"
+                ],
+                "registration": "HB-KMP",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B23DC": [
+            {
+                "aircraft_id": "4B23DC",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "HB9GFVogn",
+                    "LSGT"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "4B2839": [
+            {
+                "aircraft_id": "4B2839",
+                "aircraft_model": "PA-28",
+                "aircraft_type": "powered_aircraft",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LeSaleveS",
+                    "Valmeinie",
+                    "LFHI",
+                    "LFHC",
+                    "LFKP",
+                    "Voiron"
+                ],
+                "registration": "HB-PGB",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B2883": [
+            {
+                "aircraft_id": "4B2883",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Solothurn",
+                    "SoloStdby"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "4B288E": [
+            {
+                "aircraft_id": "4B288E",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Morrens"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "4B28E3": [
+            {
+                "aircraft_id": "4B28E3",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Morrens",
+                    "LSGN",
+                    "LSGB",
+                    "MONTREUX",
+                    "LSGT",
+                    "HB9GFVogn",
+                    "LSTBSE"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "4B28E7": [
+            {
+                "aircraft_id": "4B28E7",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LeSaleveS",
+                    "SPAlbigny",
+                    "MotServlx",
+                    "Valmeinie",
+                    "LFHI",
+                    "Albertvil",
+                    "LFKP",
+                    "F4CZX-15",
+                    "LFHJ",
+                    "LFHC",
+                    "SerreCheN",
+                    "SerreChe1",
+                    "LFNC"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "4B424F": [
+            {
+                "aircraft_id": "4B424F",
+                "aircraft_model": "AS 350",
+                "aircraft_type": "helicopter_rotorcraft",
+                "cn": "AZE",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Graetli",
+                    "Zermatt",
+                    "eagles3",
+                    "eagles1",
+                    "CPNmob"
+                ],
+                "registration": "HB-ZCX",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B4262": [
+            {
+                "aircraft_id": "4B4262",
+                "aircraft_model": "Cabri G2",
+                "aircraft_type": "helicopter_rotorcraft",
+                "cn": "SWH",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LSGT"
+                ],
+                "registration": "HB-ZDQ",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B42D4": [
+            {
+                "aircraft_id": "4B42D4",
+                "aircraft_model": "AS 350",
+                "aircraft_type": "helicopter_rotorcraft",
+                "cn": "AZE",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Termen",
+                    "Graetli"
+                ],
+                "registration": "HB-ZIA",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B4339": [
+            {
+                "aircraft_id": "4B4339",
+                "aircraft_model": "Cabri G2",
+                "aircraft_type": "helicopter_rotorcraft",
+                "cn": "HLA",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LSGN"
+                ],
+                "registration": "HB-ZLX",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B438B": [
+            {
+                "aircraft_id": "4B438B",
+                "aircraft_model": "AS 350",
+                "aircraft_type": "helicopter_rotorcraft",
+                "cn": "AZE",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Zermatt"
+                ],
+                "registration": "HB-ZPB",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B43C7": [
+            {
+                "aircraft_id": "4B43C7",
+                "aircraft_model": "AS 350",
+                "aircraft_type": "helicopter_rotorcraft",
+                "cn": "RGA",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Bern3",
+                    "LSXI1"
+                ],
+                "registration": "HB-ZRJ",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B43CB": [
+            {
+                "aircraft_id": "4B43CB",
+                "aircraft_model": "A 109",
+                "aircraft_type": "helicopter_rotorcraft",
+                "cn": "RGA",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LSXI1"
+                ],
+                "registration": "HB-ZRN",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B43DB": [
+            {
+                "aircraft_id": "4B43DB",
+                "aircraft_model": "Robinson R22",
+                "aircraft_type": "powered_aircraft",
+                "cn": "GHS",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LSGB"
+                ],
+                "registration": "HB-ZSD",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B4400": [
+            {
+                "aircraft_id": "4B4400",
+                "aircraft_model": "AS 350",
+                "aircraft_type": "helicopter_rotorcraft",
+                "cn": "SWH",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "SoloStdby",
+                    "Solothurn",
+                    "Rotenflue",
+                    "Eggiwil",
+                    "LSXI1",
+                    "Twing"
+                ],
+                "registration": "HB-ZTO",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B4438": [
+            {
+                "aircraft_id": "4B4438",
+                "aircraft_model": "AS 350",
+                "aircraft_type": "helicopter_rotorcraft",
+                "cn": "AZE",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Zermatt"
+                ],
+                "registration": "HB-ZVS",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B4B78": [
+            {
+                "aircraft_id": "4B4B78",
+                "aircraft_model": "DG-300",
+                "aircraft_type": "glider",
+                "cn": "RM",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNJ"
+                ],
+                "registration": "HB-1745",
+                "status": "ground",
+                "status_last_airport": "LFNJ",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B4DB9": [
+            {
+                "aircraft_id": "4B4DB9",
+                "aircraft_model": "DG-800",
+                "aircraft_type": "glider",
+                "cn": "JW",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNF"
+                ],
+                "registration": "HB-2322",
+                "status": "ground",
+                "status_last_airport": "LFNF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "4B7F61": [
+            {
+                "aircraft_id": "4B7F61",
+                "aircraft_model": "Pilatus PC-6",
+                "aircraft_type": "powered_aircraft",
+                "cn": "632",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Guemligen",
+                    "LSGN",
+                    "Erlach",
+                    "LSGT",
+                    "LSTBSE",
+                    "Walpwil",
+                    "LSTB",
+                    "Wunnewil",
+                    "Solothurn",
+                    "SoloStdby",
+                    "Lyss",
+                    "LSGY",
+                    "Bern",
+                    "HB9GFVogn",
+                    "LFGI"
+                ],
+                "registration": "V-632",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "A0BBB4": [
+            {
+                "aircraft_id": "A0BBB4",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "MotServlx",
+                    "SPAlbigny",
+                    "LFHI",
+                    "F4CZX-15",
+                    "LFKP",
+                    "LFHC",
+                    "Voiron"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "D004AA": [
+            {
+                "aircraft_id": "D004AA",
+                "aircraft_model": "Ventus 2ct",
+                "aircraft_type": "glider",
+                "cn": "RJ",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFBK"
+                ],
+                "registration": "OY-HXH",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "D0091B": [
+            {
+                "aircraft_id": "D0091B",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNS"
+                ],
+                "registration": "#unknown",
+                "status": "ground",
+                "status_last_airport": "LFNS",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "D00923": [
+            {
+                "aircraft_id": "D00923",
+                "aircraft_model": "DG-1000",
+                "aircraft_type": "glider",
+                "cn": "JN",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "F-PNVV",
+                "receivers": [
+                    "LFMX",
+                    "LFNF",
+                    "LFTP",
+                    "SigonceMS",
+                    "LFNS"
+                ],
+                "registration": "F-CNRB",
+                "status": "air",
+                "status_last_airport": "LFMX",
+                "takeoff_airport": "LFMX",
+                "takeoff_time": "2020-08-14 08:30:08",
+                "tracked": "Y"
+            }
+        ],
+        "D00951": [
+            {
+                "aircraft_id": "D00951",
+                "aircraft_model": "DG-1000",
+                "aircraft_type": "glider",
+                "cn": "TO",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "LFMX",
+                "landing_time": "2020-08-14 08:27:48",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNS",
+                    "SigonceMS",
+                    "LFMX",
+                    "LFTP",
+                    "LFNF"
+                ],
+                "registration": "F-CNGC",
+                "status": "landed",
+                "status_last_airport": "LFMX",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            },
+            {
+                "aircraft_id": "D00951",
+                "aircraft_model": "DG-1000",
+                "aircraft_type": "glider",
+                "cn": "TO",
+                "flight_duration": "",
+                "flight_id": 2,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "F-PFVV",
+                "receivers": [
+                    "LFMX"
+                ],
+                "registration": "F-CNGC",
+                "status": "air",
+                "status_last_airport": "LFMX",
+                "takeoff_airport": "LFMX",
+                "takeoff_time": "2020-08-14 08:39:59",
+                "tracked": "Y"
+            }
+        ],
+        "D00E09": [
+            {
+                "aircraft_id": "D00E09",
+                "aircraft_model": "JS-3 18M",
+                "aircraft_type": "glider",
+                "cn": "85",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "cerizay"
+                ],
+                "registration": "F-CHSD",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "D00FD1": [
+            {
+                "aircraft_id": "D00FD1",
+                "aircraft_model": "Pegase",
+                "aircraft_type": "glider",
+                "cn": "GU",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNQ"
+                ],
+                "registration": "F-CHGU",
+                "status": "ground",
+                "status_last_airport": "LFNQ",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "D01006": [
+            {
+                "aircraft_id": "D01006",
+                "aircraft_model": "ASG-29E",
+                "aircraft_type": "glider",
+                "cn": "IC",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "cerizay"
+                ],
+                "registration": "F-CMVO",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "D01346": [
+            {
+                "aircraft_id": "D01346",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFBK"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DD0C30": [
+            {
+                "aircraft_id": "DD0C30",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "helicopter_rotorcraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNQ"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DD4E8D": [
+            {
+                "aircraft_id": "DD4E8D",
+                "aircraft_model": "Ventus 2",
+                "aircraft_type": "glider",
+                "cn": "GG",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNF"
+                ],
+                "registration": "F-CIGG",
+                "status": "ground",
+                "status_last_airport": "LFNF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD50BF": [
+            {
+                "aircraft_id": "DD50BF",
+                "aircraft_model": "DR-400",
+                "aircraft_type": "powered_aircraft",
+                "cn": "VQ",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNF"
+                ],
+                "registration": "F-GLVQ",
+                "status": "ground",
+                "status_last_airport": "LFNF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD531C": [
+            {
+                "aircraft_id": "DD531C",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "helicopter_rotorcraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "SerreCheN"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DD84D8": [
+            {
+                "aircraft_id": "DD84D8",
+                "aircraft_model": "Duo Discus",
+                "aircraft_type": "glider",
+                "cn": "EC",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMX"
+                ],
+                "registration": "F-CIEC",
+                "status": "ground",
+                "status_last_airport": "LFMX",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD8525": [
+            {
+                "aircraft_id": "DD8525",
+                "aircraft_model": "DR-400",
+                "aircraft_type": "tow_plane",
+                "cn": "KB",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFTP",
+                    "SigonceMS"
+                ],
+                "registration": "F-GLKB",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD8783": [
+            {
+                "aircraft_id": "DD8783",
+                "aircraft_model": "Towplane",
+                "aircraft_type": "tow_plane",
+                "cn": "V1",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "LFMX",
+                "landing_time": "2020-08-14 08:20:26",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMX"
+                ],
+                "registration": "F-PFVV",
+                "status": "landed",
+                "status_last_airport": "LFMX",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            },
+            {
+                "aircraft_id": "DD8783",
+                "aircraft_model": "Towplane",
+                "aircraft_type": "tow_plane",
+                "cn": "V1",
+                "flight_duration": "",
+                "flight_id": 2,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "autonome",
+                "receivers": [
+                    "LFMX"
+                ],
+                "registration": "F-PFVV",
+                "status": "air",
+                "status_last_airport": "LFMX",
+                "takeoff_airport": "LFMX",
+                "takeoff_time": "2020-08-14 08:39:57",
+                "tracked": "Y"
+            }
+        ],
+        "DD88FC": [
+            {
+                "aircraft_id": "DD88FC",
+                "aircraft_model": "ASK-21",
+                "aircraft_type": "glider",
+                "cn": "CN",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNF"
+                ],
+                "registration": "F-CJCN",
+                "status": "ground",
+                "status_last_airport": "LFNF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD8927": [
+            {
+                "aircraft_id": "DD8927",
+                "aircraft_model": "DR-400",
+                "aircraft_type": "tow_plane",
+                "cn": "RY",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNF"
+                ],
+                "registration": "F-GORY",
+                "status": "ground",
+                "status_last_airport": "LFNF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD89C1": [
+            {
+                "aircraft_id": "DD89C1",
+                "aircraft_model": "Nimbus 3D",
+                "aircraft_type": "glider",
+                "cn": "UT",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNF"
+                ],
+                "registration": "F-CFUT",
+                "status": "ground",
+                "status_last_airport": "LFNF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD89D7": [
+            {
+                "aircraft_id": "DD89D7",
+                "aircraft_model": "MS-893 Commodore",
+                "aircraft_type": "glider",
+                "cn": "NL",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMF"
+                ],
+                "registration": "F-BMNL",
+                "status": "ground",
+                "status_last_airport": "LFMF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD8C94": [
+            {
+                "aircraft_id": "DD8C94",
+                "aircraft_model": "MS-893 Commodore",
+                "aircraft_type": "tow_plane",
+                "cn": "GB",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "autonome",
+                "receivers": [
+                    "LFHE",
+                    "LFLU",
+                    "Vercors"
+                ],
+                "registration": "F-BLGB",
+                "status": "air",
+                "status_last_airport": "LFHE",
+                "takeoff_airport": "LFHE",
+                "takeoff_time": "2020-08-14 08:19:43",
+                "tracked": "Y"
+            }
+        ],
+        "DD8DA8": [
+            {
+                "aircraft_id": "DD8DA8",
+                "aircraft_model": "Robinson R44",
+                "aircraft_type": "glider",
+                "cn": "HM",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNC",
+                    "SerreChe1",
+                    "SerreCheN"
+                ],
+                "registration": "F-HCRI",
+                "status": "ground",
+                "status_last_airport": "LFNC",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD8DF9": [
+            {
+                "aircraft_id": "DD8DF9",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFHP"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DD93ED": [
+            {
+                "aircraft_id": "DD93ED",
+                "aircraft_model": "DR-300",
+                "aircraft_type": "tow_plane",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNS"
+                ],
+                "registration": "F-PTAS",
+                "status": "ground",
+                "status_last_airport": "LFNS",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD942D": [
+            {
+                "aircraft_id": "DD942D",
+                "aircraft_model": "DR-400",
+                "aircraft_type": "tow_plane",
+                "cn": "FR",
+                "flight_duration": "0:05:08",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "LFCS",
+                "landing_time": "2020-08-14 08:31:34",
+                "launch_type": "autonome",
+                "receivers": [
+                    "LFCS"
+                ],
+                "registration": "D-ELFR",
+                "status": "landed",
+                "status_last_airport": "LFCS",
+                "takeoff_airport": "LFCS",
+                "takeoff_time": "2020-08-14 08:26:26",
+                "tracked": "Y"
+            },
+            {
+                "aircraft_id": "DD942D",
+                "aircraft_model": "DR-400",
+                "aircraft_type": "tow_plane",
+                "cn": "FR",
+                "flight_duration": "",
+                "flight_id": 2,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFCS"
+                ],
+                "registration": "D-ELFR",
+                "status": "ground",
+                "status_last_airport": "LFCS",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD97E6": [
+            {
+                "aircraft_id": "DD97E6",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNJ"
+                ],
+                "registration": "#unknown",
+                "status": "ground",
+                "status_last_airport": "LFNJ",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DD9834": [
+            {
+                "aircraft_id": "DD9834",
+                "aircraft_model": "PA-25 Pawnee",
+                "aircraft_type": "tow_plane",
+                "cn": "ZV",
+                "flight_duration": "0:02:43",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "LFMF",
+                "landing_time": "2020-08-14 08:24:32",
+                "launch_type": "autonome",
+                "receivers": [
+                    "LFMF"
+                ],
+                "registration": "F-HNZV",
+                "status": "landed",
+                "status_last_airport": "LFMF",
+                "takeoff_airport": "LFMF",
+                "takeoff_time": "2020-08-14 08:21:49",
+                "tracked": "Y"
+            },
+            {
+                "aircraft_id": "DD9834",
+                "aircraft_model": "PA-25 Pawnee",
+                "aircraft_type": "tow_plane",
+                "cn": "ZV",
+                "flight_duration": "",
+                "flight_id": 2,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMF"
+                ],
+                "registration": "F-HNZV",
+                "status": "ground",
+                "status_last_airport": "LFMF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD9931": [
+            {
+                "aircraft_id": "DD9931",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "winch tow or autonome",
+                "receivers": [
+                    "LFMX",
+                    "LFNS",
+                    "Maynard",
+                    "SigonceMS",
+                    "LFNF"
+                ],
+                "registration": "#unknown",
+                "status": "air",
+                "status_last_airport": "LFMX",
+                "takeoff_airport": "LFMX",
+                "takeoff_time": "2020-08-14 08:22:56",
+                "tracked": "N"
+            }
+        ],
+        "DD99B4": [
+            {
+                "aircraft_id": "DD99B4",
+                "aircraft_model": "LS-8 st 18",
+                "aircraft_type": "glider",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "cerizay"
+                ],
+                "registration": "F-CVBP",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD99C0": [
+            {
+                "aircraft_id": "DD99C0",
+                "aircraft_model": "Ventus cM",
+                "aircraft_type": "glider",
+                "cn": "GS",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNS"
+                ],
+                "registration": "D-KNGS",
+                "status": "ground",
+                "status_last_airport": "LFNS",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DD9C71": [
+            {
+                "aircraft_id": "DD9C71",
+                "aircraft_model": "Duo Discus",
+                "aircraft_type": "glider",
+                "cn": "L4",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "cerizay"
+                ],
+                "registration": "D-5128",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDA2FB": [
+            {
+                "aircraft_id": "DDA2FB",
+                "aircraft_model": "Towplane",
+                "aircraft_type": "tow_plane",
+                "cn": "V3",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "autonome",
+                "receivers": [
+                    "LFMX",
+                    "LFTP",
+                    "LFNF",
+                    "SigonceMS",
+                    "LFNS"
+                ],
+                "registration": "F-PNVV",
+                "status": "air",
+                "status_last_airport": "LFMX",
+                "takeoff_airport": "LFMX",
+                "takeoff_time": "2020-08-14 08:30:08",
+                "tracked": "Y"
+            }
+        ],
+        "DDA38C": [
+            {
+                "aircraft_id": "DDA38C",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "LFMX",
+                "landing_time": "2020-08-14 08:37:09",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMX"
+                ],
+                "registration": "#unknown",
+                "status": "landed",
+                "status_last_airport": "LFMX",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            },
+            {
+                "aircraft_id": "DDA38C",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 2,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMX"
+                ],
+                "registration": "#unknown",
+                "status": "ground",
+                "status_last_airport": "LFMX",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DDA48F": [
+            {
+                "aircraft_id": "DDA48F",
+                "aircraft_model": "DG-100",
+                "aircraft_type": "glider",
+                "cn": "SZ",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNS"
+                ],
+                "registration": "SP-4016",
+                "status": "ground",
+                "status_last_airport": "LFNS",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDA551": [
+            {
+                "aircraft_id": "DDA551",
+                "aircraft_model": "DR-300",
+                "aircraft_type": "tow_plane",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "SerreCheN",
+                    "LFNC",
+                    "SerreChe1"
+                ],
+                "registration": "F-BROJ",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDA5D6": [
+            {
+                "aircraft_id": "DDA5D6",
+                "aircraft_model": "PA-25 Pawnee",
+                "aircraft_type": "tow_plane",
+                "cn": "PD",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "LFMF",
+                "landing_time": "2020-08-14 08:32:29",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMF"
+                ],
+                "registration": "F-GFPD",
+                "status": "landed",
+                "status_last_airport": "LFMF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            },
+            {
+                "aircraft_id": "DDA5D6",
+                "aircraft_model": "PA-25 Pawnee",
+                "aircraft_type": "tow_plane",
+                "cn": "PD",
+                "flight_duration": "0:04:04",
+                "flight_id": 2,
+                "identified": "Y",
+                "landing_airport": "LFMF",
+                "landing_time": "2020-08-14 08:37:20",
+                "launch_type": "autonome",
+                "receivers": [
+                    "LFMF"
+                ],
+                "registration": "F-GFPD",
+                "status": "landed",
+                "status_last_airport": "LFMF",
+                "takeoff_airport": "LFMF",
+                "takeoff_time": "2020-08-14 08:33:16",
+                "tracked": "Y"
+            },
+            {
+                "aircraft_id": "DDA5D6",
+                "aircraft_model": "PA-25 Pawnee",
+                "aircraft_type": "tow_plane",
+                "cn": "PD",
+                "flight_duration": "",
+                "flight_id": 3,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMF"
+                ],
+                "registration": "F-GFPD",
+                "status": "ground",
+                "status_last_airport": "LFMF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDAA2B": [
+            {
+                "aircraft_id": "DDAA2B",
+                "aircraft_model": "Duo Discus",
+                "aircraft_type": "glider",
+                "cn": "JAC",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNS"
+                ],
+                "registration": "JAC",
+                "status": "ground",
+                "status_last_airport": "LFNS",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDAB07": [
+            {
+                "aircraft_id": "DDAB07",
+                "aircraft_model": "Twin Astir II",
+                "aircraft_type": "glider",
+                "cn": "M9",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LECD"
+                ],
+                "registration": "EC-MZF",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDAD5E": [
+            {
+                "aircraft_id": "DDAD5E",
+                "aircraft_model": "RF 10",
+                "aircraft_type": "glider",
+                "cn": "CI",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFCG"
+                ],
+                "registration": "D-KOCI",
+                "status": "ground",
+                "status_last_airport": "LFCG",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDAD9A": [
+            {
+                "aircraft_id": "DDAD9A",
+                "aircraft_model": "Ventus 2CX",
+                "aircraft_type": "glider",
+                "cn": "EL",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMF"
+                ],
+                "registration": "F-CIJT",
+                "status": "ground",
+                "status_last_airport": "LFMF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDB136": [
+            {
+                "aircraft_id": "DDB136",
+                "aircraft_model": "DG-600",
+                "aircraft_type": "glider",
+                "cn": "SG",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFIM"
+                ],
+                "registration": "F-CPSG",
+                "status": "ground",
+                "status_last_airport": "LFIM",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDB18B": [
+            {
+                "aircraft_id": "DDB18B",
+                "aircraft_model": "Ventus 2CX",
+                "aircraft_type": "glider",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNL"
+                ],
+                "registration": "F-CIJO",
+                "status": "ground",
+                "status_last_airport": "LFNL",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDC299": [
+            {
+                "aircraft_id": "DDC299",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "ufo",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFBS"
+                ],
+                "registration": "#unknown",
+                "status": "ground",
+                "status_last_airport": "LFBS",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DDD3C6": [
+            {
+                "aircraft_id": "DDD3C6",
+                "aircraft_model": "Pegase",
+                "aircraft_type": "glider",
+                "cn": "NA",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMF"
+                ],
+                "registration": "F-CGNA",
+                "status": "ground",
+                "status_last_airport": "LFMF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDD4D3": [
+            {
+                "aircraft_id": "DDD4D3",
+                "aircraft_model": "Ikarus C42 B",
+                "aircraft_type": "tow_plane",
+                "cn": "VO",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "autonome",
+                "receivers": [
+                    "LFNJ",
+                    "LFNS",
+                    "Maynard"
+                ],
+                "registration": "F-JVYO",
+                "status": "air",
+                "status_last_airport": "LFNJ",
+                "takeoff_airport": "LFNJ",
+                "takeoff_time": "2020-08-14 08:26:22",
+                "tracked": "Y"
+            }
+        ],
+        "DDD5DA": [
+            {
+                "aircraft_id": "DDD5DA",
+                "aircraft_model": "",
+                "aircraft_type": "static_object",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFPF"
+                ],
+                "registration": "",
+                "status": "ground",
+                "status_last_airport": "LFPF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DDD8E2": [
+            {
+                "aircraft_id": "DDD8E2",
+                "aircraft_model": "DR-400",
+                "aircraft_type": "tow_plane",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "autonome",
+                "receivers": [
+                    "LFCB",
+                    "LFIM",
+                    "LFDT2"
+                ],
+                "registration": "F-HKZZ",
+                "status": "air",
+                "status_last_airport": "LFCB",
+                "takeoff_airport": "LFCB",
+                "takeoff_time": "2020-08-14 08:19:47",
+                "tracked": "Y"
+            }
+        ],
+        "DDD9F5": [
+            {
+                "aircraft_id": "DDD9F5",
+                "aircraft_model": "ASK-21",
+                "aircraft_type": "glider",
+                "cn": "CJ",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFOZ"
+                ],
+                "registration": "F-CGCJ",
+                "status": "ground",
+                "status_last_airport": "LFOZ",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDD9FA": [
+            {
+                "aircraft_id": "DDD9FA",
+                "aircraft_model": "ASK-21",
+                "aircraft_type": "glider",
+                "cn": "MF",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFOZ"
+                ],
+                "registration": "F-CHMF",
+                "status": "ground",
+                "status_last_airport": "LFOZ",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDDA2A": [
+            {
+                "aircraft_id": "DDDA2A",
+                "aircraft_model": "Marianne",
+                "aircraft_type": "glider",
+                "cn": "106",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "F-SDXM",
+                "receivers": [
+                    "LFXB",
+                    "LFBG"
+                ],
+                "registration": "F-TGDL",
+                "status": "air",
+                "status_last_airport": "LFXB",
+                "takeoff_airport": "LFXB",
+                "takeoff_time": "2020-08-14 08:38:40",
+                "tracked": "Y"
+            }
+        ],
+        "DDDB8E": [
+            {
+                "aircraft_id": "DDDB8E",
+                "aircraft_model": "Marianne",
+                "aircraft_type": "glider",
+                "cn": "Z68",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFXB",
+                    "LFBG"
+                ],
+                "registration": "F-UMDU",
+                "status": "air",
+                "status_last_airport": "LFXB",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDDB9C": [
+            {
+                "aircraft_id": "DDDB9C",
+                "aircraft_model": "Marianne",
+                "aircraft_type": "glider",
+                "cn": "Z85",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "LFXB",
+                "landing_time": "2020-08-14 08:19:55",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFXB"
+                ],
+                "registration": "F-UMDW",
+                "status": "landed",
+                "status_last_airport": "LFXB",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            },
+            {
+                "aircraft_id": "DDDB9C",
+                "aircraft_model": "Marianne",
+                "aircraft_type": "glider",
+                "cn": "Z85",
+                "flight_duration": "",
+                "flight_id": 2,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "winch tow or autonome",
+                "receivers": [
+                    "LFXB",
+                    "LFBG"
+                ],
+                "registration": "F-UMDW",
+                "status": "air",
+                "status_last_airport": "LFXB",
+                "takeoff_airport": "LFXB",
+                "takeoff_time": "2020-08-14 08:35:45",
+                "tracked": "Y"
+            }
+        ],
+        "DDDBA5": [
+            {
+                "aircraft_id": "DDDBA5",
+                "aircraft_model": "Marianne",
+                "aircraft_type": "glider",
+                "cn": "109",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "LFXB",
+                "landing_time": "2020-08-14 08:39:32",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFXB",
+                    "LFBG"
+                ],
+                "registration": "F-UMDR",
+                "status": "landed",
+                "status_last_airport": "LFXB",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            },
+            {
+                "aircraft_id": "DDDBA5",
+                "aircraft_model": "Marianne",
+                "aircraft_type": "glider",
+                "cn": "109",
+                "flight_duration": "",
+                "flight_id": 2,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFXB"
+                ],
+                "registration": "F-UMDR",
+                "status": "ground",
+                "status_last_airport": "LFXB",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDDC49": [
+            {
+                "aircraft_id": "DDDC49",
+                "aircraft_model": "Twin Astir II",
+                "aircraft_type": "glider",
+                "cn": "RT",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNQ"
+                ],
+                "registration": "F-CKLL",
+                "status": "ground",
+                "status_last_airport": "LFNQ",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDDC4D": [
+            {
+                "aircraft_id": "DDDC4D",
+                "aircraft_model": "Janus B",
+                "aircraft_type": "glider",
+                "cn": "AG",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNQ"
+                ],
+                "registration": "F-CFAG",
+                "status": "ground",
+                "status_last_airport": "LFNQ",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDDC4F": [
+            {
+                "aircraft_id": "DDDC4F",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFCG"
+                ],
+                "registration": "#unknown",
+                "status": "ground",
+                "status_last_airport": "LFCG",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DDDD57": [
+            {
+                "aircraft_id": "DDDD57",
+                "aircraft_model": "LS-6",
+                "aircraft_type": "glider",
+                "cn": "UH",
+                "flight_duration": "0:03:39",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "LFMF",
+                "landing_time": "2020-08-14 08:25:29",
+                "launch_type": "F-HNZV",
+                "receivers": [
+                    "LFMF"
+                ],
+                "registration": "F-CGUH",
+                "status": "landed",
+                "status_last_airport": "LFMF",
+                "takeoff_airport": "LFMF",
+                "takeoff_time": "2020-08-14 08:21:50",
+                "tracked": "Y"
+            },
+            {
+                "aircraft_id": "DDDD57",
+                "aircraft_model": "LS-6",
+                "aircraft_type": "glider",
+                "cn": "UH",
+                "flight_duration": "0:00:14",
+                "flight_id": 2,
+                "identified": "Y",
+                "landing_airport": "LFMF",
+                "landing_time": "2020-08-14 08:37:08",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMF"
+                ],
+                "registration": "F-CGUH",
+                "status": "landed",
+                "status_last_airport": "LFMF",
+                "takeoff_airport": "LFMF",
+                "takeoff_time": "2020-08-14 08:36:54",
+                "tracked": "Y"
+            },
+            {
+                "aircraft_id": "DDDD57",
+                "aircraft_model": "LS-6",
+                "aircraft_type": "glider",
+                "cn": "UH",
+                "flight_duration": "",
+                "flight_id": 3,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMF"
+                ],
+                "registration": "F-CGUH",
+                "status": "ground",
+                "status_last_airport": "LFMF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDE1D7": [
+            {
+                "aircraft_id": "DDE1D7",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFYR"
+                ],
+                "registration": "#unknown",
+                "status": "ground",
+                "status_last_airport": "LFYR",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DDE1F4": [
+            {
+                "aircraft_id": "DDE1F4",
+                "aircraft_model": "Jodel D140",
+                "aircraft_type": "tow_plane",
+                "cn": "XM",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "LFXB",
+                "landing_time": "2020-08-14 08:30:51",
+                "launch_type": "autonome",
+                "receivers": [
+                    "LFXB",
+                    "LFBG"
+                ],
+                "registration": "F-SDXM",
+                "status": "landed",
+                "status_last_airport": "LFXB",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            },
+            {
+                "aircraft_id": "DDE1F4",
+                "aircraft_model": "Jodel D140",
+                "aircraft_type": "tow_plane",
+                "cn": "XM",
+                "flight_duration": "",
+                "flight_id": 2,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "autonome",
+                "receivers": [
+                    "LFXB"
+                ],
+                "registration": "F-SDXM",
+                "status": "air",
+                "status_last_airport": "LFXB",
+                "takeoff_airport": "LFXB",
+                "takeoff_time": "2020-08-14 08:38:38",
+                "tracked": "Y"
+            }
+        ],
+        "DDE1FE": [
+            {
+                "aircraft_id": "DDE1FE",
+                "aircraft_model": "HK36 Super Dimona",
+                "aircraft_type": "glider",
+                "cn": "UW",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "LFXB",
+                "landing_time": "2020-08-14 08:30:07",
+                "launch_type": "winch tow or autonome",
+                "receivers": [
+                    "LFXB"
+                ],
+                "registration": "F-TFUW",
+                "status": "landed",
+                "status_last_airport": "LFXB",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            },
+            {
+                "aircraft_id": "DDE1FE",
+                "aircraft_model": "HK36 Super Dimona",
+                "aircraft_type": "glider",
+                "cn": "UW",
+                "flight_duration": "",
+                "flight_id": 2,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFXB"
+                ],
+                "registration": "F-TFUW",
+                "status": "ground",
+                "status_last_airport": "LFXB",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDE650": [
+            {
+                "aircraft_id": "DDE650",
+                "aircraft_model": "SF-28",
+                "aircraft_type": "glider",
+                "cn": "EJB",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNE",
+                    "LFNH"
+                ],
+                "registration": "F-CFJB",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDE84F": [
+            {
+                "aircraft_id": "DDE84F",
+                "aircraft_model": "Twin Astir II",
+                "aircraft_type": "glider",
+                "cn": "T73",
+                "flight_duration": "0:04:41",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "LFCS",
+                "landing_time": "2020-08-14 08:31:09",
+                "launch_type": "winch tow or autonome",
+                "receivers": [
+                    "LFCS"
+                ],
+                "registration": "F-CACC",
+                "status": "landed",
+                "status_last_airport": "LFCS",
+                "takeoff_airport": "LFCS",
+                "takeoff_time": "2020-08-14 08:26:28",
+                "tracked": "Y"
+            },
+            {
+                "aircraft_id": "DDE84F",
+                "aircraft_model": "Twin Astir II",
+                "aircraft_type": "glider",
+                "cn": "T73",
+                "flight_duration": "",
+                "flight_id": 2,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFCS"
+                ],
+                "registration": "F-CACC",
+                "status": "ground",
+                "status_last_airport": "LFCS",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDECE3": [
+            {
+                "aircraft_id": "DDECE3",
+                "aircraft_model": "JS-1 Revelation",
+                "aircraft_type": "glider",
+                "cn": "DY",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "cerizay"
+                ],
+                "registration": "ZS-GBI",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDEDDD": [
+            {
+                "aircraft_id": "DDEDDD",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFTP"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DDEFC6": [
+            {
+                "aircraft_id": "DDEFC6",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMF"
+                ],
+                "registration": "#unknown",
+                "status": "ground",
+                "status_last_airport": "LFMF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DDEFED": [
+            {
+                "aircraft_id": "DDEFED",
+                "aircraft_model": "JS-1 B Revelation",
+                "aircraft_type": "glider",
+                "cn": "JD",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFMF"
+                ],
+                "registration": "ZS-GCY",
+                "status": "ground",
+                "status_last_airport": "LFMF",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDF9EB": [
+            {
+                "aircraft_id": "DDF9EB",
+                "aircraft_model": "Twin Astir II",
+                "aircraft_type": "glider",
+                "cn": "T46",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFID"
+                ],
+                "registration": "F-CFHU",
+                "status": "ground",
+                "status_last_airport": "LFID",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDFA2E": [
+            {
+                "aircraft_id": "DDFA2E",
+                "aircraft_model": "Mosquito",
+                "aircraft_type": "glider",
+                "cn": "M14",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "cerizay"
+                ],
+                "registration": "F-CELT",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDFD30": [
+            {
+                "aircraft_id": "DDFD30",
+                "aircraft_model": "Twin Astir I",
+                "aircraft_type": "glider",
+                "cn": "YU",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFXB"
+                ],
+                "registration": "",
+                "status": "ground",
+                "status_last_airport": "LFXB",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDFD34": [
+            {
+                "aircraft_id": "DDFD34",
+                "aircraft_model": "Pilatus PC-6",
+                "aircraft_type": "drop_plane",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Maynard",
+                    "LaMotteDC"
+                ],
+                "registration": "F-GOSP",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DDFE80": [
+            {
+                "aircraft_id": "DDFE80",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "powered_aircraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFFB"
+                ],
+                "registration": "#unknown",
+                "status": "ground",
+                "status_last_airport": "LFFB",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DE0308": [
+            {
+                "aircraft_id": "DE0308",
+                "aircraft_model": "Pilatus PC-6",
+                "aircraft_type": "drop_plane",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Maynard",
+                    "LaMotteDC"
+                ],
+                "registration": "I-HSKC",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DE07F6": [
+            {
+                "aircraft_id": "DE07F6",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFTP"
+                ],
+                "registration": "#unknown",
+                "status": "ground",
+                "status_last_airport": "LFTP",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DF0BA3": [
+            {
+                "aircraft_id": "DF0BA3",
+                "aircraft_model": "Duo Discus",
+                "aircraft_type": "glider",
+                "cn": "JB",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LFNS"
+                ],
+                "registration": "F-CVVT",
+                "status": "ground",
+                "status_last_airport": "LFNS",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "DF0E51": [
+            {
+                "aircraft_id": "DF0E51",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "helicopter_rotorcraft",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "Leuk",
+                    "LSGS",
+                    "Vetroz",
+                    "Agettes"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DF1042": [
+            {
+                "aircraft_id": "DF1042",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "SoloStdby",
+                    "Solothurn",
+                    "LSPL",
+                    "EDTG",
+                    "EDSF",
+                    "LSPO",
+                    "Iselisbrg",
+                    "Rotenflue",
+                    "Bern",
+                    "Lyss",
+                    "Melchenbu",
+                    "Walpwil",
+                    "LSTB",
+                    "Guemligen",
+                    "LSGN",
+                    "Bern3",
+                    "LSTBSE",
+                    "LSZB"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ],
+        "DF1101": [
+            {
+                "aircraft_id": "DF1101",
+                "aircraft_model": "PA-18 Super Cub",
+                "aircraft_type": "glider",
+                "cn": "",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "Y",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "LSXI1"
+                ],
+                "registration": "HB-PMN",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "Y"
+            }
+        ],
+        "FD0790": [
+            {
+                "aircraft_id": "FD0790",
+                "aircraft_model": "#unknown",
+                "aircraft_type": "glider",
+                "cn": "#unknown",
+                "flight_duration": "",
+                "flight_id": 1,
+                "identified": "N",
+                "landing_airport": "",
+                "landing_time": "",
+                "launch_type": "#unknown",
+                "receivers": [
+                    "NAVITER"
+                ],
+                "registration": "#unknown",
+                "status": "?",
+                "status_last_airport": "",
+                "takeoff_airport": "",
+                "takeoff_time": "",
+                "tracked": "N"
+            }
+        ]
+    },
+    "maxsize": 2
 }

@@ -6,8 +6,11 @@ from ogn.parser import parse, ParseError
 from geopy import distance
 from collections import deque
 
+from acph.class_vptree import AcphVPTree
+
 # OGN constants for sender_type and address_type
 OGN_SENDER_TYPES = {
+	0 : 'ground_station',
 	1 : 'glider',
 	2 : 'tow_plane',
 	3 : 'helicopter_rotorcraft',
@@ -37,27 +40,53 @@ AIRPORT_DISTANCE_THRESHOLD = 1.0		# 1 km
 FEETS_TO_METER = 0.3048				# ratio feets to meter
 
 BUFFER_POSITION_SIZE = 500			# to buffer the last n  position received
+NBR_OF_DAY_LOGBOOK = 2 				# number of day to keep in the logbook
 
 def feet_to_meter(altitude_in_feet):
 	return round(altitude_in_feet * FEETS_TO_METER)
 
+class LRU(collections.OrderedDict):
+	'Limit size, evicting the least recently looked-up key when full'
+
+	def __init__(self, maxsize=128, /, *args, **kwds):
+		self.maxsize = maxsize
+		super().__init__(*args, **kwds)
+
+	def __getitem__(self, key):
+		value = super().__getitem__(key)
+		self.move_to_end(key)
+		return value
+
+	def __setitem__(self, key, value):
+		if key in self:
+			self.move_to_end(key)
+		super().__setitem__(key, value)
+		if len(self) > self.maxsize:
+			oldest = next(iter(self))
+			del self[oldest]
+
 class FlightsLogBook:
-	def __init__(self, airports_icao, ogndb, pdo_engine):
+	def __init__(self, airports_icao, ogndb, airports_db, pdo_engine):
 		self.airports_icao = airports_icao
 		self.ogn_devices_db = ogndb
 		self.pdo_engine = pdo_engine
-		self.airports = None
-		self.aircrafts_logbook = {}
+		self.airports = { airports_db[i].icao : airports_db[i] for i in range(0, len(airports_db) ) }
+		self.airports_tree =  AcphVPTree([ [item.lat, item.lon, item.icao] for item in airports_db], self.vptree_distance_great_circle)	
+		self.logbook = LRU(maxsize=NBR_OF_DAY_LOGBOOK)
 		self.buffer_position = deque(maxlen=BUFFER_POSITION_SIZE)
 		self.logger = logging.getLogger(__name__)
+		self.logger.info(' Flights Logbook initialized.')
+
+	def vptree_distance_great_circle(self,p1, p2):
+		return distance.great_circle((p1[0], p1[1]), (p2[0], p2[1])).km
+
+	def vptree_distance_geodesic(self, p1, p2):
+		return distance.geodesic((p1[0], p1[1]), (p2[0], p2[1]), ellipsoid='WGS-84').km
 	
 	def handlePosition(self, beacon, date):
 		self.logger.debug('handle beacon position, raw data: {raw_message}'.format(**beacon))
 		if self.isAircraftBeacon(beacon) and self.filteringReceivers(beacon['receiver_name']):
-			# try:
-				self.handleAircraftPosition(beacon, date)
-			# except Exception as ex:
-			# 	self.logger.warning(ex)
+			self.handleAircraftPosition(beacon, date)
 		else:
 			self.logger.debug('handle beacon position, not an aircraft or receiver name filetered [beacon type is {beacon_type}, receiver name is {receiver_name}]'.format(**beacon))
 
@@ -92,27 +121,36 @@ class FlightsLogBook:
 		return beacon['beacon_type'] == 'aprs_receiver'
 
 	def filteringReceivers(self, receiver_name):
-		return receiver_name in self.airports_icao
+		if self.airports_icao is None or len(self.airports_icao)==0:
+			return True
+		else:
+			return receiver_name in self.airports_icao
 
 	def findLogbookEntryByID(self, aircraft_id, date, aircraft_type, ognDevice):
-		logbook_for_a_date = self.aircrafts_logbook.get(date)
+		logbook_for_a_date = self.logbook.get(date)
 
 		# Not yet create an entry for this day in the logbook, create it
 		if (logbook_for_a_date is None):
-			logbook_for_a_date = []		# create an empty list
-			self.aircrafts_logbook.update({date: logbook_for_a_date})
+			logbook_for_a_date = {}		# create an empty dict
+			self.logbook.update({date: logbook_for_a_date})
 
-		# look for an entry for aircraft_id in the logbook
-		entry_for_aircraft = None
-		for anAircraftEntry in logbook_for_a_date:
-			if (anAircraftEntry['aircraft_id']) == aircraft_id and not anAircraftEntry['status'] == 'landed':
-				entry_for_aircraft = anAircraftEntry
-				break
+		# get the list of flights for this aircraft, if the list is not yet created, create it
+		logbook_for_aircraft = logbook_for_a_date.get(aircraft_id, None)
+		if (logbook_for_aircraft is None):
+			logbook_for_aircraft = []	# create an empty list
+			logbook_for_a_date.update({aircraft_id: logbook_for_aircraft}) 
+
+		# look for the last flight for this aircraft which is not already landed,
+		last_flight_log = None
+		last_flight_log_index = len(logbook_for_aircraft) -1
+		if last_flight_log_index>=0 and not logbook_for_aircraft[last_flight_log_index]['status'] == 'landed':
+			last_flight_log = logbook_for_aircraft[last_flight_log_index]
 	
 		# if found nothing, first time we received a beacon for this aircraft_id or aircraft_id has already landed, create an new entry in the logbook
-		if entry_for_aircraft is None:
-			entry_for_aircraft = { 'aircraft_id': aircraft_id,
+		if last_flight_log is None:
+			last_flight_log = { 'aircraft_id': aircraft_id,
 				 'status': '?',
+				 'status_last_airport': '',
 				 'receivers': [],
 				 'aircraft_type' : aircraft_type,
 				 'aircraft_model': ognDevice.get('aircraft_model'),
@@ -125,10 +163,11 @@ class FlightsLogBook:
 				 'landing_time' : '',
 				 'landing_airport' : '',
 				 'flight_duration': '',
-				 'launch_type' : '#unknown'
+				 'launch_type' : '#unknown',
+				 "flight_id" : len(logbook_for_aircraft) + 1,
 				}
-			logbook_for_a_date.append(entry_for_aircraft)
-		return entry_for_aircraft
+			logbook_for_aircraft.append(last_flight_log)
+		return last_flight_log
 
 	def findOgnAircraftById(self, aircraft_id):
 			ognDevice = self.ogn_devices_db.getAircraftById(aircraft_id)
@@ -143,8 +182,6 @@ class FlightsLogBook:
 					"tracked":"N",
 					"identified":"N"}
 			return ognDevice
-
-
 
 	def handleAircraftPosition(self, beacon, date):
 		self.logger.info('handle aircraft beacon position, raw data: {raw_message}'.format(**beacon))
@@ -164,7 +201,7 @@ class FlightsLogBook:
 		beacon['climb_rate'] = round(beacon['climb_rate'],1)
 		# self.logger.debug('Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {address} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
 	
-		self.logger.debug('Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, imat= self.ogn_devices_db.getAircraftRegistrationById(aircraft_id), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
+		self.logger.info('Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, imat= self.ogn_devices_db.getAircraftRegistrationById(aircraft_id), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
 		
 		# look for current entry in the logbook for this aircraft_id at the date of the received beacon.
 
@@ -177,7 +214,7 @@ class FlightsLogBook:
 			lg_entry['receivers'].append(beacon['receiver_name'])
 
 		# handle the new aircraft beacon
-		nearest_airport, nearest_airport_distance = self.findNearestAirport(beacon['latitude'], beacon['longitude'])
+		nearest_airport, nearest_airport_distance = self.findNearestAirport_vptree(beacon['latitude'], beacon['longitude'])
 		# is_near_coordinates = self.near_coordinates(airport, beacon['latitude'], beacon['longitude'])
 
 		if (nearest_airport is not None):
@@ -187,7 +224,7 @@ class FlightsLogBook:
 			else:
 				self.handleAirborne(lg_entry, beacon, ognDevice)
 			
-			self.pdo_engine.save(self.aircrafts_logbook)
+			self.pdo_engine.save_aircraft(lg_entry, date)
 		else:
 			#TODO: handle outlanding
 			# self.handleOutlanding(lg_entry, beacon, ognDevice)
@@ -199,31 +236,36 @@ class FlightsLogBook:
 		# To calculate distance in pyhton when working with GPS
 		#	Geo-py library https://pypi.org/project/geo-py/ and https://github.com/gojuno/geo-py
 		#	GeoPy library https://geopy.readthedocs.io/en/latest/#
-		#
-		#	PyGeodesy library https://github.com/mrJean1/PyGeodesy and doc https://mrjean1.github.io/PyGeodesy/
-		#	PyProj4	library http://pyproj4.github.io/pyproj/stable/
-		#	
-		#	some refererences:
-		#		https://janakiev.com/blog/gps-points-distance-python/
-		#		https://medium.com/@petehouston/calculate-distance-of-two-locations-on-earth-using-python-1501b1944d97
-		#
-		# use Geo-Py to calculate the distance between  the beacon and the known airports , return the one with the minimal distance
 		nearest_airport_distance = 9999999
 		nearest_airpot_icao = None
 		for airport in self.airports.values():
-			# distance_to_airport = distance.geodesic((latitude, longitude), (airport['lat'],airport['lon']), ellipsoid='WGS-84').km
-			distance_to_airport = distance.great_circle((latitude, longitude), (airport['lat'],airport['lon'])).km
+			distance_to_airport = distance.geodesic((latitude, longitude), (airport['lat'],airport['lon']), ellipsoid='WGS-84').km
+			# distance_to_airport = distance.great_circle((latitude, longitude), (airport['lat'],airport['lon'])).km
 			if (distance_to_airport < nearest_airport_distance and distance_to_airport <= distance_threshold):
 				nearest_airport_distance = distance_to_airport
 				nearest_airpot_icao = airport['icao']
 
 		return nearest_airpot_icao, nearest_airport_distance, 
 	
+	def findNearestAirport_vptree(self, latitude, longitude, distance_threshold = AIRPORT_DISTANCE_THRESHOLD):
+		nearest_airport_distance = float('inf')
+		nearest_airpot_icao = None
+
+		resultat = self.airports_tree.get_nearest_neighbor([latitude,longitude,'beacon'])
+		self.logger.debug('Nearest airport found is {}, distance is {}km'.format(resultat[1][2], round(resultat[0],3)))
+
+		if (resultat[0] <= distance_threshold):
+			nearest_airport_distance = resultat[0]
+			nearest_airpot_icao = resultat[1][2]
+		
+		return nearest_airpot_icao, nearest_airport_distance, 
+
+
 	def near_coordinates(self, icao, latitude, longitude):
 		return True
 	
 	def near_ground(self, icao, altitude):
-		if altitude >= max(0,feet_to_meter(self.airports.get(icao).get('elevation'))-ALTITUDE_THRESHOLD) and altitude <= feet_to_meter(self.airports.get(icao).get('elevation'))+ALTITUDE_THRESHOLD:
+		if altitude >= max(0,feet_to_meter(self.airports.get(icao).elevation)-ALTITUDE_THRESHOLD) and altitude <= feet_to_meter(self.airports.get(icao).elevation)+ALTITUDE_THRESHOLD:
 			return True
 		else:
 			return False
@@ -243,24 +285,22 @@ class FlightsLogBook:
 			'longitude': beacon['longitude']
 		}
 		self.buffer_position.appendleft(toSave)
-		pass
-
 
 	def handleOnGround(self, lg_entry, beacon, airport):
 		if lg_entry['status'] == 'ground' and beacon['ground_speed'] >= GROUND_SPEED_THRESHOLD:
-			lg_entry.update({'takeoff_time': beacon['timestamp'], 'status' : 'air' , 'takeoff_airport': airport })
+			lg_entry.update({'takeoff_time': beacon['timestamp'], 'status' : 'air' , 'status_last_airport': airport , 'takeoff_airport': airport })
 		elif lg_entry['status'] == 'air' and beacon['ground_speed'] < GROUND_SPEED_THRESHOLD:
 			# if takeoff have not been detected, cannot compute flight duration
 			if not lg_entry.get('takeoff_time') and not lg_entry.get('takeoff_airport'):
-				lg_entry.update({'landing_time': beacon['timestamp'], 'status' : 'landed' , 'landing_airport': airport })
+				lg_entry.update({'landing_time': beacon['timestamp'], 'status' : 'landed' , 'status_last_airport': airport, 'landing_airport': airport })
 			else:
 				flight_duration = beacon['timestamp'] - lg_entry.get('takeoff_time')
-				lg_entry.update({'landing_time': beacon['timestamp'], 'status' : 'landed' , 'landing_airport': airport, 'flight_duration': str(flight_duration) })
+				lg_entry.update({'landing_time': beacon['timestamp'], 'status' : 'landed' , 'status_last_airport': airport, 'landing_airport': airport, 'flight_duration': str(flight_duration) })
 		elif lg_entry['status'] == '?':
 			if beacon['ground_speed'] >= GROUND_SPEED_THRESHOLD:
-				lg_entry.update({'status' : 'air' })
+				lg_entry.update({'status' : 'air' , 'status_last_airport': airport })
 			else:
-				lg_entry.update({'status' : 'ground' })
+				lg_entry.update({'status' : 'ground','status_last_airport': airport })
 
 
 	def handleAirborne(self, lg_entry, beacon, ognDevice):

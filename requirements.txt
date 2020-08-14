@@ -4,3 +4,5 @@ mysql-connector-python==8.0.21
 ogn-client==0.9.7
 pid==3.0.4
 protobuf==3.12.4
+numpy==1.19.1
+vptree==1.2

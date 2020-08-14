@@ -22,12 +22,9 @@ class FlightLogPDO(ABC):
 		else:
 			raise ValueError('{} is an invalid value for the FlightLogPDO factory method.'.format(target))
 
-	def save(self, logbook: dict) -> None:
+	def save_aircraft(self, logbook: dict, date :str) -> None:
 		if logbook is None:
 			raise ValueError('Cannot save a null logbook.')
-
-		for key, value in logbook.items():
-			self.saveLogbookForDate(key, value)
 
 	def open(self):
 		self.logger.info('Open PDO engine.')
@@ -37,14 +34,9 @@ class FlightLogPDO(ABC):
 		self.logger.info('Close PDO engine.')
 		pass
 
-	@abstractmethod
-	def saveLogbookForDate(self, date :str, logbook: dict) -> None:
-		pass
-
 	def json_converter(self, obj):
 		if isinstance(obj, datetime.datetime):
 			return obj.__str__()
-
 
 class MysqlFlightLogPDO(FlightLogPDO):
 	def __init__(self):
@@ -60,44 +52,52 @@ class MysqlFlightLogPDO(FlightLogPDO):
 			self.open(False)
 		return self.cnx.cursor()
 
-	def saveLogbookForDate(self, date :str, logbook: dict) -> None:
-		super().saveLogbookForDate(date, logbook)
+	def save_aircraft(self, logbook: dict, date :str) -> None:
+		super().save_aircraft(logbook, date)
 		try:
 			cursor = self.get_cursor()
-			# query = ("INSERT INTO {tablename} "
-			# 		 "(date, status, aircraft_id, aircraft_type, aircraft_model, registration, cn, tracked, identified, takeoff_time, takeoff_airport, landing_time, landing_airport, flight_duration, launch_type)"
-			# 		 " VALUES (%(date)s, %(status)s, %(aircraft_id)s, %(aircraft_type)s, %(aircraft_model)s, %(registration)s, %(cn)s, %(tracked)s, %(identified)s, %(takeoff_time)s, %(takeoff_airport)s, %(landing_time)s, %(landing_airport)s, %(flight_duration)s, %(launch_type)s) ")
-			# query_data = {
-			# 	'date': date,
-			# 	'status': lg_entry['status'],
-			# 	'aircraft_id': lg_entry['aircraft_id'],
-			# 	'aircraft_type': lg_entry['aircraft_type'],
-			# 	'aircraft_model': lg_entry['aircraft_model'],
-			# 	'registration': lg_entry['registration'],
-			# 	'cn': lg_entry['cn'],
-			# 	'tracked': lg_entry['tracked'],
-			# 	'identified': lg_entry['identified'],
-			# 	'takeoff_time': lg_entry['takeoff_time'],
-			# 	'takeoff_airport': lg_entry['takeoff_airport'],
-			# 	'landing_time': lg_entry['landing_time'],
-			# 	'landing_airport': lg_entry['landing_airport'],
-			# 	'flight_duration': lg_entry['flight_duration'],
-			# 	'launch_type': lg_entry['launch_type'],
-			# 	}
 
 			query = ("INSERT INTO `{tablename}` "
-				 "(`date`, `icao`, `logbook`)"
-				 " VALUES (%(date)s, %(icao)s, %(logbook)s) "
-				 "ON DUPLICATE KEY UPDATE `logbook` = %(logbook)s").format(tablename=TABLES_NAME['logbook-by-icao'])
-			# query.format(tablename=TABLES_NAME['logbook-by-icao'])
+				 "(`date`, `aircraft_id`, `flight_id`, `status`, `status_last_airport`, `aircraft_type`, `aircraft_model`, `registration`, `cn`, `tracked`, `identified`, `takeoff_time`, `takeoff_airport`, `landing_time`, `landing_airport`, `flight_duration`, `launch_type`, `receivers`)"
+				 " VALUES (%(date)s, %(aircraft_id)s, %(flight_id)s, %(status)s, %(status_last_airport)s, %(aircraft_type)s, %(aircraft_model)s, %(registration)s, %(cn)s, %(tracked)s, %(identified)s, %(takeoff_time)s, %(takeoff_airport)s, %(landing_time)s, %(landing_airport)s, %(flight_duration)s, %(launch_type)s, %(receivers)s)"
+				 " ON DUPLICATE KEY UPDATE "
+				 "`status` = %(status)s, "
+				 "`status_last_airport` = %(status_last_airport)s, "
+				 "`aircraft_type` = %(aircraft_type)s, "
+				 "`aircraft_model` = %(aircraft_model)s, "
+				 "`registration` = %(registration)s, "
+				 "`cn` = %(cn)s, "
+				 "`tracked` = %(tracked)s, "
+				 "`identified` = %(identified)s, "
+				 "`takeoff_time` = %(takeoff_time)s, "
+				 "`takeoff_airport` = %(takeoff_airport)s, "
+				 "`landing_time` = %(landing_time)s, "
+				 "`landing_airport` = %(landing_airport)s, "
+				 "`flight_duration` = %(flight_duration)s, "
+				 "`launch_type` = %(launch_type)s, "
+				 "`receivers` = %(receivers)s"
+				 ).format(tablename=TABLES_NAME['logbook-by-aircraft'])
 
 			query_data = {
 				'date': date,
-				'icao': 'LFHA',
-				'logbook' : json.dumps({'data': logbook}, sort_keys=True, default = self.json_converter )
+				'aircraft_id': logbook['aircraft_id'],
+				'flight_id': logbook['flight_id'],
+				'status': logbook['status'],
+				'status_last_airport': logbook['status_last_airport'],
+				'aircraft_type': logbook['aircraft_type'],
+				'aircraft_model': logbook['aircraft_model'],
+				'registration': logbook['registration'],
+				'cn': logbook['cn'],
+				'tracked': logbook['tracked'],
+				'identified': logbook['identified'],
+				'takeoff_time': logbook['takeoff_time'] if logbook['takeoff_time'] else None,
+				'takeoff_airport': logbook['takeoff_airport'],
+				'landing_time': logbook['landing_time'] if logbook['landing_time'] else None,
+				'landing_airport': logbook['landing_airport'],
+				'flight_duration': logbook['flight_duration'],
+				'launch_type': logbook['launch_type'],
+				'receivers': ','.join(logbook['receivers']),
 			}
-			# json_to_str = json.dumps({'data': logbook}, sort_keys=True, default = self.json_converter )
-			# cursor.execute(query, (date, 'lfha', 'test'))
 			cursor.execute(query, query_data)
 			self.cnx.commit()
 		except mysql.connector.Error as err:
@@ -106,11 +106,12 @@ class MysqlFlightLogPDO(FlightLogPDO):
 		finally:
 			cursor.close()
 
+
 	def isTablesExists(self):
 		try:
 			cursor = self.cnx.cursor()
 			# query = "SELECT count(*) FROM information_schema.TABLES WHERE (TABLE_SCHEMA = 'wpDB') AND (TABLE_NAME = 'acph_logbook')"
-			query = "SHOW TABLES LIKE '{}'".format(TABLES_NAME['logbook'])
+			query = "SHOW TABLES LIKE '{}'".format(TABLES_NAME['logbook-by-aircraft'])
 			cursor.execute(query)
 			row = cursor.fetchone()
 			if row is not None:
@@ -147,11 +148,11 @@ class MysqlFlightLogPDO(FlightLogPDO):
 
 class JsonFileFlightLogPDO(FlightLogPDO):
 
-	def saveLogbookForDate(self, date :str, logbook: dict) -> None:
-		super().saveLogbookForDate(date, logbook)
+	def save_aircraft(self, logbook: dict, date :str ) -> None:
+		super().save_aircraft(logbook, date)
 
 		# Log the result to output file
-		with open('./db/acph-logbook-{}.json'.format(date), 'w') as fp:
+		with open('./db/acph-logbook-{}-{}.json'.format(date, logbook['aircraft_id']), 'w') as fp:
 			fp.seek(0)
 			# json.dump(logbook.aircrafts_logbook, fp, indent=4, sort_keys=True, default = lambda obj: obj.__str__() if isinstance(obj, datetime.datetime) )
 			json.dump({'data': logbook}, fp, indent=4, sort_keys=True, default = self.json_converter )
