@@ -26,12 +26,12 @@ class FlightLogPDO(ABC):
 		if logbook is None:
 			raise ValueError('Cannot save a null logbook.')
 
-	def open(self):
-		self.logger.info('Open PDO engine.')
+	def open(self, config_file):
+		self.logger.warning('Open PDO engine (config file: {}).'.format(config_file))
 		pass
 
 	def close(self):
-		self.logger.info('Close PDO engine.')
+		self.logger.warning('Close PDO engine.')
 		pass
 
 	def json_converter(self, obj):
@@ -87,7 +87,7 @@ class MysqlFlightLogPDO(FlightLogPDO):
 				'aircraft_type': logbook['aircraft_type'],
 				'aircraft_model': logbook['aircraft_model'],
 				'registration': logbook['registration'],
-				'cn': logbook['cn'],
+				'cn': '' if logbook['cn'] =='#unknown' else logbook['cn'],
 				'tracked': logbook['tracked'],
 				'identified': logbook['identified'],
 				'takeoff_time': logbook['takeoff_time'] if logbook['takeoff_time'] else None,
@@ -101,7 +101,7 @@ class MysqlFlightLogPDO(FlightLogPDO):
 			cursor.execute(query, query_data)
 			self.cnx.commit()
 		except mysql.connector.Error as err:
-			self.logger.error('Unable to persist logbook entry.' )
+			self.logger.error('Unable to persist logbook entry {} for the date {}'.format(logbook, date))
 			self.logger.error(err)
 		finally:
 			cursor.close()
@@ -125,10 +125,11 @@ class MysqlFlightLogPDO(FlightLogPDO):
 		finally:
 			cursor.close()
 
-	def open(self, checkTablesExisting = True):
-		super().open()
+	def open(self, config_file, checkTablesExisting = True):
+		super().open(config_file)
 		try:
-			self.cnx = mysql.connector.connect(option_files='./acph-logbook.ini', option_groups='mysql_connector_python')
+			# self.cnx = mysql.connector.connect(option_files='./acph-logbook.ini', option_groups='mysql_connector_python')
+			self.cnx = mysql.connector.connect(option_files=config_file, option_groups='mysql_connector_python')
 			if checkTablesExisting and not self.isTablesExists():
 				self.logger.critical('Required tables doesn\'t exists.')
 				raise(SystemExit(1))

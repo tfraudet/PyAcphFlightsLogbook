@@ -17,7 +17,7 @@ TABLES['logbook-by-aircraft'] = (
 	"  `aircraft_type` VARCHAR(255),"
 	"  `aircraft_model` VARCHAR(255),"
 	"  `registration` VARCHAR(255),"
-	"  `cn` VARCHAR(2),"
+	"  `cn` VARCHAR(3),"
 	"  `tracked` VARCHAR(1),"
 	"  `identified` VARCHAR(1),"
 	"  `takeoff_time` DATETIME NULL DEFAULT NULL,"

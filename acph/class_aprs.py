@@ -20,7 +20,7 @@ class AcphAprsClient(AprsClient):
 		self.settings.APRS_APP_NAME = 'acph-ogn-client'
 		self.settings.APRS_APP_VER = '1.0-beta'
 		self.aprs_passcode = aprs_passcode
-		self.logger.info("Connect to OGN as {} with filter '{}'".format(aprs_user, (aprs_filter if aprs_filter else 'full-feed')))
+		self.logger.warning("Connect to OGN as {} with filter '{}'".format(aprs_user, (aprs_filter if aprs_filter else 'full-feed')))
 
 	def connect(self):
 			# create socket, connect to server, login and make a file object associated with the socket
@@ -40,3 +40,8 @@ class AcphAprsClient(AprsClient):
 			self.sock_file = self.sock.makefile('rw')
 
 			self._kill = False
+		
+	def disconnect(self):
+		super().disconnect()
+		self.logger.warning('Disconnected from APRS server.')
+

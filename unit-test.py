@@ -19,8 +19,10 @@ def main():
 	filepath = sys.argv[1]
 	date_of_data = filepath[len(filepath)-14:len(filepath)-4]
 
+	config_files='./unit-test.ini'
+
 	# create logger fo the main
-	logging.config.fileConfig('unit-test.ini')
+	logging.config.fileConfig(config_files)
 	logger = logging.getLogger('acph.main')
 
 
@@ -46,7 +48,7 @@ def main():
 
 		# Airports DB only with french airports.
 		listOfAirportsFiltered = airports_db.filterByCountry('FR')
-		logger.info('After filtering on French airport, size of airport code database is {}'.format(len(listOfAirportsFiltered)))
+		logger.warning('After filtering on French airport, size of airport code database is {}'.format(len(listOfAirportsFiltered)))
 
 	except IOError:
 		logger.error("File {} does not exist. Exiting...".format(airports_db_file))
@@ -62,10 +64,10 @@ def main():
 	pdo_engine = FlightLogPDO.factory('MYSQL')
 
 	# create the ACPH Flight logbook and build the logbook for LFHA
-	# logbook = FlightsLogBook(airports_icao={'LFHA'}, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
+	# logbook = FlightsLogBook(receivers_filter={'LFHA'}, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
 
 	# create the ACPH Flight logbook and handling all the beacons received
-	logbook = FlightsLogBook(airports_icao=None, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
+	logbook = FlightsLogBook(receivers_filter={}, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
 
 	# logbook.airports = {k: v for k, v in airports.items() if k[:2] == 'LF'}		# filter only some french airports for test purpose
 	# logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA', 'LFHR', 'LFHT', 'LFHP'}}		# filter only some french airports for test purpose
@@ -75,7 +77,7 @@ def main():
 	aprs_reg = re.compile(r'raw data:\s(.*)')
 
 	# open the Logbook persistent engine
-	logbook.pdo_engine.open()
+	logbook.pdo_engine.open(config_files)
 
 	# and run FlightsLogBook with that data, results are in xxxx
 	logger.info('Start to parse the file {}, date of the data is {}'.format(filepath,date_of_data))
@@ -92,7 +94,7 @@ def main():
 			numberOfLine += 1
 			aprs_raw_data = aprs_reg.findall(line)
 			if len(aprs_raw_data) == 1:
-				logger.info("line {}, processing raw data: {}".format(numberOfLine, aprs_raw_data[0]))
+				# logger.info("line {}, processing raw data: {}".format(numberOfLine, aprs_raw_data[0]))
 				logbook.handleBeacon(aprs_raw_data[0], date_of_data)
 			# else:
 			# 	logger.error("Unable to extract raw aprs message from line : {}".format(line))

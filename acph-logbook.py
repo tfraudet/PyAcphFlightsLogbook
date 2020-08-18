@@ -2,6 +2,7 @@ import sys
 import signal
 import os
 import json
+import argparse
 
 import logging
 import logging.config
@@ -19,17 +20,19 @@ from acph.class_ogn_db import OgnDevicesDatabase
 from acph.class_flights_logbook_pdo import FlightLogPDO
 from acph.class_airport_db import AirportDatabase
 
+config_file='./acph-logbook.ini'
+
 def handle_exit(signal, frame):
 	raise(SystemExit)
  
 @pidfile('acph-flights-log.pid','./')
 def main():
 	# create logger
-	logging.config.fileConfig('acph-logbook.ini')
+	logging.config.fileConfig(config_file)
 	logger = logging.getLogger('acph.main')
 
 	# start ACPH APRS logger daemon
-	logger.warning('ACPH APRS logger starting (process id is {}).'.format(os.getpid()))
+	logger.warning('ACPH APRS logger starting with config file = {} (process ID is {}).'.format(config_file,os.getpid()))
 
 	# load the OGN devices database from a local file for test purpose
 	try:
@@ -52,7 +55,7 @@ def main():
 
 		# Airports DB only with french airports.
 		listOfAirportsFiltered = airports_db.filterByCountry('FR')
-		logger.info('After filtering on French airport, size of airport code database is {}'.format(len(listOfAirportsFiltered)))
+		logger.warning('After filtering on French airport, size of airport code database is {}'.format(len(listOfAirportsFiltered)))
 	except IOError:
 		logger.error("File {} does not exist. Exiting...".format(airports_db_file))
 		sys.exit()
@@ -66,15 +69,15 @@ def main():
 
 	# client = AprsClient(aprs_user='N0CALL')
 	# client = AcphAprsClient(aprs_user='ACPH', aprs_passcode='25321')						# Full feed
-	client = AcphAprsClient(aprs_user='ACPH', aprs_passcode='25321', aprs_filter='r/45.5138/3.2661/400')
+	client = AcphAprsClient(aprs_user='ACPH', aprs_passcode='25321', aprs_filter='r/45.5138/3.2661/200')
 	client.connect()
 
 	# create the ACPH Flight logbook
-	# logbook = FlightsLogBook(airports_icao={'LFHA', 'LFHP'})
-	logbook = FlightsLogBook(airports_icao=None, ogndb=ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
+	# logbook = FlightsLogBook(receivers_filter={'LFHA', 'LFHP'})
+	logbook = FlightsLogBook(receivers_filter=None, ogndb=ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
 
 	# open the Logbook persistent engine
-	logbook.pdo_engine.open()
+	logbook.pdo_engine.open(config_file)
 
 	try:
 		client.run(callback=logbook.handleBeacon, autoreconnect=True)
@@ -89,6 +92,13 @@ def main():
 
 if __name__ == '__main__':
 	try:
+		parser = argparse.ArgumentParser(description='ACPH Glider flight logbook daemon')
+		parser.add_argument("-i", "--ini", action='store', dest='config_file', help='path to the ini config file, default value is {}'.format(config_file),
+							 default='./acph-logbook.ini')
+							#  default='./acph-logbook.ini', required=True)
+		args = parser.parse_args()
+		config_file=args.config_file
+
 		main()
 	except pid.PidFileError as error:
 		# print(type(error),error, error.args)

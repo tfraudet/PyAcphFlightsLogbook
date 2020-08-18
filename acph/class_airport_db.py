@@ -42,7 +42,7 @@ class AirportDatabase:
 		instance = AirportDatabase()
 		json_url = urlopen(data_package_url)
 		datapackage = json.loads(json_url.read())
-		logging.info('Loading data package {} v{} from {} ({} airports, modified on {})'.format(datapackage['title'], datapackage['version'], datapackage['homepage'], datapackage['count_of_rows'], datapackage['datahub']['modified']))
+		instance.logger.warning('Loading data package {} v{} from {} ({} airports, modified on {})'.format(datapackage['title'], datapackage['version'], datapackage['homepage'], datapackage['count_of_rows'], datapackage['datahub']['modified']))
 
 		# look for airport code in json format
 		airports_code_url = None
@@ -50,7 +50,7 @@ class AirportDatabase:
 			if item['name'] == 'airport-codes_json': airports_code_url = item['path']
 
 		# load data in json format
-		logging.info('Loading json airports code from url: {}'.format(airports_code_url))
+		instance.logger.info('Loading json airports code from url: {}'.format(airports_code_url))
 
 		if airports_code_url:
 			instance.airports = json.loads(urlopen(airports_code_url).read(), object_hook=AirportDatabase.json_airport_decode)
@@ -70,7 +70,7 @@ class AirportDatabase:
 		if not include_closed:
 			instance.airports = AirportDatabase.__filter_closed_airport(instance)
 
-		logging.info('Airports code database path is {} ({} airports loaded)'.format(json_file_path, len(instance.airports)))
+		instance.logger.warning('Airports code database path is {} ({} airports loaded)'.format(json_file_path, len(instance.airports)))
 	
 		return instance
 

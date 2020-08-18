@@ -1,6 +1,6 @@
 import logging
 import collections
-
+import itertools
 
 from ogn.parser import parse, ParseError
 from geopy import distance
@@ -35,12 +35,13 @@ ADDRESS_TYPES = {
 }
 
 ALTITUDE_THRESHOLD = 30				# 30 meter
-GROUND_SPEED_THRESHOLD	= 40		# 40km/h
-AIRPORT_DISTANCE_THRESHOLD = 1.0		# 1 km
-FEETS_TO_METER = 0.3048				# ratio feets to meter
+GROUND_SPEED_THRESHOLD	= 50		# 50km/h
+AIRPORT_DISTANCE_THRESHOLD = 2.5	# 1 km
+FEETS_TO_METER = 0.3048				# ratio feet to meter
 
-BUFFER_POSITION_SIZE = 500			# to buffer the last n  position received
-NBR_OF_DAY_LOGBOOK = 2 				# number of day to keep in the logbook
+BUFFER_AIRCRAFT_BEACON = 1000		# to keep the last  n aircraft beacons received
+NBR_OF_DAY_LOGBOOK = 1				# number of day to keep in the logbook
+BUFFER_AIRCRAFT_POSITION = 3		# to keep for each aircraft the last n received positions
 
 def feet_to_meter(altitude_in_feet):
 	return round(altitude_in_feet * FEETS_TO_METER)
@@ -48,7 +49,8 @@ def feet_to_meter(altitude_in_feet):
 class LRU(collections.OrderedDict):
 	'Limit size, evicting the least recently looked-up key when full'
 
-	def __init__(self, maxsize=128, /, *args, **kwds):
+	# def __init__(self, maxsize=128, /, *args, **kwds):
+	def __init__(self, maxsize=128, *args, **kwds):
 		self.maxsize = maxsize
 		super().__init__(*args, **kwds)
 
@@ -66,16 +68,17 @@ class LRU(collections.OrderedDict):
 			del self[oldest]
 
 class FlightsLogBook:
-	def __init__(self, airports_icao, ogndb, airports_db, pdo_engine):
-		self.airports_icao = airports_icao
+	def __init__(self, receivers_filter, ogndb, airports_db, pdo_engine):
+		self.receivers_filter = receivers_filter
 		self.ogn_devices_db = ogndb
 		self.pdo_engine = pdo_engine
 		self.airports = { airports_db[i].icao : airports_db[i] for i in range(0, len(airports_db) ) }
 		self.airports_tree =  AcphVPTree([ [item.lat, item.lon, item.icao] for item in airports_db], self.vptree_distance_great_circle)	
 		self.logbook = LRU(maxsize=NBR_OF_DAY_LOGBOOK)
-		self.buffer_position = deque(maxlen=BUFFER_POSITION_SIZE)
+		self.buffer_aircraft_beacons = deque(maxlen=BUFFER_AIRCRAFT_BEACON)
 		self.logger = logging.getLogger(__name__)
-		self.logger.info(' Flights Logbook initialized.')
+		self.logger.warning(' Flights Logbook initialized.')
+		self.counter_aircraft_beacon_poition = 0
 
 	def vptree_distance_great_circle(self,p1, p2):
 		return distance.great_circle((p1[0], p1[1]), (p2[0], p2[1])).km
@@ -121,10 +124,10 @@ class FlightsLogBook:
 		return beacon['beacon_type'] == 'aprs_receiver'
 
 	def filteringReceivers(self, receiver_name):
-		if self.airports_icao is None or len(self.airports_icao)==0:
+		if self.receivers_filter is None or len(self.receivers_filter)==0:
 			return True
 		else:
-			return receiver_name in self.airports_icao
+			return receiver_name in self.receivers_filter
 
 	def findLogbookEntryByID(self, aircraft_id, date, aircraft_type, ognDevice):
 		logbook_for_a_date = self.logbook.get(date)
@@ -164,7 +167,8 @@ class FlightsLogBook:
 				 'landing_airport' : '',
 				 'flight_duration': '',
 				 'launch_type' : '#unknown',
-				 "flight_id" : len(logbook_for_aircraft) + 1,
+				 'flight_id' : len(logbook_for_aircraft) + 1,
+				 'last_positions' : deque(maxlen=BUFFER_AIRCRAFT_POSITION)
 				}
 			logbook_for_aircraft.append(last_flight_log)
 		return last_flight_log
@@ -183,8 +187,12 @@ class FlightsLogBook:
 					"identified":"N"}
 			return ognDevice
 
+	def __forDate(self, beacon, date):
+		return beacon['timestamp'].strftime('%Y-%m-%d') if date is None else date
+
 	def handleAircraftPosition(self, beacon, date):
-		self.logger.info('handle aircraft beacon position, raw data: {raw_message}'.format(**beacon))
+		self.counter_aircraft_beacon_poition += 1
+		self.logger.info('handle aircraft beacon position #{}, raw data: {raw_message}'.format(self.counter_aircraft_beacon_poition,**beacon))
 		aircraft_id = beacon['address']
 
 		# aircraft need to be in OGN database to be handle
@@ -201,17 +209,26 @@ class FlightsLogBook:
 		beacon['climb_rate'] = round(beacon['climb_rate'],1)
 		# self.logger.debug('Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {address} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
 	
-		self.logger.info('Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, imat= self.ogn_devices_db.getAircraftRegistrationById(aircraft_id), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
-		
 		# look for current entry in the logbook for this aircraft_id at the date of the received beacon.
-
-		lg_entry = self.findLogbookEntryByID(aircraft_id,beacon['timestamp'].strftime('%Y-%m-%d') if date is None else date, OGN_SENDER_TYPES[beacon['aircraft_type']], ognDevice)
+		lg_entry = self.findLogbookEntryByID(aircraft_id,self.__forDate(beacon,date), OGN_SENDER_TYPES[beacon['aircraft_type']], ognDevice)
 		if (lg_entry is None):
 				raise Exception('No entry found in the logbook for aircarft id {} and the date of {}'.format(aircraft_id,beacon['timestamp'].strftime('%Y-%m-%d')))
 		
 		# add the receiver who receive the beacon for this aircraft
 		if beacon['receiver_name'] not in lg_entry['receivers']:
 			lg_entry['receivers'].append(beacon['receiver_name'])
+
+		# add gps coord, speed, altitude, track, clim rate to the buffer for this aircraft
+		toSave={
+			'altitude': beacon['altitude'],
+			'ground_speed': beacon['ground_speed'],
+			'climb_rate':  beacon['climb_rate'],
+			'track':  beacon['track'],
+			'latitude': beacon['latitude'],
+			'longitude': beacon['longitude'],
+			# 'timestamp': beacon['reference_timestamp']
+		}
+		lg_entry['last_positions'].appendleft(toSave)
 
 		# handle the new aircraft beacon
 		nearest_airport, nearest_airport_distance = self.findNearestAirport_vptree(beacon['latitude'], beacon['longitude'])
@@ -224,13 +241,21 @@ class FlightsLogBook:
 			else:
 				self.handleAirborne(lg_entry, beacon, ognDevice)
 			
-			self.pdo_engine.save_aircraft(lg_entry, date)
+			self.pdo_engine.save_aircraft(lg_entry, self.__forDate(beacon, date))
 		else:
 			#TODO: handle outlanding
 			# self.handleOutlanding(lg_entry, beacon, ognDevice)
 			pass
 		
-		self.updatePosition(lg_entry, beacon, ognDevice)
+		# if (self.ogn_devices_db.getAircraftRegistrationById(aircraft_id) == 'F-CFZU'):
+		# 	self.logger.warning(
+		# 			'Beacon #{}, Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h,'
+		# 			' heading={track}°, climb rate={climb_rate}m/s, nearest airport: {na_icao}/{na_dist}km, (status after handling beacon {status})'
+		# 			.format(self.counter_aircraft_beacon_poition,**beacon,
+		# 			 imat= self.ogn_devices_db.getAircraftRegistrationById(aircraft_id), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']],
+		# 			 sender=ADDRESS_TYPES[beacon['address_type']], na_icao=nearest_airport, na_dist=nearest_airport_distance, status=lg_entry['status']))
+		
+		self.updateBufferAicraftBeacons(lg_entry, beacon, ognDevice)
 
 	def findNearestAirport(self, latitude, longitude, distance_threshold = AIRPORT_DISTANCE_THRESHOLD):
 		# To calculate distance in pyhton when working with GPS
@@ -239,8 +264,8 @@ class FlightsLogBook:
 		nearest_airport_distance = 9999999
 		nearest_airpot_icao = None
 		for airport in self.airports.values():
-			distance_to_airport = distance.geodesic((latitude, longitude), (airport['lat'],airport['lon']), ellipsoid='WGS-84').km
-			# distance_to_airport = distance.great_circle((latitude, longitude), (airport['lat'],airport['lon'])).km
+			# distance_to_airport = distance.geodesic((latitude, longitude), (airport['lat'],airport['lon']), ellipsoid='WGS-84').km
+			distance_to_airport = distance.great_circle((latitude, longitude), (airport['lat'],airport['lon'])).km
 			if (distance_to_airport < nearest_airport_distance and distance_to_airport <= distance_threshold):
 				nearest_airport_distance = distance_to_airport
 				nearest_airpot_icao = airport['icao']
@@ -270,7 +295,7 @@ class FlightsLogBook:
 		else:
 			return False
 
-	def updatePosition(self, lg_entry, beacon, ognDevice):
+	def updateBufferAicraftBeacons(self, lg_entry, beacon, ognDevice):
 		aircraft_id = beacon['address']
 
 		toSave={
@@ -282,12 +307,14 @@ class FlightsLogBook:
 			'climb_rate':  beacon['climb_rate'],
 			'track':  beacon['track'],
 			'latitude': beacon['latitude'],
-			'longitude': beacon['longitude']
+			'longitude': beacon['longitude'],
+			# 'timestamp': beacon['reference_timestamp']
 		}
-		self.buffer_position.appendleft(toSave)
+		self.buffer_aircraft_beacons.appendleft(toSave)
 
 	def handleOnGround(self, lg_entry, beacon, airport):
-		if lg_entry['status'] == 'ground' and beacon['ground_speed'] >= GROUND_SPEED_THRESHOLD:
+		# if lg_entry['status'] == 'ground' and beacon['ground_speed'] >= GROUND_SPEED_THRESHOLD:
+		if lg_entry['status'] == 'ground' and self.average_ground_speed(lg_entry['last_positions']) >= GROUND_SPEED_THRESHOLD:
 			lg_entry.update({'takeoff_time': beacon['timestamp'], 'status' : 'air' , 'status_last_airport': airport , 'takeoff_airport': airport })
 		elif lg_entry['status'] == 'air' and beacon['ground_speed'] < GROUND_SPEED_THRESHOLD:
 			# if takeoff have not been detected, cannot compute flight duration
@@ -304,12 +331,6 @@ class FlightsLogBook:
 
 
 	def handleAirborne(self, lg_entry, beacon, ognDevice):
-		# if lg_entry['status'] == '?':
-		# 	if beacon['ground_speed'] >= GROUND_SPEED_THRESHOLD:
-		# 		lg_entry.update({'status' : 'air' })
-		# 	else:
-		# 		lg_entry.update({'status' : 'ground' })
-		# else:
 		if lg_entry['launch_type'] == '#unknown' and lg_entry['status'] == 'air':
 			switcher = {
 				'glider' : self.detectLaunchType,
@@ -325,27 +346,46 @@ class FlightsLogBook:
 	# for glider detect launch type
 	# right now detect only tow_plane, dectecting winch launch is not supported
 	def detectLaunchType(self, lg_entry, beacon, ognDevice, distance_threshold = 0.5):
-		self.logger.debug('Detect launch type for {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, imat= self.ogn_devices_db.getAircraftRegistrationById(beacon['address']), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
+		self.logger.debug('Try to detect launch type for {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, imat= self.ogn_devices_db.getAircraftRegistrationById(beacon['address']), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
 
 		tow_plane = '#unknown'
+		# debug_position = 0
 		# iterate over the last beacon positions received
 		# and look for the aircraft of type tow_plane with minimum distance from this glider 
-		for elem in self.buffer_position:
+		for elem in self.buffer_aircraft_beacons:
 			if elem['aircraft_type'] == 'tow_plane':
-				dist = distance.geodesic((beacon['latitude'], beacon['longitude']), (elem['latitude'],elem['longitude']), ellipsoid='WGS-84').km
+				dist = distance.great_circle((beacon['latitude'], beacon['longitude']), (elem['latitude'],elem['longitude'])).km
+				# dist = distance.geodesic((beacon['latitude'], beacon['longitude']), (elem['latitude'],elem['longitude']), ellipsoid='WGS-84').km
 				self.logger.debug('distance with {aircraft_type} {imat} (altitude={altitude}, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s) is {distplane}km, '.format(**elem,distplane = round(dist,2), imat= self.ogn_devices_db.getAircraftRegistrationById(elem['aircraft_id'])))
 
 				if self.inRangeDistance(dist) and self.inRangeHeading(beacon['track'], elem['track']) and self.inRangeSpeed(beacon['ground_speed'], elem['ground_speed']) and self.inRangeAltitude(beacon['altitude'], elem['altitude']):
 					tow_plane = elem['registration']
+					self.logger.debug(
+						'Found the tow plane {} in the buffer (position {}/ max size {})'
+						' --> parameteres: altitude={}, speed={}km/h, heading={}°, climb rate={}m/s, dist to the glider {distplane}km'
+						.format(tow_plane, self.buffer_aircraft_beacons.index(elem), BUFFER_AIRCRAFT_BEACON,
+						elem['altitude'],elem['ground_speed'],elem['track'],elem['climb_rate'],distplane = round(dist,2)))
+					# debug_position = self.buffer_aircraft_beacons.index(elem)
 					break
-		
+
+		# Debug purpose
+		# if (tow_plane != '#unknown'):
+		# 	for elem in itertools.islice(self.buffer_aircraft_beacons, 0, debug_position):
+		# 		if (elem['registration'] == tow_plane):
+		# 			# self.logger.debug(' == > buffer element is {}'.format(elem))
+		# 			self.logger.debug(
+		# 					'Found a beacon for {} at position {} that not match'
+		# 					' == > parameteres: altitude={}, speed={}km/h, heading={}°, climb rate={}m/s, dist to the glider {distplane}km'
+		# 					.format(tow_plane, self.buffer_aircraft_beacons.index(elem),
+		# 					elem['altitude'],elem['ground_speed'],elem['track'],elem['climb_rate'],distplane=round(distance.great_circle((beacon['latitude'], beacon['longitude']), (elem['latitude'],elem['longitude'])).km,2)))
+
 		#TODO: detect winch tow launch
 		if tow_plane == '#unknown':
 			tow_plane = 'winch tow or autonome'
 
 		return tow_plane
 
-	def inRangeDistance(self, dist, distance_precision = 0.2):
+	def inRangeDistance(self, dist, distance_precision = 0.4):
 		return True if dist <=  distance_precision else False
 
 	def inRangeHeading(self, glider_heading, beacon_heading, degree_precision = 5):
@@ -354,10 +394,17 @@ class FlightsLogBook:
 			angle_diff -= 360
 		return True if abs(angle_diff) <= degree_precision else False
 
-	def inRangeSpeed(self, glider_speed, beacon_speed, speed_precision = 5):
+	def inRangeSpeed(self, glider_speed, beacon_speed, speed_precision = 20):
 		return True if abs(glider_speed-beacon_speed) <=  speed_precision else False
 
-	def inRangeAltitude(self, glider_altitude, beacon_altitude, altitude_precision= 10):
+	def inRangeAltitude(self, glider_altitude, beacon_altitude, altitude_precision= 30):
 		return True if abs(glider_altitude-beacon_altitude) <=  altitude_precision else False
+	
+	def average_ground_speed(self, last_positions, n=3):
+		last_ground_speeds = [ elem['ground_speed'] for elem in last_positions]
+		if len(last_ground_speeds)<=0:
+			return 0
+		else:
+			return sum(itertools.islice(last_ground_speeds, min(n, len(last_ground_speeds))))/min(n,len(last_ground_speeds))
 
 
