@@ -1,0 +1,2 @@
+logrotate state -- version 2
+"./logs/acph-aprs.log" 2020-8-23-16:17:26

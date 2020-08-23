@@ -77,7 +77,7 @@ class FlightsLogBook:
 		self.logbook = LRU(maxsize=NBR_OF_DAY_LOGBOOK)
 		self.buffer_aircraft_beacons = deque(maxlen=BUFFER_AIRCRAFT_BEACON)
 		self.logger = logging.getLogger(__name__)
-		self.logger.warning(' Flights Logbook initialized.')
+		self.logger.warning(' ACPH Flights Logbook initialized.')
 		self.counter_aircraft_beacon_poition = 0
 
 	def vptree_distance_great_circle(self,p1, p2):

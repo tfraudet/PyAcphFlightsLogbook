@@ -1,14 +1,14 @@
 #!/bin/sh
 
 # Remote
-PY3="python3"
-SCRIPT_TO_LAUNCH="./acph-logbook.py"
-HOME="/kunden/homepages/15/d223327471/htdocs/PyAcphFlightsLog"
+# PY3="python3"
+# SCRIPT_TO_LAUNCH="./acph-logbook.py"
+# HOME="/kunden/homepages/15/d223327471/htdocs/PyAcphFlightsLog"
 
 # Local
-#PY3="python3"
-#SCRIPT_TO_LAUNCH="./acph-logbook.py"
-#HOME=/Users/zazart/Documents/SiteWeb\ ACPH/PyAcphFlightsLog
+PY3="python3"
+SCRIPT_TO_LAUNCH="./acph-logbook.py"
+HOME=/Users/zazart/Documents/SiteWeb\ ACPH/PyAcphFlightsLog
 
 # Syntax to run php script in backgroud
 # nohup exec arg1 arg2 > /dev/null &

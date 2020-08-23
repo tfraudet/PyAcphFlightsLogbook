@@ -6,3 +6,4 @@ pid==3.0.4
 protobuf==3.12.4
 numpy==1.19.1
 vptree==1.2
+slack-logger==0.3.1

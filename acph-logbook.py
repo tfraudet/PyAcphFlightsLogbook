@@ -31,8 +31,8 @@ def main():
 	logging.config.fileConfig(config_file)
 	logger = logging.getLogger('acph.main')
 
-	# start ACPH APRS logger daemon
-	logger.warning('ACPH APRS logger starting with config file = {} (process ID is {}).'.format(config_file,os.getpid()))
+	# start ACPH Flights logbook daemon
+	logger.warning('ACPH Flights logbook starting with config file = {} (process ID is {}).'.format(config_file,os.getpid()))
 
 	# load the OGN devices database from a local file for test purpose
 	try:
@@ -66,7 +66,8 @@ def main():
 	# Create the PDO Engine to store the results on the fly: could be JSON or MySql
 	# pdo_engine = FlightLogPDO.factory('JSON')
 	pdo_engine = FlightLogPDO.factory('MYSQL')
-
+	pdo_engine.open(config_file)
+	
 	# client = AprsClient(aprs_user='N0CALL')
 	# client = AcphAprsClient(aprs_user='ACPH', aprs_passcode='25321')						# Full feed
 	client = AcphAprsClient(aprs_user='ACPH', aprs_passcode='25321', aprs_filter='r/45.5138/3.2661/200')
@@ -75,20 +76,16 @@ def main():
 	# create the ACPH Flight logbook
 	# logbook = FlightsLogBook(receivers_filter={'LFHA', 'LFHP'})
 	logbook = FlightsLogBook(receivers_filter=None, ogndb=ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
-
-	# open the Logbook persistent engine
-	logbook.pdo_engine.open(config_file)
-
 	try:
 		client.run(callback=logbook.handleBeacon, autoreconnect=True)
 	except (KeyboardInterrupt, SystemExit):
-		logger.warning('ACPH APRS logger stopped...')
-		
 		# close the logbook persistent engine
 		logbook.pdo_engine.close()
 
 		# close the connection to aprs server.
 		client.disconnect()
+		
+		logger.warning('ACPH Flights logbook stopped...')
 
 if __name__ == '__main__':
 	try:
