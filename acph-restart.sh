@@ -1,23 +1,24 @@
 #!/bin/sh
 
 # Remote
-# PY3="python3"
-# SCRIPT_TO_LAUNCH="./acph-logbook.py"
-# HOME="/kunden/homepages/15/d223327471/htdocs/PyAcphFlightsLog"
+# PY3="/usr/bin/python3"
 # LOGROTATE="/usr/sbin/logrotate"
-# LOGROTATE_CONF="$HOME/logrotate.conf"
+# # HOME_LOGBOOK="/kunden/homepages/15/d223327471/htdocs/PyAcphFlightsLog"
+# HOME_LOGBOOK="$HOME/PyAcphFlightsLog"
 
 # Local
 PY3="python3"
-SCRIPT_TO_LAUNCH="./acph-logbook.py"
-HOME=/Users/zazart/Documents/SiteWeb\ ACPH/PyAcphFlightsLog
 LOGROTATE="/usr/local/sbin/logrotate"
-LOGROTATE_CONF="$HOME/logrotate.conf"
+HOME_LOGBOOK="$HOME/Documents/SiteWeb ACPH/PyAcphFlightsLog"
+
+SCRIPT_TO_LAUNCH="$HOME_LOGBOOK/acph-logbook.py"
+LOGROTATE_CONF="$HOME_LOGBOOK/logrotate.conf"
 
 # Stop the running acph logbook python app
 # First try to use the pid file
-# echo "$HOME/acph-flights-log.pid"
-pkill -F "$HOME/acph-flights-log.pid"
+# echo "HOME_LOGBOOK/acph-flights-log.pid"
+echo "Stop the running ACPH logbook app"
+pkill -F "$HOME_LOGBOOK/acph-flights-log.pid"
 pkillexitstatus=$?
 
 # if pkill return an error, check is process is still runing and try to kill it.
@@ -32,9 +33,15 @@ if [ ! $pkillexitstatus -eq 0 ] ; then
 fi
 
 # rotate the log
-cd "$HOME"
-"$LOGROTATE" -f -s "$HOME/logrotate.status" "$LOGROTATE_CONF"
+echo "Rotate the logp"
+cd "$HOME_LOGBOOK"
+"$LOGROTATE" -f -s "$HOME_LOGBOOK/logrotate.status" "$LOGROTATE_CONF"
 
 # (re)start the program
-cd "$HOME"
-nohup "$PY3" "$SCRIPT_TO_LAUNCH" > /dev/null 2>&1 &
+echo "Restart the ACPH logbook app"
+cd "$HOME_LOGBOOK"
+# Sleep for 1minute as workaround for the following error
+# <class 'pid.base.PidFileAlreadyLockedError'> [Errno 11] Resource temporarily unavailable
+sleep 1m
+"$PY3" "$SCRIPT_TO_LAUNCH" &
+# /usr/bin/nohup "$PY3" "$SCRIPT_TO_LAUNCH" > /dev/null 2>&1 &

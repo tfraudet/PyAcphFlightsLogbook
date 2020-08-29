@@ -34,9 +34,9 @@ ADDRESS_TYPES = {
 	3 : 'ogn',
 }
 
-ALTITUDE_THRESHOLD = 30				# 30 meter
+ALTITUDE_THRESHOLD = 30				# 30 meters
 GROUND_SPEED_THRESHOLD	= 50		# 50km/h
-AIRPORT_DISTANCE_THRESHOLD = 2.5	# 1 km
+AIRPORT_DISTANCE_THRESHOLD = 4		# 2.5 km
 FEETS_TO_METER = 0.3048				# ratio feet to meter
 
 BUFFER_AIRCRAFT_BEACON = 1000		# to keep the last  n aircraft beacons received
@@ -239,6 +239,9 @@ class FlightsLogBook:
 			if (is_near_ground):
 				self.handleOnGround(lg_entry, beacon, nearest_airport)
 			else:
+				if lg_entry['status'] == 'ground' and self.average_ground_speed(lg_entry['last_positions']) >= GROUND_SPEED_THRESHOLD:
+					lg_entry.update({'takeoff_time': beacon['timestamp'], 'status' : 'air' , 'status_last_airport': nearest_airport , 'takeoff_airport': nearest_airport })
+			
 				self.handleAirborne(lg_entry, beacon, ognDevice)
 			
 			self.pdo_engine.save_aircraft(lg_entry, self.__forDate(beacon, date))
@@ -247,7 +250,7 @@ class FlightsLogBook:
 			# self.handleOutlanding(lg_entry, beacon, ognDevice)
 			pass
 		
-		# if (self.ogn_devices_db.getAircraftRegistrationById(aircraft_id) == 'F-CFZU'):
+		# if (self.ogn_devices_db.getAircraftRegistrationById(aircraft_id) == 'F-BSKP'):
 		# 	self.logger.warning(
 		# 			'Beacon #{}, Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h,'
 		# 			' heading={track}°, climb rate={climb_rate}m/s, nearest airport: {na_icao}/{na_dist}km, (status after handling beacon {status})'
