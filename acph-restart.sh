@@ -3,7 +3,6 @@
 # Remote
 # PY3="/usr/bin/python3"
 # LOGROTATE="/usr/sbin/logrotate"
-# # HOME_LOGBOOK="/kunden/homepages/15/d223327471/htdocs/PyAcphFlightsLog"
 # HOME_LOGBOOK="$HOME/PyAcphFlightsLog"
 
 # Local
@@ -44,4 +43,3 @@ cd "$HOME_LOGBOOK"
 # <class 'pid.base.PidFileAlreadyLockedError'> [Errno 11] Resource temporarily unavailable
 sleep 1m
 "$PY3" "$SCRIPT_TO_LAUNCH" &
-# /usr/bin/nohup "$PY3" "$SCRIPT_TO_LAUNCH" > /dev/null 2>&1 &
