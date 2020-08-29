@@ -17,7 +17,7 @@ Futur releases could have additional features :
 
 ## Usage
 
-Executing the logbook python program is straight forward. It supports 2 arguments that are optionals. For the prerequisites before launching the programm see the [installation](#installation) section
+Executing the logbook python program is straight forward. It supports 2 arguments that are optionals. For the prerequisites before launching the program see the [installation](#installation) section
 
 ``` bash
 # execute the tool with default config file ./acph-logbook.ini
@@ -45,7 +45,7 @@ optional arguments:
 
 ## Configuration
 
-The program uses a configuration file to initalize settings related to database connection, logging behavior, APRS connection & filtering, and other general settings.
+The program uses a configuration file to initalize settings related to database connection, logging behavior, APRS connection & filtering and other general settings.
 
 The section `[logbook_general]` is used to initialize general parameters for the logbook
 
@@ -55,7 +55,7 @@ The section `[aprs]` is used to initialize  parameters relataed to APRS serveur 
 
 > Pending: :confused: to do!
 
-The section `[mysql_connector_python]` is used to initialize parametr for database conenction
+The section `[mysql_connector_python]` is used to initialize parameters for database conenction
 
 ``` ini
 [mysql_connector_python]
@@ -65,7 +65,7 @@ password = <password>
 host = <ip adress or dns name>
 ```
 
-The sections for logging configuration are the standard ones of python logger package. see [logging.config](https://docs.python.org/3/library/logging.config.html) python documentation for more information. The default configuration logs messages up to INFO level in the log file `./logs/acph-aprs.log'` and message up to WARNING level on a slack channel (using webhook Slack API).
+Sections for logging configuration are the standard ones of python logger package (see [logging.config](https://docs.python.org/3/library/logging.config.html) python documentation for more information). The default configuration logs messages up to INFO level in the log file `./logs/acph-aprs.log'` and message up to WARNING level on a slack channel (using webhook Slack API).
 
 ``` ini
 ...
