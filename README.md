@@ -2,7 +2,7 @@
 
 # PyAcphFlightsLogbook
 
-Flight **logbook** for **glider** written in Python that automates detection of takeoff and landing events (airfield and schedule) by processing the APRS traffic from the [Open Glider Network](http://wiki.glidernet.org/).
+Flight logbook for **glider** written in Python that automates detection of takeoff and landing events (airfield and schedule) by processing the APRS traffic from the [Open Glider Network](http://wiki.glidernet.org/).
 As the program tracks event at aircraft level he can detect landing and takefoff on different airfields. Due to several technical reasons, the detected start and landing times are approximate only. The accuracy is around 1 or 2 minutes.
 
 This is a work in progress. Currently, in addition to takoff and landing events, the tool detects the launch method (aerotowing, self-launching or winch launching) and in the case of a towing, identifies the tow plane. It calculates also the flight duration.
@@ -13,6 +13,7 @@ Futur releases could have additional features :
 
 * outlanding detection and location
 * detection of the runway used for takeoff & landing
+* REST APIs to get logbook by icao, by aircraft id, by date range,...
 * ...
 
 ## Usage
@@ -43,6 +44,24 @@ optional arguments:
   -i CONFIG_FILE, --ini CONFIG_FILE path to the ini config file, default value is ./acph-logbook.ini
 ```
 
+## Online demo
+
+The program doesn't provide any APIs or front-end right now, but you can have a look to the implementation we did at [ACPH](https://aeroclub-issoire.fr) with a specific front-end develop for our website (to date processing of APRS aircraft beacons are limited to 200km around LFHA, so there is a chance that you don't see any data for your airport or your airplane).
+
+* [Responsive web front-end](https://aeroclub-issoire.fr/wp-content/themes/zerif-lite-acph/acph-logbook.html)
+* [REST API (example to get the LFHA logbook on August 29th, 2020)](https://aeroclub-issoire.fr/wp-json/acph/v1/logbook/2020-08-29/LFHA)
+
+### ACPH REST API endpoints reference
+
+| Resource | base route |
+| logbook | ./wp-json/acph/v1 |
+
+``` bash
+# example
+curl https://aeroclub-issoire.fr/wp-json/acph/v1/logbook/2020-08-29/LFHA
+```
+
+
 ## Configuration
 
 The program uses a configuration file to initalize settings related to database connection, logging behavior, APRS connection & filtering and other general settings.
@@ -55,7 +74,7 @@ The section `[aprs]` is used to initialize  parameters relataed to APRS serveur 
 
 > Pending: :confused: to do!
 
-The section `[mysql_connector_python]` is used to initialize parameters for database conenction
+The section `[mysql_connector_python]` is used to initialize parameters for database connection
 
 ``` ini
 [mysql_connector_python]
@@ -123,8 +142,12 @@ python3 ./setup_db.py
 ## Working principles
 
 * process in realtime OGN APRS message
-* for each aircraft detect events like takeoff and landing and store it in a database
-* keep xx day of retention in the database
-* relay on following resources
-  * The [OGN database](http://ddb.glidernet.org/) to identify the aircraft (type, model,...)
-  * The xx airport database (altitude, coordinnate,...) to identify takeoff and landing airfields
+* for each aircraft detect events like takeoff and landing and store them in a database
+* keep xx days of retention in the database
+* Relying on the following open data resources
+  * The [OGN devices database](http://ddb.glidernet.org/) from [OpenGliderNetwork](http://wiki.glidernet.org/) to identify any FLARM/OGN-equipped aircraft (type, model,...)
+  * The [Airport codes database](https://datahub.io/core/airport-codes) from [OurAirports](https://ourairports.com/) to identify takeoff and landing airfields
+
+## Contributing
+
+> Pending: :confused: to do!
