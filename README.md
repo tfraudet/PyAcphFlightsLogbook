@@ -46,21 +46,21 @@ optional arguments:
 
 ## Online demo
 
-The program doesn't provide any APIs or front-end right now, but you can have a look to the implementation we did at [ACPH](https://aeroclub-issoire.fr) with a specific front-end develop for our website (to date processing of APRS aircraft beacons are limited to 200km around LFHA, so there is a chance that you don't see any data for your airport or your airplane).
+The program doesn't provide any APIs or front-end right now, but you can have a look to the implementation we did at [ACPH](https://aeroclub-issoire.fr) with a specific front-end develop for our website. There is also a REST API available to retreive logbook for a specific date & airfield. To date processing of APRS aircraft beacons are limited to 200km around LFHA, so there is a chance that you don't see any data for your airport. :confused:
 
 * [Responsive web front-end](https://aeroclub-issoire.fr/wp-content/themes/zerif-lite-acph/acph-logbook.html)
 * [REST API (example to get the LFHA logbook on August 29th, 2020)](https://aeroclub-issoire.fr/wp-json/acph/v1/logbook/2020-08-29/LFHA)
 
 ### ACPH REST API endpoints reference
 
-| Resource | base route |
-| logbook | ./wp-json/acph/v1 |
+| Resource | Base route | Prefered method | Description
+| --- | --- | --- | ---|
+| `logbook/<date>/<icao>` | `./wp-json/acph/v1` | GET | Retreive the logbook of the day `date` for the airfield identified by it's `icao` code.
 
 ``` bash
-# example
+# Example: retreive the logbook for LFHA on August 29th, 2020
 curl https://aeroclub-issoire.fr/wp-json/acph/v1/logbook/2020-08-29/LFHA
 ```
-
 
 ## Configuration
 
@@ -145,7 +145,7 @@ python3 ./setup_db.py
 * for each aircraft detect events like takeoff and landing and store them in a database
 * keep xx days of retention in the database
 * Relying on the following open data resources
-  * The [OGN devices database](http://ddb.glidernet.org/) from [OpenGliderNetwork](http://wiki.glidernet.org/) to identify any FLARM/OGN-equipped aircraft (type, model,...)
+  * The [OGN devices database](http://ddb.glidernet.org/) from [OpenGliderNetwork](http://wiki.glidernet.org/) to identify any FLARM/OGN-equiped aircraft (type, model,...)
   * The [Airport codes database](https://datahub.io/core/airport-codes) from [OurAirports](https://ourairports.com/) to identify takeoff and landing airfields
 
 ## Contributing
