@@ -5,19 +5,23 @@ import logging
 import json
 import datetime
 import mysql.connector
+
 from mysql.connector import errorcode
 from acph.setup_db import TABLES_NAME
+
+from datetime import date
+from datetime import timedelta
 
 class FlightLogPDO(ABC):
 	def __init__(self):
 		self.logger = logging.getLogger(__name__)
-		self.logger.debug("PDO Engine is of type {}".format(self.__class__.__name__))
+		self.logger.debug("Persistence Engine is of type {}".format(self.__class__.__name__))
 
 	@staticmethod
 	def factory(target) -> FlightLogPDO:
-		if target == 'JSON':
+		if target.upper() == 'JSON':
 			return JsonFileFlightLogPDO()
-		elif target == 'MYSQL':
+		elif target.upper() == 'MYSQL':
 			return MysqlFlightLogPDO()
 		else:
 			raise ValueError('{} is an invalid value for the FlightLogPDO factory method.'.format(target))
@@ -26,12 +30,16 @@ class FlightLogPDO(ABC):
 		if logbook is None:
 			raise ValueError('Cannot save a null logbook.')
 
-	def open(self, config_file):
-		self.logger.warning('Open PDO engine (config file: {}).'.format(config_file))
+	def open(self, config) -> None:
+		self.logger.warning('Open persistence engine of type {}.'.format(self.__class__.__name__))
 		pass
 
-	def close(self):
-		self.logger.warning('Close PDO engine.')
+	def close(self) -> None:
+		self.logger.warning('Close persistence engine.')
+		pass
+
+	def purge(self, data_older_than :int = 30) -> None:
+		self.logger.warning('Purge data older then {} day(s).'.format(data_older_than))
 		pass
 
 	def json_converter(self, obj):
@@ -51,6 +59,29 @@ class MysqlFlightLogPDO(FlightLogPDO):
 			self.logger.warning("Connection with MySql DB probably loose following the session time-out, try to reconnect. Error is {}".format(err))
 			self.open(False)
 		return self.cnx.cursor()
+
+	def purge(self, data_older_than :int = 30) -> None:
+		super().purge(data_older_than)
+
+
+		# delete from `acph_aircraft_logbook` where date < '2020-08-14'
+		try:
+			cursor = self.get_cursor()
+
+			# compute the purge date 
+			purge_date = date.today() - timedelta(days=data_older_than)
+
+			# and execute the query
+			query = "delete from `{tablename}` where date < '{purge_date}'".format(tablename=TABLES_NAME['logbook-by-aircraft'], purge_date=purge_date)
+			cursor.execute(query)
+			self.cnx.commit()
+			self.logger.warning('Purge data created before {}, {} records deleted (purge setting={} retention day(s)).'.format(purge_date, cursor.rowcount,data_older_than))
+		except mysql.connector.Error as err:
+			self.logger.error('Unable to purge logbook entries.')
+			self.logger.error(err)
+		finally:
+			cursor.close()
+
 
 	def save_aircraft(self, logbook: dict, date :str) -> None:
 		super().save_aircraft(logbook, date)
@@ -125,11 +156,11 @@ class MysqlFlightLogPDO(FlightLogPDO):
 		finally:
 			cursor.close()
 
-	def open(self, config_file, checkTablesExisting = True):
-		super().open(config_file)
+	def open(self, config, checkTablesExisting = True) -> None:
+		super().open(config)
 		try:
-			# self.cnx = mysql.connector.connect(option_files='./acph-logbook.ini', option_groups='mysql_connector_python')
-			self.cnx = mysql.connector.connect(option_files=config_file, option_groups='mysql_connector_python')
+			# self.cnx = mysql.connector.connect(option_files=config_file, option_groups='mysql_connector_python')
+			self.cnx = mysql.connector.connect(user=config['user'], password=config['password'], database=config['database'], host=config['host'])
 			if checkTablesExisting and not self.isTablesExists():
 				self.logger.critical('Required tables doesn\'t exists.')
 				raise(SystemExit(1))
@@ -137,7 +168,7 @@ class MysqlFlightLogPDO(FlightLogPDO):
 			self.logger.critical('Exception while opening the MySql connection: {}'.format(err))
 			raise(SystemExit(1))
 
-	def close(self):
+	def close(self) -> None:
 		super().close()
 		if self.cnx is not None:
 			try:

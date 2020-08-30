@@ -40,7 +40,7 @@ AIRPORT_DISTANCE_THRESHOLD = 4		# 2.5 km
 FEETS_TO_METER = 0.3048				# ratio feet to meter
 
 BUFFER_AIRCRAFT_BEACON = 1000		# to keep the last  n aircraft beacons received
-NBR_OF_DAY_LOGBOOK = 1				# number of day to keep in the logbook
+NBR_OF_DAY_LOGBOOK = 1				# number of logbook's days to keep in memory
 BUFFER_AIRCRAFT_POSITION = 3		# to keep for each aircraft the last n received positions
 
 def feet_to_meter(altitude_in_feet):

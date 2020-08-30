@@ -18,21 +18,26 @@ class OgnDevicesDatabase:
 	@staticmethod
 	def withURL():
 		instance = OgnDevicesDatabase()
+		
 		json_url = urlopen(OGN_DDB_DEVICES_LIST_URL)
 		data = json.loads(json_url.read())
-		instance.devices = data['devices']
+		for item in data['devices']:
+			instance.devices[item['device_id']] = item
+
+		instance.logger.info('OGN devices datbase, {} devices loaded from url {}'.format(len(instance.devices),OGN_DDB_DEVICES_LIST_URL))
 		return instance
 	
 	@staticmethod
 	def withJsonFile(json_ogn_ddb_file):
 		instance = OgnDevicesDatabase()
-		
+
 		with open(json_ogn_ddb_file) as json_file:
 			data = json.load(json_file)
 			# instance.devices = data['devices'] 			v0.1
 			for item in data['devices']:
 				instance.devices[item['device_id']] = item
-			
+
+		instance.logger.info('OGN devices datbase, {} devices loaded from json file {}'.format(len(instance.devices),json_ogn_ddb_file))			
 		return instance
 
 	def getAircraftById(self, device_id):

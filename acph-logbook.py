@@ -3,7 +3,7 @@ import signal
 import os
 import json
 import argparse
-
+import configparser
 import logging
 import logging.config
 from logging.handlers import TimedRotatingFileHandler
@@ -27,27 +27,36 @@ def handle_exit(signal, frame):
  
 @pidfile('acph-flights-log.pid','./')
 def main():
+	# read the config file
+	config = configparser.ConfigParser()
+	config.read(config_file)
+
 	# create logger
 	logging.config.fileConfig(config_file)
+	# logging.config.fileConfig(config)
 	logger = logging.getLogger('acph.main')
 
 	# start ACPH Flights logbook daemon
 	logger.warning('ACPH Flights logbook starting with config file = {} (process ID is {}).'.format(config_file,os.getpid()))
 
-	# load the OGN devices database from a local file for test purpose
+	# load the OGN devices database from a local file or remote server
 	try:
-		json_filepath = './ogn-devices-ddb.json'
-		ogndb = OgnDevicesDatabase.withJsonFile(json_filepath)
-		# ogndb = OgnDevicesDatabase.withURL()
-		# ogndb.getAircraftById('DD8E99')
-	except IOError:
-		logger.error("File {} does not exist. Exiting...".format(json_filepath))
+		if 'logbook' in config and config['logbook']['ognddb'] == 'remote':
+			ogndb = OgnDevicesDatabase.withURL()
+		else:
+			json_filepath = './ogn-devices-ddb.json'
+			ogndb = OgnDevicesDatabase.withJsonFile(json_filepath)
+	except IOError as err:
+		logger.error("Unable to load OGN devices database. Error is {}".format(err))
 		sys.exit()
 
 	# load the airport database from a local file for test purpose
 	try:
-		airports_db_file = 'airport-codes.json'
-		airports_db = AirportDatabase.withJsonFile(airports_db_file)
+		if 'logbook' in config and config['logbook']['acdb'] == 'remote':
+			airports_db = AirportDatabase.withPackageUrl()
+		else:
+			airports_db_file = 'airport-codes.json'
+			airports_db = AirportDatabase.withJsonFile(airports_db_file)
 
 		#  Airports DB only with european airports.
 		# listOfAirportsFiltered = airports_db.filterByContinent('EU')
@@ -63,14 +72,21 @@ def main():
 	# to handle CTRL-C, Kill,....
 	signal.signal(signal.SIGTERM, handle_exit)
 
-	# Create the PDO Engine to store the results on the fly: could be JSON or MySql
-	# pdo_engine = FlightLogPDO.factory('JSON')
-	pdo_engine = FlightLogPDO.factory('MYSQL')
-	pdo_engine.open(config_file)
-	
-	# client = AprsClient(aprs_user='N0CALL')
+	# Create the persistence engine to store results on the fly: could be JSON or MySql
+	pdo_engine = FlightLogPDO.factory(config['logbook']['persistence'] if 'logbook' in config else 'JSON')
+	# pdo_engine.open(config_file)
+	pdo_engine.open(config['mysql_connector_python'])
+
+	# take the opportunity to purge data hold in the persistence engine
+	pdo_engine.purge(config['logbook'].getint('purge'))
+
 	# client = AcphAprsClient(aprs_user='ACPH', aprs_passcode='25321')						# Full feed
-	client = AcphAprsClient(aprs_user='ACPH', aprs_passcode='25321', aprs_filter='r/45.5138/3.2661/200')
+	# client = AcphAprsClient(aprs_user='ACPH', aprs_passcode='25321', aprs_filter='r/45.5138/3.2661/200')
+	if 'aprs' in config:
+		client = AcphAprsClient(aprs_user=config['aprs']['user'], aprs_passcode=config['aprs']['passcode'], aprs_filter=config['aprs']['filter'])
+	else:
+		client = AprsClient(aprs_user='N0CALL')
+
 	client.connect()
 
 	# create the ACPH Flight logbook

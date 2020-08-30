@@ -4,6 +4,8 @@ import re
 import json
 import time
 import datetime
+import configparser
+
 from datetime import timedelta
 import logging
 import logging.config
@@ -19,28 +21,34 @@ def main():
 	filepath = sys.argv[1]
 	date_of_data = filepath[len(filepath)-14:len(filepath)-4]
 
-	config_files='./unit-test.ini'
+	config_file='./unit-test.ini'
+	# read the config file
+	config = configparser.ConfigParser()
+	config.read(config_file)
 
 	# create logger fo the main
-	logging.config.fileConfig(config_files)
+	# logging.config.fileConfig(config_file)
+	logging.config.fileConfig(config)
 	logger = logging.getLogger('acph.main')
 
-
-	# load the OGN devices database from a local file for test purpose
+	# load the OGN devices database
 	try:
-		json_filepath = './ogn-devices-ddb.json'
-		ogndb = OgnDevicesDatabase.withJsonFile(json_filepath)
-		# ogndb = OgnDevicesDatabase.withURL()
-		# ogndb.getAircraftById('DD8E99')
+		if 'logbook' in config and config['logbook']['ognddb'] == 'remote':
+			ogndb = OgnDevicesDatabase.withURL()
+		else:
+			json_filepath = './ogn-devices-ddb.json'
+			ogndb = OgnDevicesDatabase.withJsonFile(json_filepath)
 	except IOError:
 		logger.error("File {} does not exist. Exiting...".format(json_filepath))
 		sys.exit()
 
-	# load the airport database from a local file for test purpose
+	# load the airport database 
 	try:
-		# airports_db = AirportDatabase.withPackageUrl()
-		airports_db_file = 'airport-codes.json'
-		airports_db = AirportDatabase.withJsonFile(airports_db_file)
+		if 'logbook' in config and config['logbook']['acdb'] == 'remote':
+			airports_db = AirportDatabase.withPackageUrl()
+		else:
+			airports_db_file = 'airport-codes.json'
+			airports_db = AirportDatabase.withJsonFile(airports_db_file)
 
 		#  Airports DB only with european airports.
 		# listOfAirportsFiltered = airports_db.filterByContinent('EU')
@@ -60,8 +68,11 @@ def main():
 		sys.exit()
 
 	# Create the PDO Engine to store the results on the fly: could be JSON or MySql
-	# pdo_engine = FlightLogPDO.factory('JSON')
-	pdo_engine = FlightLogPDO.factory('MYSQL')
+	pdo_engine = FlightLogPDO.factory(config['logbook']['persistence'] if 'logbook' in config else 'JSON')
+	pdo_engine.open(config['mysql_connector_python'])
+
+	# take the opportunity to purge data hold in the persistence engine
+	pdo_engine.purge(config['logbook'].getint('purge'))
 
 	# create the ACPH Flight logbook and build the logbook for LFHA
 	# logbook = FlightsLogBook(receivers_filter={'LFHA'}, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
@@ -75,9 +86,6 @@ def main():
 
 	# build the reg-ex to extract raw data from the log
 	aprs_reg = re.compile(r'raw data:\s(.*)')
-
-	# open the Logbook persistent engine
-	logbook.pdo_engine.open(config_files)
 
 	# and run FlightsLogBook with that data, results are in xxxx
 	logger.info('Start to parse the file {}, date of the data is {}'.format(filepath,date_of_data))
@@ -106,16 +114,16 @@ def main():
 
 	# For test purpose dump internal logbook structure results
 	# Erase result file if exist
-	try:
-		os.remove('./htdoc/result.json')
-		logger.warning("Previous result file erased.")
-	except FileNotFoundError:
-		logger.warning("No previous result file to erase.")
+	# try:
+	# 	os.remove('./htdoc/result.json')
+	# 	logger.warning("Previous result file erased.")
+	# except FileNotFoundError:
+	# 	logger.warning("No previous result file to erase.")
 
-	# Log the result to output file
-	with open('./htdoc/result.json', 'w') as fp:
-		# json.dump(logbook.logbook, fp, indent=4, sort_keys=True, default = lambda obj: obj.__str__() if isinstance(obj, datetime.datetime) )
-		json.dump(logbook.logbook, fp, indent=4, sort_keys=True, default = json_converter )
+	# # Log the result to output file
+	# with open('./htdoc/result.json', 'w') as fp:
+	# 	# json.dump(logbook.logbook, fp, indent=4, sort_keys=True, default = lambda obj: obj.__str__() if isinstance(obj, datetime.datetime) )
+	# 	json.dump(logbook.logbook, fp, indent=4, sort_keys=True, default = json_converter )
 
 def json_converter(obj):
 	if isinstance(obj, datetime.datetime):

@@ -3,7 +3,7 @@
 # PyAcphFlightsLogbook
 
 Flight logbook for **glider** written in Python that automates detection of takeoff and landing events (airfield and schedule) by processing the APRS traffic from the [Open Glider Network](http://wiki.glidernet.org/).
-As the program tracks event at aircraft level he can detect landing and takefoff on different airfields. Due to several technical reasons, the detected start and landing times are approximate only. The accuracy is around 1 or 2 minutes.
+As the program tracks event at aircraft level it can detect landing and takefoff on different airfields. The detected start and landing times are approximate only. The accuracy is around 1 or 2 minutes.
 
 This is a work in progress. Currently, in addition to takoff and landing events, the tool detects the launch method (aerotowing, self-launching or winch launching) and in the case of a towing, identifies the tow plane. It calculates also the flight duration.
 
@@ -143,8 +143,8 @@ python3 ./setup_db.py
 
 * process in realtime OGN APRS message
 * for each aircraft detect events like takeoff and landing and store them in a database
-* keep xx days of retention in the database
-* Relying on the following open data resources
+* keep x days of retention in the database
+* relying on the following open data resources
   * The [OGN devices database](http://ddb.glidernet.org/) from [OpenGliderNetwork](http://wiki.glidernet.org/) to identify any FLARM/OGN-equiped aircraft (type, model,...)
   * The [Airport codes database](https://datahub.io/core/airport-codes) from [OurAirports](https://ourairports.com/) to identify takeoff and landing airfields
 

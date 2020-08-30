@@ -50,14 +50,13 @@ class AirportDatabase:
 			if item['name'] == 'airport-codes_json': airports_code_url = item['path']
 
 		# load data in json format
-		instance.logger.info('Loading json airports code from url: {}'.format(airports_code_url))
-
 		if airports_code_url:
 			instance.airports = json.loads(urlopen(airports_code_url).read(), object_hook=AirportDatabase.json_airport_decode)
 
 			if not include_closed:
 				instance.airports = AirportDatabase.__filter_closed_airport(instance)
 
+		instance.logger.info('Airports code database, {} airports loaded from url {}'.format(len(instance.airports), airports_code_url))	
 		return instance
 	
 	@staticmethod
@@ -70,7 +69,6 @@ class AirportDatabase:
 		if not include_closed:
 			instance.airports = AirportDatabase.__filter_closed_airport(instance)
 
-		instance.logger.warning('Airports code database path is {} ({} airports loaded)'.format(json_file_path, len(instance.airports)))
-	
+		instance.logger.info('Airports code database, {} airports loaded from json file {}'.format(len(instance.airports), json_file_path))	
 		return instance
 
