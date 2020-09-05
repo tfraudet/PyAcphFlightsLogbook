@@ -12,6 +12,9 @@ from acph.setup_db import TABLES_NAME
 from datetime import date
 from datetime import timedelta
 
+from collections import deque
+from acph.class_flights_logbook import BUFFER_AIRCRAFT_POSITION
+
 class FlightLogPDO(ABC):
 	def __init__(self):
 		self.logger = logging.getLogger(__name__)
@@ -29,6 +32,14 @@ class FlightLogPDO(ABC):
 	def save_aircraft(self, logbook: dict, date :str) -> None:
 		if logbook is None:
 			raise ValueError('Cannot save a null logbook.')
+
+	def load_aircraft(self, date :str, aircraft_id :str) -> list:
+		if date is None:
+			raise ValueError('Cannot load aircraft\'s logbook for a null date.')
+		if aircraft_id is None:
+			raise ValueError('Cannot load aircraft\'s logbook for a null aircraft id.')
+
+		return []
 
 	def open(self, config) -> None:
 		self.logger.warning('Open persistence engine of type {}.'.format(self.__class__.__name__))
@@ -52,17 +63,16 @@ class MysqlFlightLogPDO(FlightLogPDO):
 		self.cnx = None
 
 	# Inspiration here: https://bitworks.software/en/2019-03-12-tornado-persistent-mysql-connection-strategy.html
-	def get_cursor(self):
+	def get_cursor(self, dictionary=False):
 		try:
 			self.cnx.ping(reconnect=True, attempts=3, delay=5)
 		except mysql.connector.Error as err:
 			self.logger.warning("Connection with MySql DB probably loose following the session time-out, try to reconnect. Error is {}".format(err))
 			self.open(False)
-		return self.cnx.cursor()
+		return self.cnx.cursor(dictionary=dictionary)
 
 	def purge(self, data_older_than :int = 30) -> None:
 		super().purge(data_older_than)
-
 
 		# delete from `acph_aircraft_logbook` where date < '2020-08-14'
 		try:
@@ -89,8 +99,8 @@ class MysqlFlightLogPDO(FlightLogPDO):
 			cursor = self.get_cursor()
 
 			query = ("INSERT INTO `{tablename}` "
-				 "(`date`, `aircraft_id`, `flight_id`, `status`, `status_last_airport`, `aircraft_type`, `aircraft_model`, `registration`, `cn`, `tracked`, `identified`, `takeoff_time`, `takeoff_airport`, `landing_time`, `landing_airport`, `flight_duration`, `launch_type`, `receivers`)"
-				 " VALUES (%(date)s, %(aircraft_id)s, %(flight_id)s, %(status)s, %(status_last_airport)s, %(aircraft_type)s, %(aircraft_model)s, %(registration)s, %(cn)s, %(tracked)s, %(identified)s, %(takeoff_time)s, %(takeoff_airport)s, %(landing_time)s, %(landing_airport)s, %(flight_duration)s, %(launch_type)s, %(receivers)s)"
+				 "(`date`, `aircraft_id`, `flight_id`, `status`, `status_last_airport`, `aircraft_type`, `aircraft_model`, `registration`, `cn`, `tracked`, `identified`, `takeoff_time`, `takeoff_airport`, `landing_time`, `landing_airport`, `flight_duration`, `launch_type`, `receivers`, `last_positions`)"
+				 " VALUES (%(date)s, %(aircraft_id)s, %(flight_id)s, %(status)s, %(status_last_airport)s, %(aircraft_type)s, %(aircraft_model)s, %(registration)s, %(cn)s, %(tracked)s, %(identified)s, %(takeoff_time)s, %(takeoff_airport)s, %(landing_time)s, %(landing_airport)s, %(flight_duration)s, %(launch_type)s, %(receivers)s, %(last_positions)s)"
 				 " ON DUPLICATE KEY UPDATE "
 				 "`status` = %(status)s, "
 				 "`status_last_airport` = %(status_last_airport)s, "
@@ -106,7 +116,8 @@ class MysqlFlightLogPDO(FlightLogPDO):
 				 "`landing_airport` = %(landing_airport)s, "
 				 "`flight_duration` = %(flight_duration)s, "
 				 "`launch_type` = %(launch_type)s, "
-				 "`receivers` = %(receivers)s"
+				 "`receivers` = %(receivers)s, "
+				 "`last_positions` = %(last_positions)s"
 				 ).format(tablename=TABLES_NAME['logbook-by-aircraft'])
 
 			query_data = {
@@ -128,6 +139,7 @@ class MysqlFlightLogPDO(FlightLogPDO):
 				'flight_duration': logbook['flight_duration'],
 				'launch_type': logbook['launch_type'],
 				'receivers': ','.join(logbook['receivers']),
+				'last_positions' : json.dumps(list(logbook['last_positions']))
 			}
 			cursor.execute(query, query_data)
 			self.cnx.commit()
@@ -137,6 +149,28 @@ class MysqlFlightLogPDO(FlightLogPDO):
 		finally:
 			cursor.close()
 
+	def load_aircraft(self, date :str, aircraft_id :str) -> list:
+		result = super().load_aircraft(date, aircraft_id)
+		try:
+			cursor = self.get_cursor(True)
+			# query = "SELECT * FROM {} WHERE date = '{}' and aircraft_id = '{}' and status != 'landed'".format(TABLES_NAME['logbook-by-aircraft'], date, aircraft_id)
+			query = "SELECT * FROM {} WHERE date = '{}' and aircraft_id = '{}'".format(TABLES_NAME['logbook-by-aircraft'], date, aircraft_id)
+			cursor.execute(query)
+			for row in cursor:
+				# transform string to deque for last_positions property
+				row['last_positions'] = deque(json.loads(row['last_positions']), maxlen=BUFFER_AIRCRAFT_POSITION)
+
+				# transform string to list for receivers property
+				row['receivers'] = row['receivers'].split(',')
+
+				result.append(row)
+			self.cnx.commit()
+		except mysql.connector.Error as err:
+			self.logger.error('Unable to load logbook entries for aircraft id {} on date {}'.format(aircraft_id,date))
+			self.logger.error(err)
+		finally:
+			cursor.close()
+		return result
 
 	def isTablesExists(self):
 		try:

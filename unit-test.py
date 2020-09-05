@@ -78,7 +78,7 @@ def main():
 	# logbook = FlightsLogBook(receivers_filter={'LFHA'}, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
 
 	# create the ACPH Flight logbook and handling all the beacons received
-	logbook = FlightsLogBook(receivers_filter={}, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
+	logbook = FlightsLogBook(receivers_filter={'LFHA'}, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
 
 	# logbook.airports = {k: v for k, v in airports.items() if k[:2] == 'LF'}		# filter only some french airports for test purpose
 	# logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA', 'LFHR', 'LFHT', 'LFHP'}}		# filter only some french airports for test purpose
@@ -94,18 +94,23 @@ def main():
 	with open(filepath) as fp:
 		numberOfLine = 0
 		for line in fp:
-			# if max lin reached, stop processing
-			if  max_line_to_process>0 and numberOfLine >= max_line_to_process:
-				break
+			try:
+				# if max lin reached, stop processing
+				if  max_line_to_process>0 and numberOfLine >= max_line_to_process:
+					break
 
-			# processing next line
-			numberOfLine += 1
-			aprs_raw_data = aprs_reg.findall(line)
-			if len(aprs_raw_data) == 1:
-				# logger.info("line {}, processing raw data: {}".format(numberOfLine, aprs_raw_data[0]))
-				logbook.handleBeacon(aprs_raw_data[0], date_of_data)
-			# else:
-			# 	logger.error("Unable to extract raw aprs message from line : {}".format(line))
+				# processing next line
+				numberOfLine += 1
+				aprs_raw_data = aprs_reg.findall(line)
+				if len(aprs_raw_data) == 1:
+					# logger.info("line {}, processing raw data: {}".format(numberOfLine, aprs_raw_data[0]))
+					logbook.handleBeacon(aprs_raw_data[0], date_of_data)
+			except (KeyboardInterrupt, SystemExit):
+				break
+			# except Exception as err:
+			except:
+				# logger.error('Unexpected error when handling following aprs beacon {}'.format(aprs_raw_data[0]))
+				logger.exception('Unexpected error when handling following aprs beacon {}'.format(aprs_raw_data[0]))
 	stop_time = time.process_time()
 	logger.info('End of parsing, execution time {} seconds'.format(timedelta(seconds=stop_time-start_time)))
 

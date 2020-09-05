@@ -88,7 +88,7 @@ class FlightsLogBook:
 	
 	def handlePosition(self, beacon, date):
 		self.logger.debug('handle beacon position, raw data: {raw_message}'.format(**beacon))
-		if self.isAircraftBeacon(beacon) and self.filteringReceivers(beacon['receiver_name']):
+		if self.isAircraftBeacon(beacon) and self.filteringReceivers(beacon['receiver_name']) and self.filteringAircraft(beacon['address']):
 			self.handleAircraftPosition(beacon, date)
 		else:
 			self.logger.debug('handle beacon position, not an aircraft or receiver name filetered [beacon type is {beacon_type}, receiver name is {receiver_name}]'.format(**beacon))
@@ -115,7 +115,12 @@ class FlightsLogBook:
 			func = handlers.get(beacon.get('aprs_type'),lambda beacon: self.logger.error('aprs type ' + beacon['aprs_type'] + ' is unknown, beacon not handle.'))
 			func(beacon, date)
 		except ParseError:
-			logging.error("Exception occurred", exc_info=True)
+			self.logger.error("Exception occurred", exc_info=True)
+		except KeyboardInterrupt:
+			self.logger.error('Keyboard interupt')
+			raise(KeyboardInterrupt)
+		except:
+			self.logger.exception('Unexpected error when handling following aprs beacon {raw_message}'.format(**beacon))
 	
 	def isAircraftBeacon(self, beacon):
 		return beacon['beacon_type'] == 'aprs_aircraft'
@@ -129,6 +134,15 @@ class FlightsLogBook:
 		else:
 			return receiver_name in self.receivers_filter
 
+	def filteringAircraft(self, aircraft_id):
+		return True
+
+		# For debug purpose
+		# if aircraft_id == 'DD8E24' or aircraft_id == 'DD8ED6':
+		# 	return True
+		# else:
+		# 	return False
+
 	def findLogbookEntryByID(self, aircraft_id, date, aircraft_type, ognDevice):
 		logbook_for_a_date = self.logbook.get(date)
 
@@ -140,7 +154,9 @@ class FlightsLogBook:
 		# get the list of flights for this aircraft, if the list is not yet created, create it
 		logbook_for_aircraft = logbook_for_a_date.get(aircraft_id, None)
 		if (logbook_for_aircraft is None):
-			logbook_for_aircraft = []	# create an empty list
+			# try to load it from the persistence engine (load all flights included already landed one) 
+			# needed when the suprevisor relaunch the logbook program in the middle of day for example after an unexpected interuption.
+			logbook_for_aircraft = self.pdo_engine.load_aircraft(date, aircraft_id)
 			logbook_for_a_date.update({aircraft_id: logbook_for_aircraft}) 
 
 		# look for the last flight for this aircraft which is not already landed,
@@ -200,13 +216,14 @@ class FlightsLogBook:
 		# if ognDevice is None:
 		# 	raise Exception("Device id {} is unknow in OGN database".format(aircraft_id))
 
-		# handle even aircraft_if not in OGN DB (findOgnAircraftById return a fake OgnDb entry if aircarft_if not exists in the DB)
+		# handle even aircraft_id not in OGN DB (findOgnAircraftById return a fake OgnDb entry if aircraft_id doesn't exist in the DB)
 		ognDevice = self.findOgnAircraftById(aircraft_id)
 
 		# round some value from aprs message
 		beacon['altitude'] = round(beacon['altitude'])
 		beacon['ground_speed'] = round(beacon['ground_speed'])
-		beacon['climb_rate'] = round(beacon['climb_rate'],1)
+		if beacon['climb_rate'] is not None:
+			beacon['climb_rate'] = round(beacon['climb_rate'],1) 
 		# self.logger.debug('Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {address} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
 	
 		# look for current entry in the logbook for this aircraft_id at the date of the received beacon.
@@ -250,7 +267,8 @@ class FlightsLogBook:
 			# self.handleOutlanding(lg_entry, beacon, ognDevice)
 			pass
 		
-		# if (self.ogn_devices_db.getAircraftRegistrationById(aircraft_id) == 'F-BSKP'):
+		# if (self.ogn_devices_db.getAircraftRegistrationById(aircraft_id) == 'F-CGTQ'):
+		# # if ( aircraft_id == '38485C'):
 		# 	self.logger.warning(
 		# 			'Beacon #{}, Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h,'
 		# 			' heading={track}°, climb rate={climb_rate}m/s, nearest airport: {na_icao}/{na_dist}km, (status after handling beacon {status})'
@@ -327,7 +345,8 @@ class FlightsLogBook:
 				flight_duration = beacon['timestamp'] - lg_entry.get('takeoff_time')
 				lg_entry.update({'landing_time': beacon['timestamp'], 'status' : 'landed' , 'status_last_airport': airport, 'landing_airport': airport, 'flight_duration': str(flight_duration) })
 		elif lg_entry['status'] == '?':
-			if beacon['ground_speed'] >= GROUND_SPEED_THRESHOLD:
+			if self.average_ground_speed(lg_entry['last_positions']) >= GROUND_SPEED_THRESHOLD:
+			# if beacon['ground_speed'] >= GROUND_SPEED_THRESHOLD:
 				lg_entry.update({'status' : 'air' , 'status_last_airport': airport })
 			else:
 				lg_entry.update({'status' : 'ground','status_last_airport': airport })
@@ -400,7 +419,7 @@ class FlightsLogBook:
 	def inRangeSpeed(self, glider_speed, beacon_speed, speed_precision = 20):
 		return True if abs(glider_speed-beacon_speed) <=  speed_precision else False
 
-	def inRangeAltitude(self, glider_altitude, beacon_altitude, altitude_precision= 30):
+	def inRangeAltitude(self, glider_altitude, beacon_altitude, altitude_precision= 35):
 		return True if abs(glider_altitude-beacon_altitude) <=  altitude_precision else False
 	
 	def average_ground_speed(self, last_positions, n=3):

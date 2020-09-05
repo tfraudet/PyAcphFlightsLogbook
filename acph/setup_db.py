@@ -53,6 +53,15 @@ def createTables(cursor):
 		else:
 			print("OK")
 
+def alterTable(cursor):
+	try:
+		query = "ALTER Table {} ADD COLUMN `last_positions` TEXT".format(TABLES_NAME['logbook-by-aircraft'])
+		cursor.execute(query)
+	except mysql.connector.Error as err:
+		print(err.msg)
+	else:
+		print("Table {} modified successfully.".format(TABLES_NAME['logbook-by-aircraft']))
+
 def main():
 
 	print("ACPH LogBook - initialize database tables.")
@@ -61,6 +70,7 @@ def main():
 
 		cursor = cnx.cursor()
 		createTables(cursor)
+		alterTable(cursor)
 		cursor.close()
 	except mysql.connector.Error as err:
 		if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
