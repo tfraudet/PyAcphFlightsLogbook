@@ -267,7 +267,7 @@ class FlightsLogBook:
 			# self.handleOutlanding(lg_entry, beacon, ognDevice)
 			pass
 		
-		# if (self.ogn_devices_db.getAircraftRegistrationById(aircraft_id) == 'F-CGTQ'):
+		# if (self.ogn_devices_db.getAircraftRegistrationById(aircraft_id) == 'F-CIAT'):
 		# # if ( aircraft_id == '38485C'):
 		# 	self.logger.warning(
 		# 			'Beacon #{}, Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h,'
@@ -410,7 +410,7 @@ class FlightsLogBook:
 	def inRangeDistance(self, dist, distance_precision = 0.4):
 		return True if dist <=  distance_precision else False
 
-	def inRangeHeading(self, glider_heading, beacon_heading, degree_precision = 5):
+	def inRangeHeading(self, glider_heading, beacon_heading, degree_precision = 8):
 		angle_diff = (glider_heading - beacon_heading) % 360
 		if angle_diff > 180:
 			angle_diff -= 360
