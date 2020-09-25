@@ -18,6 +18,7 @@ from acph.class_aprs import AcphAprsClient
 from acph.class_flights_logbook import FlightsLogBook
 from acph.class_ogn_db import OgnDevicesDatabase
 from acph.class_flights_logbook_pdo import FlightLogPDO
+from acph.class_airport_db import OurAirportsDatabase
 from acph.class_airport_db import AirportDatabase
 
 config_file='./acph-logbook.ini'
@@ -50,13 +51,15 @@ def main():
 		logger.error("Unable to load OGN devices database. Error is {}".format(err))
 		sys.exit()
 
-	# load the airport database from a local file for test purpose
+	# load the airport database from a local file or remotly
 	try:
 		if 'logbook' in config and config['logbook']['acdb'] == 'remote':
-			airports_db = AirportDatabase.withPackageUrl()
+			# airports_db = AirportDatabase.withPackageUrl()
+			airports_db = OurAirportsDatabase.withUrl()
 		else:
-			airports_db_file = 'airport-codes.json'
-			airports_db = AirportDatabase.withJsonFile(airports_db_file)
+			# airports_db_file = 'airport-codes.json'
+			# airports_db = AirportDatabase.withJsonFile(airports_db_file)
+			airports_db = OurAirportsDatabase.withCsvFile('.')
 
 		#  Airports DB only with european airports.
 		# listOfAirportsFiltered = airports_db.filterByContinent('EU')
@@ -80,13 +83,11 @@ def main():
 	# take the opportunity to purge data hold in the persistence engine
 	pdo_engine.purge(config['logbook'].getint('purge'))
 
-	# client = AcphAprsClient(aprs_user='ACPH', aprs_passcode='25321')						# Full feed
-	# client = AcphAprsClient(aprs_user='ACPH', aprs_passcode='25321', aprs_filter='r/45.5138/3.2661/200')
+	# start the APRS client
 	if 'aprs' in config:
 		client = AcphAprsClient(aprs_user=config['aprs']['user'], aprs_passcode=config['aprs']['passcode'], aprs_filter=config['aprs']['filter'])
 	else:
 		client = AprsClient(aprs_user='N0CALL')
-
 	client.connect()
 
 	# create the ACPH Flight logbook

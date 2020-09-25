@@ -99,8 +99,8 @@ class MysqlFlightLogPDO(FlightLogPDO):
 			cursor = self.get_cursor()
 
 			query = ("INSERT INTO `{tablename}` "
-				 "(`date`, `aircraft_id`, `flight_id`, `status`, `status_last_airport`, `aircraft_type`, `aircraft_model`, `registration`, `cn`, `tracked`, `identified`, `takeoff_time`, `takeoff_airport`, `landing_time`, `landing_airport`, `flight_duration`, `launch_type`, `receivers`, `last_positions`)"
-				 " VALUES (%(date)s, %(aircraft_id)s, %(flight_id)s, %(status)s, %(status_last_airport)s, %(aircraft_type)s, %(aircraft_model)s, %(registration)s, %(cn)s, %(tracked)s, %(identified)s, %(takeoff_time)s, %(takeoff_airport)s, %(landing_time)s, %(landing_airport)s, %(flight_duration)s, %(launch_type)s, %(receivers)s, %(last_positions)s)"
+				 "(`date`, `aircraft_id`, `flight_id`, `status`, `status_last_airport`, `aircraft_type`, `aircraft_model`, `registration`, `cn`, `tracked`, `identified`, `takeoff_time`, `takeoff_airport`, `landing_time`, `landing_airport`, `flight_duration`, `launch_type`, `receivers`, `last_positions`, `takeoff_runway`, `landing_runway`)"
+				 " VALUES (%(date)s, %(aircraft_id)s, %(flight_id)s, %(status)s, %(status_last_airport)s, %(aircraft_type)s, %(aircraft_model)s, %(registration)s, %(cn)s, %(tracked)s, %(identified)s, %(takeoff_time)s, %(takeoff_airport)s, %(landing_time)s, %(landing_airport)s, %(flight_duration)s, %(launch_type)s, %(receivers)s, %(last_positions)s, %(takeoff_runway)s, %(landing_runway)s)"
 				 " ON DUPLICATE KEY UPDATE "
 				 "`status` = %(status)s, "
 				 "`status_last_airport` = %(status_last_airport)s, "
@@ -117,7 +117,9 @@ class MysqlFlightLogPDO(FlightLogPDO):
 				 "`flight_duration` = %(flight_duration)s, "
 				 "`launch_type` = %(launch_type)s, "
 				 "`receivers` = %(receivers)s, "
-				 "`last_positions` = %(last_positions)s"
+				 "`last_positions` = %(last_positions)s, "
+				 "`takeoff_runway` = %(takeoff_runway)s, "
+				 "`landing_runway` = %(landing_runway)s"
 				 ).format(tablename=TABLES_NAME['logbook-by-aircraft'])
 
 			query_data = {
@@ -139,7 +141,9 @@ class MysqlFlightLogPDO(FlightLogPDO):
 				'flight_duration': logbook['flight_duration'],
 				'launch_type': logbook['launch_type'],
 				'receivers': ','.join(logbook['receivers']),
-				'last_positions' : json.dumps(list(logbook['last_positions']))
+				'last_positions' : json.dumps(list(logbook['last_positions'])),
+				'takeoff_runway' : logbook['takeoff_runway'],
+				'landing_runway' : logbook['landing_runway']
 			}
 			cursor.execute(query, query_data)
 			self.cnx.commit()

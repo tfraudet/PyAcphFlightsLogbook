@@ -43,7 +43,7 @@ def createTables(cursor):
 		table_description = TABLES[table_name]
 		# print('Table desciption is: {}'.format(table_description))
 		try:
-			print("  Creating table {}: ".format(table_name), end='')
+			print("Creating table {}: ".format(table_name), end='')
 			cursor.execute(table_description)
 		except mysql.connector.Error as err:
 			if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
@@ -53,9 +53,21 @@ def createTables(cursor):
 		else:
 			print("OK")
 
-def alterTable(cursor):
+def alterTable_v1(cursor):
 	try:
 		query = "ALTER Table {} ADD COLUMN `last_positions` TEXT".format(TABLES_NAME['logbook-by-aircraft'])
+		cursor.execute(query)
+	except mysql.connector.Error as err:
+		print(err.msg)
+	else:
+		print("Table {} modified successfully.".format(TABLES_NAME['logbook-by-aircraft']))
+
+def alterTable_v2(cursor):
+	try:
+		query = "ALTER Table {} ADD COLUMN `takeoff_runway` VARCHAR(2)".format(TABLES_NAME['logbook-by-aircraft'])
+		cursor.execute(query)
+		
+		query = "ALTER Table {} ADD COLUMN `landing_runway` VARCHAR(2)".format(TABLES_NAME['logbook-by-aircraft'])
 		cursor.execute(query)
 	except mysql.connector.Error as err:
 		print(err.msg)
@@ -70,7 +82,8 @@ def main():
 
 		cursor = cnx.cursor()
 		createTables(cursor)
-		alterTable(cursor)
+		alterTable_v1(cursor)
+		alterTable_v2(cursor)
 		cursor.close()
 	except mysql.connector.Error as err:
 		if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
