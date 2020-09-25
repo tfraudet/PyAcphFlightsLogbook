@@ -3,7 +3,6 @@
 /unit-test.pstats
 /acph-logbook-local.ini
 /unit-test.ini
-*.png
 find-icao-test.py
 
 # Byte-compiled / optimized / DLL files
