@@ -69,7 +69,7 @@ def main():
 		listOfAirportsFiltered = airports_db.filterByCountry('FR')
 		logger.warning('After filtering on French airport, size of airport code database is {}'.format(len(listOfAirportsFiltered)))
 	except IOError:
-		logger.error("File {} does not exist. Exiting...".format(airports_db_file))
+		logger.exception("File does not exist. Exiting...")
 		sys.exit()
 
 	# to handle CTRL-C, Kill,....
