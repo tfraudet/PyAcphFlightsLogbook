@@ -138,7 +138,7 @@ The best option it's to install them using pip. As for example:
 pip3 install geopy
 ```
 
-### Configure the MySql database
+### Setup the MySql database
 
 By default the programm use a MySql database to store the results. Assuming you have already a MySql database running, run the script ```setup_db.py``` to initialize the required tables. This need to be done only once when the database structure evolved or to create tables. The script uses ```acph-logbook.ini``` configuration file to get database connection parameters
 
@@ -148,12 +148,12 @@ python3 ./setup_db.py
 
 ## Working principles
 
-* process in realtime OGN APRS message
+* process in realtime OGN APRS messages
 * for each aircraft detect events like takeoff and landing and store them in a database
 * keep x days of retention in the database
-* relying on the following open data resources
+* rely on the following open data resources
   * The [OGN devices database](http://ddb.glidernet.org/) from [OpenGliderNetwork](http://wiki.glidernet.org/) to identify any FLARM/OGN-equiped aircraft (type, model,...)
-  * The [Airport codes database](https://datahub.io/core/airport-codes) from [OurAirports](https://ourairports.com/) to identify takeoff and landing airfields
+  * The [Airport codes & runway  database](https://ourairports.com/data/) from [OurAirports](https://ourairports.com/) to identify takeoff and landing airfields
 
 ## Contributing
 
