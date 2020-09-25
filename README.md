@@ -56,7 +56,7 @@ The program doesn't provide any APIs or front-end right now, but you can have a 
 * [Responsive web front-end](https://aeroclub-issoire.fr/wp-content/themes/zerif-lite-acph/acph-logbook.html)
 * [REST API (example to get the LFHA logbook on August 29th, 2020)](https://aeroclub-issoire.fr/wp-json/acph/v1/logbook/2020-08-29/LFHA)
 
-![ACPH Glider logbook](./screenshot.png)
+![ACPH Glider logbook](./doc/screenshot.png)
 
 ### ACPH REST API endpoints reference
 
