@@ -3,16 +3,21 @@
 # PyAcphFlightsLogbook
 
 Flight logbook for **glider** written in Python that automates detection of takeoff and landing events (airfield and schedule) by processing the APRS traffic from the [Open Glider Network](http://wiki.glidernet.org/).
-As the program tracks event at aircraft level it can detect landing and takefoff on different airfields. The detected start and landing times are approximate only. The accuracy is around 1 or 2 minutes.
+As the program tracks event at aircraft level it can detect landing and takefoff on different airfields. The detected takeoff and landing times are approximate only. The accuracy is around 1 or 2 minutes.
 
 This is a work in progress. Currently, in addition to takoff and landing events, the tool detects the launch method (aerotowing, self-launching or winch launching) and in the case of a towing, identifies the tow plane. It calculates also the flight duration.
 
-:warning: to date winch lauching detection functionality is not yet fully operational.
+Main features:
+
+* Detection of takeoff and landing time
+* Flight duration calculation
+* Launch method (tow plane, winch or autonome) detection
+* Identification of the tow plane
+* Detection of the runway used for takeoff & landing
 
 Futur releases could have additional features :
 
-* outlanding detection and location
-* detection of the runway used for takeoff & landing
+* Outlanding detection and location
 * REST APIs to get logbook by icao, by aircraft id, by date range,...
 * ...
 
@@ -50,6 +55,8 @@ The program doesn't provide any APIs or front-end right now, but you can have a 
 
 * [Responsive web front-end](https://aeroclub-issoire.fr/wp-content/themes/zerif-lite-acph/acph-logbook.html)
 * [REST API (example to get the LFHA logbook on August 29th, 2020)](https://aeroclub-issoire.fr/wp-json/acph/v1/logbook/2020-08-29/LFHA)
+
+![ACPH Glider logbook](./screenshot.png)
 
 ### ACPH REST API endpoints reference
 
