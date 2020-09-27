@@ -73,7 +73,7 @@ curl https://aeroclub-issoire.fr/wp-json/acph/v1/logbook/2020-08-29/LFHA
 
 The program uses a configuration file to initalize settings related to database connection, logging behavior, APRS connection & filtering and other general settings.
 
-The section `[logbook_general]` is used to initialize general parameters for the logbook
+The section `[logbook]` is used to initialize general parameters for the logbook
 
 ``` ini
 [logbook]
