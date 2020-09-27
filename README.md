@@ -75,11 +75,27 @@ The program uses a configuration file to initalize settings related to database 
 
 The section `[logbook_general]` is used to initialize general parameters for the logbook
 
-> Pending: :confused: to do!
+``` ini
+[logbook]
+; OGN devices database source: could be local or remote
+ognddb = local
+; Airport codes database source: could be local or remote
+acdb = local
+; persistence could be MySQL or JSON
+persistence = MySQL
+; number of days we keep logbook entry in the database
+purge = 30
+```
 
 The section `[aprs]` is used to initialize  parameters related to APRS serveur connection and APRS messages filtering
 
-> Pending: :confused: to do!
+``` ini
+[aprs]
+user = <aprs user>
+passcode = <aprs passcode>
+# any valid APRS filter like r/45.5138/3.2661/200, see http://www.aprs-is.net/javAPRSFilter.aspx
+filter = <aprs filter>
+```
 
 The section `[mysql_connector_python]` is used to initialize parameters for database connection
 
