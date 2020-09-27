@@ -3,7 +3,7 @@
 # PyAcphFlightsLogbook
 
 Flight logbook for **glider** written in Python that automates detection of takeoff and landing events (airfield and schedule) by processing the APRS traffic from the [Open Glider Network](http://wiki.glidernet.org/).
-As the program tracks event at aircraft level it can detect landing and takefoff on different airfields. The detected takeoff and landing times are approximate only. The accuracy is around 1 or 2 minutes.
+As the program tracks events at aircraft level it can detect landing and takefoff on different airfields. The detected takeoff and landing times are approximate only. The accuracy is around 1 or 2 minutes.
 
 This is a work in progress. Currently, in addition to takoff and landing events, the tool detects the launch method (aerotowing, self-launching or winch launching) and in the case of a towing, identifies the tow plane. It calculates also the flight duration.
 
@@ -77,7 +77,7 @@ The section `[logbook_general]` is used to initialize general parameters for the
 
 > Pending: :confused: to do!
 
-The section `[aprs]` is used to initialize  parameters relataed to APRS serveur connection and APRS messages filtering
+The section `[aprs]` is used to initialize  parameters related to APRS serveur connection and APRS messages filtering
 
 > Pending: :confused: to do!
 
@@ -140,7 +140,7 @@ pip3 install geopy
 
 ### Setup the MySql database
 
-By default the programm use a MySql database to store the results. Assuming you have already a MySql database running, run the script ```setup_db.py``` to initialize the required tables. This need to be done only once when the database structure evolved or to create tables. The script uses ```acph-logbook.ini``` configuration file to get database connection parameters
+By default the program use a MySql database to store the results. Assuming you have already a MySql database running, run the script ```setup_db.py``` to initialize the required tables. This need to be done only once when the database structure evolved or to create tables. The script uses ```acph-logbook.ini``` configuration file to get database connection parameters
 
 ```bash
 python3 ./setup_db.py
