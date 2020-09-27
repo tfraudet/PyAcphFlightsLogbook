@@ -416,7 +416,6 @@ class FlightsLogBook:
 			lg_entry['launch_type'] = result
 
 	# for glider detect launch type
-	# right now detect only tow_plane, dectecting winch launch is not supported
 	def detectLaunchTypeForGlider(self, lg_entry, beacon, ognDevice, distance_threshold = 0.5):
 		self.logger.debug('Try to detect launch type for {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, imat= self.ogn_devices_db.getAircraftRegistrationById(beacon['address']), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
 

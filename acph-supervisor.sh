@@ -31,7 +31,7 @@ if [[ $CZ < 2200 && $CZ > 0700 ]]; then
 		# notify the slack channel
 		TIMESTAMP=$(date +"%s")
 		printf -v json_payload '{"attachments": [{"ts": "%s","author_name": "CRITICAL", "title": "ACPH supervisor 1.0", "color": "danger","text":"Supervisor detect that the logbook process is no more running, try to restart it."}],}' $TIMESTAMP
-		curl -X POST -H 'Content-type: application/json' --data "$json_payload" https://hooks.slack.com/services/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
+		curl -X POST -H 'Content-type: application/json' --data "$json_payload" WEBHOOK_URL
 
 		# restart the dameon.
 		"$PY3" "$SCRIPT_TO_LAUNCH" &
