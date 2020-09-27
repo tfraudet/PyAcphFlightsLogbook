@@ -1,6 +1,7 @@
 /.DS_Store
 /.vscode
 /unit-test.pstats
+/unit-test.png
 /acph-logbook-local.ini
 /unit-test.ini
 find-icao-test.py

@@ -15,7 +15,6 @@ from acph.class_aprs import AcphAprsClient
 from acph.class_flights_logbook import FlightsLogBook
 from acph.class_ogn_db import OgnDevicesDatabase
 from acph.class_flights_logbook_pdo import FlightLogPDO
-from acph.class_airport_db import AirportDatabase
 from acph.class_airport_db import OurAirportsDatabase
 from acph.class_flights_logbook import FlightsLogBook
 
@@ -49,7 +48,6 @@ def main():
 		if 'logbook' in config and config['logbook']['acdb'] == 'remote':
 			airports_db = OurAirportsDatabase.withUrl()
 		else:
-			# airports_db = AirportDatabase.withJsonFile('airport-codes.json')
 			airports_db = OurAirportsDatabase.withCsvFile('.')
 
 		#  Airports DB only with european airports.

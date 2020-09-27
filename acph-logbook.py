@@ -19,7 +19,6 @@ from acph.class_flights_logbook import FlightsLogBook
 from acph.class_ogn_db import OgnDevicesDatabase
 from acph.class_flights_logbook_pdo import FlightLogPDO
 from acph.class_airport_db import OurAirportsDatabase
-from acph.class_airport_db import AirportDatabase
 
 config_file='./acph-logbook.ini'
 
@@ -54,11 +53,8 @@ def main():
 	# load the airport database from a local file or remotly
 	try:
 		if 'logbook' in config and config['logbook']['acdb'] == 'remote':
-			# airports_db = AirportDatabase.withPackageUrl()
 			airports_db = OurAirportsDatabase.withUrl()
 		else:
-			# airports_db_file = 'airport-codes.json'
-			# airports_db = AirportDatabase.withJsonFile(airports_db_file)
 			airports_db = OurAirportsDatabase.withCsvFile('.')
 
 		#  Airports DB only with european airports.
