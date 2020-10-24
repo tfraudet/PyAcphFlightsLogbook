@@ -90,11 +90,11 @@ class FlightsLogBook:
 		return distance.geodesic((p1[0], p1[1]), (p2[0], p2[1]), ellipsoid='WGS-84').km
 	
 	def handlePosition(self, beacon, date):
-		self.logger.debug('handle beacon position, raw data: {raw_message}'.format(**beacon))
+		self.logger.debug('--> handle beacon position, raw data: {raw_message}'.format(**beacon))
 		if self.isAircraftBeacon(beacon) and self.filteringReceivers(beacon['receiver_name']) and self.filteringAircraft(beacon['address']):
 			self.handleAircraftPosition(beacon, date)
 		else:
-			self.logger.debug('handle beacon position, not an aircraft or receiver name filetered [beacon type is {beacon_type}, receiver name is {receiver_name}]'.format(**beacon))
+			self.logger.debug('--> handle beacon position, not an aircraft or receiver name filetered [beacon type is {beacon_type}, receiver name is {receiver_name}]'.format(**beacon))
 
 	def handleStatus(self, beacon, date):
 		self.logger.debug('handle beacon status, raw data: {raw_message}'.format(**beacon))
@@ -126,7 +126,7 @@ class FlightsLogBook:
 			self.logger.exception('Unexpected error when handling following aprs beacon {raw_message}'.format(**beacon))
 	
 	def isAircraftBeacon(self, beacon):
-		return beacon['beacon_type'] == 'aprs_aircraft'
+		return beacon['beacon_type'] == 'aprs_aircraft' or beacon['beacon_type'] == 'flarm'
 
 	def isReceiverBeacon(self, beacon):
 		return beacon['beacon_type'] == 'aprs_receiver'
