@@ -3,22 +3,22 @@
 # PyAcphFlightsLogbook
 
 Flight logbook for **glider** written in Python that automates detection of takeoff and landing events (airfield and schedule) by processing the APRS traffic from the [Open Glider Network](http://wiki.glidernet.org/).
-As the program tracks events at aircraft level it can detect landing and takefoff on different airfields. The detected takeoff and landing times are approximate only. The accuracy is around 1 or 2 minutes.
+As the program tracks events at aircraft level it can detect landing and take-off on different airfields. The detected take-off and landing times are approximate only. The accuracy is around 1 or 2 minutes.
 
-This is a work in progress. Currently, in addition to takoff and landing events, the tool detects the launch method (aerotowing, self-launching or winch launching) and in the case of a towing, identifies the tow plane. It calculates also the flight duration.
+This is a work in progress. Currently, in addition to take-off and landing events, the tool detects the launch method (aerotowing, self-launching or winch launching) and in the case of a towing, identifies the tow plane. It calculates also the flight duration.
 
 Main features:
 
-* Detection of takeoff and landing time
+* Detection of take-off and landing time
 * Flight duration calculation
 * Launch method (tow plane, winch or autonome) detection
 * Identification of the tow plane
-* Detection of the runway used for takeoff & landing
+* Detection of the runway used for tak-eoff & landing
 
-Futur releases could have additional features :
+Future releases could have additional features :
 
 * Outlanding detection and location
-* REST APIs to get logbook by icao, by aircraft id, by date range,...
+* REST APIs to get logbook by ICAO, by aircraft id, by date range,...
 * ...
 
 ## Usage
@@ -51,7 +51,7 @@ optional arguments:
 
 ## Online demo
 
-The program doesn't provide any APIs or front-end right now, but you can have a look to the implementation we did at [ACPH](https://aeroclub-issoire.fr) with a specific front-end develop for our website. There is also a REST API available to retreive logbook for a specific date & airfield. To date processing of APRS aircraft beacons are limited to 200km around LFHA, so there is a chance that you don't see any data for your airport. :confused:
+The program doesn't provide any APIs or front-end right now, but you can have a look to the implementation we did at [ACPH](https://aeroclub-issoire.fr) with a specific front-end develop for our website. There is also a REST API available to retrieve logbook for a specific date & airfield. To date processing of APRS aircraft beacons are limited to 200km around LFHA, so there is a chance that you don't see any data for your airport. :confused:
 
 * [Responsive web front-end](https://aeroclub-issoire.fr/wp-content/themes/zerif-lite-acph/acph-logbook.html)
 * [REST API (example to get the LFHA logbook on August 29th, 2020)](https://aeroclub-issoire.fr/wp-json/acph/v1/logbook/2020-08-29/LFHA)
@@ -60,18 +60,18 @@ The program doesn't provide any APIs or front-end right now, but you can have a 
 
 ### ACPH REST API endpoints reference
 
-| Resource | Base route | Prefered method | Description
+| Resource | Base route | Preferred method | Description
 | --- | --- | --- | ---|
-| `logbook/<date>/<icao>` | `./wp-json/acph/v1` | GET | Retreive the logbook of the day `date` for the airfield identified by it's `icao` code.
+| `logbook/<date>/<icao>` | `./wp-json/acph/v1` | GET | Retrieve the logbook of the day `date` for the airfield identified by it's `icao` code.
 
 ``` bash
-# Example: retreive the logbook for LFHA on August 29th, 2020
+# Example: retrieve the logbook for LFHA on August 29th, 2020
 curl https://aeroclub-issoire.fr/wp-json/acph/v1/logbook/2020-08-29/LFHA
 ```
 
 ## Configuration
 
-The program uses a configuration file to initalize settings related to database connection, logging behavior, APRS connection & filtering and other general settings.
+The program uses a configuration file to initialize settings related to database connection, logging behavior, APRS connection & filtering and other general settings.
 
 The section `[logbook]` is used to initialize general parameters for the logbook
 
@@ -87,7 +87,7 @@ persistence = MySQL
 purge = 30
 ```
 
-The section `[aprs]` is used to initialize  parameters related to APRS serveur connection and APRS messages filtering
+The section `[aprs]` is used to initialize  parameters related to APRS server connection and APRS messages filtering
 
 ``` ini
 [aprs]
@@ -165,11 +165,11 @@ python3 ./setup_db.py
 ## Working principles
 
 * process in realtime OGN APRS messages
-* for each aircraft detect events like takeoff and landing and store them in a database
+* for each aircraft detect events like take-off and landing and store them in a database
 * keep x days of retention in the database
 * rely on the following open data resources
   * The [OGN devices database](http://ddb.glidernet.org/) from [OpenGliderNetwork](http://wiki.glidernet.org/) to identify any FLARM/OGN-equiped aircraft (type, model,...)
-  * The [Airport codes & runway  database](https://ourairports.com/data/) from [OurAirports](https://ourairports.com/) to identify takeoff and landing airfields
+  * The [Airport codes & runway  database](https://ourairports.com/data/) from [OurAirports](https://ourairports.com/) to identify take-off and landing airfields
 
 ## Contributing
 
