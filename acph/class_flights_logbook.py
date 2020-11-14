@@ -94,7 +94,7 @@ class FlightsLogBook:
 		if self.isAircraftBeacon(beacon) and self.filteringReceivers(beacon['receiver_name']) and self.filteringAircraft(beacon['address']):
 			self.handleAircraftPosition(beacon, date)
 		else:
-			self.logger.debug('--> handle beacon position, not an aircraft or receiver name filetered [beacon type is {beacon_type}, receiver name is {receiver_name}]'.format(**beacon))
+			self.logger.debug('--> handle beacon position, not an aircraft or receiver name filtered [beacon type is {beacon_type}, receiver name is {receiver_name}]'.format(**beacon))
 
 	def handleStatus(self, beacon, date):
 		self.logger.debug('handle beacon status, raw data: {raw_message}'.format(**beacon))
@@ -120,7 +120,7 @@ class FlightsLogBook:
 		except ParseError:
 			self.logger.error("Exception occurred", exc_info=True)
 		except KeyboardInterrupt:
-			self.logger.error('Keyboard interupt')
+			self.logger.error('Keyboard interrupt')
 			raise(KeyboardInterrupt)
 		except:
 			self.logger.exception('Unexpected error when handling following aprs beacon {raw_message}'.format(**beacon))
@@ -158,7 +158,7 @@ class FlightsLogBook:
 		logbook_for_aircraft = logbook_for_a_date.get(aircraft_id, None)
 		if (logbook_for_aircraft is None):
 			# try to load it from the persistence engine (load all flights included already landed one) 
-			# needed when the suprevisor relaunch the logbook program in the middle of day for example after an unexpected interuption.
+			# needed when the supervisor relaunch the logbook program in the middle of day for example after an unexpected interuption.
 			logbook_for_aircraft = self.pdo_engine.load_aircraft(date, aircraft_id)
 			logbook_for_a_date.update({aircraft_id: logbook_for_aircraft}) 
 
@@ -269,7 +269,7 @@ class FlightsLogBook:
 		# 	self.logger.warning(
 		# 			'Beacon #{}, Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h,'
 		# 			' heading={track}°, climb rate={climb_rate}m/s, nearest airport: {na_icao}/{na_dist}km, (status after handling beacon {status})'
-		# 			.format(self.counter_aircraft_beacon_poition,**beacon,
+		# 			.format(self.counter_aircraft_beacon_position,**beacon,
 		# 			 imat= self.ogn_devices_db.getAircraftRegistrationById(aircraft_id), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']],
 		# 			 sender=ADDRESS_TYPES[beacon['address_type']], na_icao=nearest_airport, na_dist=nearest_airport_distance, status=lg_entry['status']))
 
@@ -348,7 +348,7 @@ class FlightsLogBook:
 		pass
 
 	def findNearestAirport(self, latitude, longitude, distance_threshold = AIRPORT_DISTANCE_THRESHOLD):
-		# To calculate distance in pyhton when working with GPS
+		# To calculate distance in python when working with GPS
 		#	Geo-py library https://pypi.org/project/geo-py/ and https://github.com/gojuno/geo-py
 		#	GeoPy library https://geopy.readthedocs.io/en/latest/#
 		nearest_airport_distance = 9999999
@@ -439,7 +439,7 @@ class FlightsLogBook:
 					tow_plane = elem['registration']
 					self.logger.debug(
 						'Found the tow plane {} in the buffer (position {}/ max size {})'
-						' --> parameteres: altitude={}, speed={}km/h, heading={}°, climb rate={}m/s, dist to the glider {distplane}km'
+						' --> parameters: altitude={}, speed={}km/h, heading={}°, climb rate={}m/s, dist to the glider {distplane}km'
 						.format(tow_plane, self.buffer_aircraft_beacons.index(elem), BUFFER_AIRCRAFT_BEACON,
 						elem['altitude'],elem['ground_speed'],elem['track'],elem['climb_rate'],distplane = round(dist,2)))
 					break
@@ -453,7 +453,7 @@ class FlightsLogBook:
 				self.logger.debug('winch tow detected for {} {} seconds after takeoff'.format(self.ogn_devices_db.getAircraftRegistrationById(beacon['address']), time_since_takeoff))
 				tow_plane = 'winch'
 
-		# If lauch type still undefined 
+		# If launch type still undefined 
 		if tow_plane == '#unknown':
 			# default to autonome if takeoff time has been detected more than 3 minutes ago
 			if lg_entry['takeoff_time']:
