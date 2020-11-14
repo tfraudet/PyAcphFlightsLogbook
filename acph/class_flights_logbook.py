@@ -81,7 +81,7 @@ class FlightsLogBook:
 		self.buffer_aircraft_beacons = deque(maxlen=BUFFER_AIRCRAFT_BEACON)
 		self.logger = logging.getLogger(__name__)
 		self.logger.warning(' ACPH Flights Logbook initialized.')
-		self.counter_aircraft_beacon_poition = 0
+		self.counter_aircraft_beacon_position = 0
 
 	def vptree_distance_great_circle(self,p1, p2):
 		return distance.great_circle((p1[0], p1[1]), (p2[0], p2[1])).km
@@ -212,8 +212,8 @@ class FlightsLogBook:
 		return beacon['timestamp'].strftime('%Y-%m-%d') if date is None else date
 
 	def handleAircraftPosition(self, beacon, date):
-		self.counter_aircraft_beacon_poition += 1
-		self.logger.info('handle aircraft beacon position #{}, raw data: {raw_message}'.format(self.counter_aircraft_beacon_poition,**beacon))
+		self.counter_aircraft_beacon_position += 1
+		self.logger.info('handle aircraft beacon position #{}, raw data: {raw_message}'.format(self.counter_aircraft_beacon_position,**beacon))
 		aircraft_id = beacon['address']
 
 		# aircraft need to be in OGN database to be handle
