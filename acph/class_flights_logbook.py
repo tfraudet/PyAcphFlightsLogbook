@@ -11,6 +11,7 @@ from collections import deque
 from acph.class_vptree import AcphVPTree
 
 # OGN constants for sender_type and address_type
+# http://wiki.glidernet.org/wiki:ogn-flavoured-aprs
 OGN_SENDER_TYPES = {
 	0 : 'ground_station',
 	1 : 'glider',
@@ -26,6 +27,7 @@ OGN_SENDER_TYPES = {
 	11 : 'balloon',
 	12 : 'airship',
 	13 : 'uav',
+	14 : '(reserved)',
 	15 : 'static_object',
 }
 
