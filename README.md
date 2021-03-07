@@ -142,9 +142,9 @@ python3 -V
 The logbook python program requires the following python packages. These packages have to be accessible through PYTHONPATH.
 
 * geographiclib v1.50
-* geopy v2.0.0
-* mysql-connector-python v8.0.21
-* ogn-client v0.9.7
+* geopy v2.1.0
+* mysql-connector-python v8.0.23
+* ogn-client v1.0.1
 * pid v3.0.4
 * slack-logger v0.3.1
 
