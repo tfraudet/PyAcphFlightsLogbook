@@ -74,6 +74,22 @@ def alterTable_v2(cursor):
 	else:
 		print("Table {} modified successfully.".format(TABLES_NAME['logbook-by-aircraft']))
 
+def alterTable_v3(cursor):
+	try:
+		query = "ALTER Table {} MODIFY `status_last_airport` VARCHAR(7)".format(TABLES_NAME['logbook-by-aircraft'])
+		cursor.execute(query)
+
+		query = "ALTER Table {} MODIFY `takeoff_airport` VARCHAR(7)".format(TABLES_NAME['logbook-by-aircraft'])
+		cursor.execute(query)
+
+		query = "ALTER Table {} MODIFY `landing_airport` VARCHAR(7)".format(TABLES_NAME['logbook-by-aircraft'])
+		cursor.execute(query)
+		
+	except mysql.connector.Error as err:
+		print(err.msg)
+	else:
+		print("Table {} modified successfully.".format(TABLES_NAME['logbook-by-aircraft']))
+
 def main():
 
 	print("ACPH LogBook - initialize database tables.")
@@ -84,6 +100,7 @@ def main():
 		createTables(cursor)
 		alterTable_v1(cursor)
 		alterTable_v2(cursor)
+		alterTable_v3(cursor)
 		cursor.close()
 	except mysql.connector.Error as err:
 		if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
