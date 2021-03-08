@@ -84,7 +84,8 @@ def main():
 
 	# build the reg-ex to extract raw data from the log
 	# aprs_reg = re.compile(r'raw data:\s(.*)')
-	aprs_reg = re.compile(r'\[(\d{4})-(\d{2})-(\d{2})\s(\d{2}):(\d{2}):(\d{2}),(\d*)\].*raw data:\s(.*)')
+	# aprs_reg = re.compile(r'\[(\d{4})-(\d{2})-(\d{2})\s(\d{2}):(\d{2}):(\d{2}),(\d*)\].*raw data:\s(.*)')
+	aprs_reg = re.compile(r'\[(\d{4})-(\d{2})-(\d{2})\s(\d{2}):(\d{2}):(\d{2}),(\d*)\].*(raw data:|aprs beacon)\s(.*)')
 
 	# and run FlightsLogBook with that data, results are in xxxx
 	logger.info('Start to parse the file {}, date of the data is {}'.format(filepath,date_of_data))
@@ -105,7 +106,7 @@ def main():
 				for match in matches:
 					# logger.info("line {}, processing data: {}".format(numberOfLine, line))
 					beacon_timestamp = datetime.datetime(int(match.group(1)), int(match.group(2)), int(match.group(3)), int(match.group(4)), int(match.group(5)), int(match.group(6)), int(match.group(7)))
-					logbook.handleBeacon(match.group(8), beacon_timestamp, date_of_data)
+					logbook.handleBeacon(match.group(9), beacon_timestamp, date_of_data)
 					numberOfLine += 1
 
 				# aprs_raw_data = aprs_reg.findall(line)

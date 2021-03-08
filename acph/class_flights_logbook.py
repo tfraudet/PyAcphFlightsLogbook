@@ -107,6 +107,9 @@ class FlightsLogBook:
 	def handleServer(self, beacon, date):
 		self.logger.info('handle beacon server, raw data: {raw_message}'.format(**beacon))
 
+	def handleWeather(self, beacon, date):
+		self.logger.info('handle beacon position weather, raw data: {raw_message}'.format(**beacon))
+
 	def handleBeacon(self, raw_message, timestamp = None, date = None):
 		try:
 			beacon = parse(raw_message, timestamp)
@@ -116,8 +119,9 @@ class FlightsLogBook:
 				'status': self.handleStatus,
 				'comment': self.handleComment,
 				'server': self.handleServer,
+				'position_weather': self.handleWeather,
 			}
-			func = handlers.get(beacon.get('aprs_type'),lambda beacon: self.logger.error('aprs type ' + beacon['aprs_type'] + ' is unknown, beacon not handle.'))
+			func = handlers.get(beacon.get('aprs_type'),lambda beacon, date: self.logger.warning('aprs type ' + beacon['aprs_type'] + ' is unknown, beacon not handle.'))
 			func(beacon, date)
 		except ParseError:
 			self.logger.error("Exception occurred", exc_info=True)
