@@ -5,6 +5,7 @@
 /acph-logbook-local.ini
 /unit-test.ini
 find-icao-test.py
+debug-aprs.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

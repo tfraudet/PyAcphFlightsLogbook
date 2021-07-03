@@ -123,8 +123,9 @@ class FlightsLogBook:
 			}
 			func = handlers.get(beacon.get('aprs_type'),lambda beacon, date: self.logger.warning('aprs type ' + beacon['aprs_type'] + ' is unknown, beacon not handle.'))
 			func(beacon, date)
-		except ParseError:
-			self.logger.error("Exception occurred", exc_info=True)
+		except ParseError as parsingError:
+			# self.logger.error("Exception occurred", exc_info=True)
+			self.logger.info(parsingError)
 		except KeyboardInterrupt:
 			self.logger.error('Keyboard interrupt')
 			raise(KeyboardInterrupt)
@@ -233,7 +234,7 @@ class FlightsLogBook:
 		# round some value from aprs message
 		beacon['altitude'] = round(beacon['altitude'])
 		beacon['ground_speed'] = round(beacon['ground_speed'])
-		if beacon['climb_rate'] is not None:
+		if beacon.get('climb_rate') is not None:
 			beacon['climb_rate'] = round(beacon['climb_rate'],1) 
 		# self.logger.debug('Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {address} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
 	
@@ -250,7 +251,7 @@ class FlightsLogBook:
 		toSave={
 			'altitude': beacon['altitude'],
 			'ground_speed': beacon['ground_speed'],
-			'climb_rate':  beacon['climb_rate'],
+			'climb_rate':  beacon.get('climb_rate',''),
 			'track':  beacon['track'],
 			'latitude': beacon['latitude'],
 			'longitude': beacon['longitude'],
@@ -399,7 +400,7 @@ class FlightsLogBook:
 			'registration': ognDevice['registration'],
 			'altitude': beacon['altitude'],
 			'ground_speed': beacon['ground_speed'],
-			'climb_rate':  beacon['climb_rate'],
+			'climb_rate':  beacon.get('climb_rate',''),
 			'track':  beacon['track'],
 			'latitude': beacon['latitude'],
 			'longitude': beacon['longitude'],

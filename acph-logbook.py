@@ -81,7 +81,8 @@ def main():
 
 	# start the APRS client
 	if 'aprs' in config:
-		client = AcphAprsClient(aprs_user=config['aprs']['user'], aprs_passcode=config['aprs']['passcode'], aprs_filter=config['aprs']['filter'])
+		# client = AcphAprsClient(aprs_user=config['aprs']['user'], aprs_passcode=config['aprs']['passcode'], aprs_filter=config['aprs']['filter'])
+		client = AprsClient(aprs_user=config['aprs']['user'], aprs_filter=config['aprs']['filter'])
 	else:
 		client = AprsClient(aprs_user='N0CALL')
 	client.connect()
