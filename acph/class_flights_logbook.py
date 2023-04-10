@@ -142,7 +142,7 @@ class FlightsLogBook:
 		if self.receivers_filter is None or len(self.receivers_filter)==0:
 			return True
 		else:
-			return receiver_name in self.receivers_filter
+			return receiver_name not in self.receivers_filter
 
 	def filteringAircraft(self, aircraft_id):
 		return True

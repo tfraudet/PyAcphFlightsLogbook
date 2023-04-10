@@ -77,7 +77,7 @@ def main():
 	# logbook = FlightsLogBook(receivers_filter={'LFHA','LFHP'}, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
 
 	# create the ACPH Flight logbook and handling all the beacons received
-	logbook = FlightsLogBook(receivers_filter={}, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
+	logbook = FlightsLogBook(receivers_filter={'NAVITER'}, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
 
 	# logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA', 'LFHR', 'LFHT', 'LFHP'}}		# filter only some french airports for test purpose
 	# logbook.airports = {k: v for k, v in airports.items() if k in {'LFHA'}}		# filter only some french airports for test purpose

@@ -88,8 +88,7 @@ def main():
 	client.connect()
 
 	# create the ACPH Flight logbook
-	# logbook = FlightsLogBook(receivers_filter={'LFHA', 'LFHP'})
-	logbook = FlightsLogBook(receivers_filter=None, ogndb=ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
+	logbook = FlightsLogBook(receivers_filter={'NAVITER'}, ogndb=ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
 	try:
 		client.run(callback=logbook.handleBeacon, autoreconnect=True)
 	except (KeyboardInterrupt, SystemExit):
