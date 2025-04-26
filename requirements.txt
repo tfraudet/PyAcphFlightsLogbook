@@ -3,7 +3,7 @@ geopy==2.1.0
 mysql-connector-python==8.0.23
 ogn-client==1.2.1
 pid==3.0.4
-protobuf==3.12.4
+protobuf==3.18.3
 numpy==1.19.1
 vptree==1.2
 slack-logger==0.3.1
