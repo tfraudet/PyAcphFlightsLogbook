@@ -24,7 +24,7 @@ Future releases could have additional features :
 
 You can have a look to the implementation we did at [ACPH](https://aeroclub-issoire.fr) with a specific front-end develop for our website. There is also a REST API available to retrieve logbook for a specific date & airfield. To date processing of APRS aircraft beacons are limited to 200km around LFHA, so there is a chance that you don't see any data for your airport. :confused:
 
-* [Responsive web front-end](https://aeroclub-issoire.fr/wp-content/themes/zerif-lite-acph/acph-logbook.html)
+* [Responsive web front-end](https://aeroclub-issoire.fr/logbook/)
 * [REST API (example to get the LFHA logbook on August 29th, 2020)](https://api.acph.synology.me:5001/api/v2/logbook/2020-08-29/LFHA)
 
 ![ACPH Glider logbook](./doc/screenshot.png)
@@ -33,7 +33,7 @@ You can have a look to the implementation we did at [ACPH](https://aeroclub-isso
 
 | Resource | Base route | Preferred method | Description  |
 | --- | --- | --- | --- |
-| `/logbook/<date>/<icao>` | `./api/v2` | GET | Retrieve the logbook of the day `date` for the airfield identified by it's `icao` code. |
+| `/logbook/<date>/<icao>` | `/api/v2` | GET | Retrieve the logbook of the day `date` for the airfield identified by it's `icao` code. |
 | `/health` | | GET | Ping the server.  |
 
 ``` bash
