@@ -112,6 +112,7 @@ class FlightsLogBook:
 
 	def handleBeacon(self, raw_message, timestamp = None, date = None):
 		try:
+			self.logger.info(f'handle beacon with raw data: {raw_message}')
 			beacon = parse(raw_message, timestamp)
 			self.logger.debug('Receive beacon {aprs_type}, raw data: {raw_message}'.format(**beacon))
 			handlers = {
@@ -191,7 +192,8 @@ class FlightsLogBook:
 				 'takeoff_airport': '',
 				 'landing_time' : '',
 				 'landing_airport' : '',
-				 'flight_duration': '',
+				#  'flight_duration': '',
+				 'flight_duration': '00:00:00',
 				 'launch_type' : '#unknown',
 				 'flight_id' : len(logbook_for_aircraft) + 1,
 				 'last_positions' : deque(maxlen=BUFFER_AIRCRAFT_POSITION),
@@ -220,7 +222,7 @@ class FlightsLogBook:
 
 	def handleAircraftPosition(self, beacon, date):
 		self.counter_aircraft_beacon_position += 1
-		self.logger.info('handle aircraft beacon position #{}, raw data: {raw_message}'.format(self.counter_aircraft_beacon_position,**beacon))
+		self.logger.debug('handle aircraft beacon position #{}, raw data: {raw_message}'.format(self.counter_aircraft_beacon_position,**beacon))
 		aircraft_id = beacon['address']
 
 		# aircraft need to be in OGN database to be handle

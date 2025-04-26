@@ -21,34 +21,6 @@ Future releases could have additional features :
 * REST APIs to get logbook by ICAO, by aircraft id, by date range,...
 * ...
 
-## Usage
-
-Executing the logbook python program is straight forward. It supports 2 arguments that are optionals. For the prerequisites before launching the program see the [installation](#installation) section
-
-``` bash
-# execute the tool with default config file ./acph-logbook.ini
-python3 acph-logbook.py
-
-# or with a specific config file
-python3 acph-logbook.py -i path-to-my-config-file.ini
-```
-
-Example to get the help
-
-``` bash
-# get the help
-python3 acph-logbook.py -h
-
-#this will return the following output
-usage: acph-logbook.py [-h] [-i CONFIG_FILE]
-
-ACPH Glider flight logbook daemon
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -i CONFIG_FILE, --ini CONFIG_FILE path to the ini config file, default value is ./acph-logbook.ini
-```
-
 ## Online demo
 
 The program doesn't provide any APIs or front-end right now, but you can have a look to the implementation we did at [ACPH](https://aeroclub-issoire.fr) with a specific front-end develop for our website. There is also a REST API available to retrieve logbook for a specific date & airfield. To date processing of APRS aircraft beacons are limited to 200km around LFHA, so there is a chance that you don't see any data for your airport. :confused:
@@ -97,10 +69,10 @@ passcode = <aprs passcode>
 filter = <aprs filter>
 ```
 
-The section `[mysql_connector_python]` is used to initialize parameters for database connection
+The section `[database]` is used to initialize parameters for database connection
 
 ``` ini
-[mysql_connector_python]
+[database]
 database = <database-name>
 user = <user>
 password = <password>
@@ -128,30 +100,36 @@ args=('Put your webhook URL here',)
 ...
 ```
 
-## Installation
+## Requirements
 
-The program requires Python 3. It has been developed and test only with Python 3.8.5 and Python 3.7.3
+* pyhton 3.9
 
-``` bash
-# To know your python 3 version
-python3 -V
-```
+## How to run it locally with python3
 
-### Download & install python dependencies
-
-The logbook python program requires the following python packages. These packages have to be accessible through PYTHONPATH.
-
-* geographiclib v1.50
-* geopy v2.1.0
-* mysql-connector-python v8.0.23
-* ogn-client v1.0.1
-* pid v3.0.4
-* slack-logger v0.3.1
-
-The best option it's to install them using pip. As for example:
+We suggest you to create a virtual environment for running this app with Python 3. Clone this repository and open your terminal/command prompt in a folder.
 
 ```bash
-pip3 install geopy
+git clone https://github.com/tfraudet/PyAcphFlightsLogbook.git
+cd ./PyAcphFlightsLogbook
+python3 -m venv .venv
+```
+
+On Unix systems
+
+```bash
+source .venv/bin/activate
+```
+
+On Window systems
+
+```bash
+.venv\scripts\activate
+```
+
+Install the requirements
+
+```bash
+pip install -r requirements.txt
 ```
 
 ### Setup the MySql database
@@ -160,6 +138,110 @@ By default the program use a MySql database to store the results. Assuming you h
 
 ```bash
 python3 ./setup_db.py
+```
+
+### Usage
+
+Executing the logbook python program is straight forward. It supports 2 arguments that are optionals.
+
+``` bash
+# execute the tool with default config file ./acph-logbook.ini
+python3 acph-logbook.py
+
+# or with a specific config file
+python3 acph-logbook.py -i path-to-my-config-file.ini
+```
+
+Example to get the help
+
+``` bash
+# get the help
+python3 acph-logbook.py -h
+
+#this will return the following output
+usage: acph-logbook.py [-h] [-i CONFIG_FILE]
+
+ACPH Glider flight logbook daemon
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i CONFIG_FILE, --ini CONFIG_FILE path to the ini config file, default value is ./acph-logbook.ini
+```
+
+You can run the API server directly with Flask for development purposes. The default configuration file for the API server is `api-server.ini`, where you can set up database access and logging configurations.
+
+```bash
+flask --app api_server run
+```
+
+Or using gunicron
+
+```bash
+gunicorn --bind='127.0.0.1:8000' --bind='[::1]:8000' -w 2 'api_server:app'
+```
+
+## How to run it locally using docker-compose
+
+`docker-compose.yml` configuration file allows you to easily spin up all the necessary services with a single command, providing an isolated and consistent environment for running locally on our machine and test your changes.
+
+The services are:
+
+* a PostgreSQL database
+* pgAdmin, a tool to administrate PostgreSQL databases
+* a python API server exposing glider fligths detected
+* the Python logbook program
+
+### Setup the environement
+
+1. **Ensure Docker and Docker Compose are installed** on your local machine. You can find installation instructions for your operating system on the official Docker website.
+2. **Navigate to the root directory of your project** in your terminal.
+3. **Run the following command to start all the services:**
+
+    ```bash
+    docker-compose -f docker-compose.yml up --detach
+
+    # or to build images 
+    docker-compose -f docker-compose.yml up --build --detach
+    ```
+
+    The `--detach` flag runs the containers in detached mode (in the background).
+4. **Once the containers are running**, you can access your application and its dependencies as defined in the `docker-compose.yml` file (e.g., via specific ports).
+5. **To stop all the running services**, use the following command:
+
+    ```bash
+    docker-compose down
+    ```
+
+### Access pgAdmin
+
+* Open your browser and navigate to: http://localhost:2660
+* Login with:
+  * Email: ```${PGADMIN_EMAIL}```
+  * Password: ```${PGADMIN_PASSWORD}```
+
+* And  Connect to the PostgreSQL in pgAdmin:
+  * Add a new server in pgAdmin
+  * Name: ACPH PostgreSQL
+  * Connection details:
+    * Host: database
+    * Port: 5432
+    * Database: ```${DB_NAME}```
+    * Username: ```${DB_USER}```
+    * Password: ```${DB_PASSWORD}```
+
+### Access log files
+
+To monitor the log files of python programs:
+
+```bash
+# the logbook log file
+tail -f ./logs/acph-aprs.log
+
+# the API server log file
+tail -f ./logs/api-server.log
+
+# or both
+tail -f -v ./logs/acph-aprs.log ./logs/api-server.log
 ```
 
 ## Working principles

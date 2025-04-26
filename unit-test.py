@@ -68,7 +68,7 @@ def main():
 
 	# Create the PDO Engine to store the results on the fly: could be JSON or MySql
 	pdo_engine = FlightLogPDO.factory(config['logbook']['persistence'] if 'logbook' in config else 'JSON')
-	pdo_engine.open(config['mysql_connector_python'])
+	pdo_engine.open(config['database'])
 
 	# take the opportunity to purge data hold in the persistence engine
 	pdo_engine.purge(config['logbook'].getint('purge'))

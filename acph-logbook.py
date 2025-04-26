@@ -7,6 +7,7 @@ import configparser
 import logging
 import logging.config
 from logging.handlers import TimedRotatingFileHandler
+import threading
 
 import pid
 from pid.decorator import pidfile
@@ -19,15 +20,42 @@ from acph.class_flights_logbook import FlightsLogBook
 from acph.class_ogn_db import OgnDevicesDatabase
 from acph.class_flights_logbook_pdo import FlightLogPDO
 from acph.class_airport_db import OurAirportsDatabase
+# from api_server import LogbookApiServer  # Import the new API server class
 
-config_file='./acph-logbook.ini'
+import schedule
+import time
 
 def handle_exit(signal, frame):
 	raise(SystemExit)
+
+def setup_purge_job(pdo_engine: FlightLogPDO, days: int):
+	logger = logging.getLogger('acph.main')
+	
+	# Do an immediate purge
+	logger.warning("Purge scheduler thread: Performing initial database purge...")
+	pdo_engine.purge(days)
+	
+	def purge_scheduler_thread():
+		def purge_job():
+			logger.warning("Purge scheduler thread: running scheduled purge...")
+			pdo_engine.purge(days)
+		
+		# Schedule the purge job to run daily
+		schedule.every().day.at("01:00").do(purge_job)  # Run daily at 1 AM
+		# schedule.every(10).seconds.do(purge_job)  # Run every 10 seconds for testing
+
+		while True:
+			schedule.run_pending()
+			time.sleep(60)  # Check schedule every minute
+			# time.sleep(2)  # Check schedule every 2 seconds for testing
+	
+	# Create and start the purge scheduler thread
+	purge_thread = threading.Thread(target=purge_scheduler_thread, daemon=True)
+	purge_thread.start()
+	logger.warning("Purge scheduler thread started")
  
 @pidfile('acph-flights-log.pid','./')
-def main():
-	# read the config file
+def main(config_file = './acph-logbook.ini'):
 	config = configparser.ConfigParser()
 	config.read(config_file)
 
@@ -37,7 +65,32 @@ def main():
 	logger = logging.getLogger('acph.main')
 
 	# start ACPH Flights logbook daemon
+	logger.warning('ACPH Flights logbook version v2025-04-21')
 	logger.warning('ACPH Flights logbook starting with config file = {} (process ID is {}).'.format(config_file,os.getpid()))
+
+	# set some value from environement variables
+	if 'DB_NAME' in os.environ:
+		config['database']['database'] = os.environ['DB_NAME']
+	if 'DB_USER' in os.environ:
+		config['database']['user'] = os.environ['DB_USER']
+	if 'DB_PASSWORD' in os.environ:
+		config['database']['password'] = os.environ['DB_PASSWORD']
+	if 'DB_HOST' in os.environ:
+		config['database']['host'] = os.environ['DB_HOST']
+	if 'DB_PORT' in os.environ:
+		config['database']['port'] = os.environ['DB_PORT']
+	
+	if 'SLACK_WEBHOOK_URL' in os.environ:
+		config['handler_slackHandler']['args'] = os.environ['SLACK_WEBHOOK_URL']
+
+	logger.info('Database connection parameters are: user={}, password={}, database={}, host={}, port={}'.format(
+			config['database']['user'],
+			config['database']['password'],
+			config['database']['database'], 
+			config['database']['host'], 
+			config['database']['port']))
+	
+	logger.info('SLACK_WEBHOOK_URL is: {}'.format(config['handler_slackHandler']['args']))
 
 	# load the OGN devices database from a local file or remote server
 	try:
@@ -74,10 +127,16 @@ def main():
 	# Create the persistence engine to store results on the fly: could be JSON or MySql
 	pdo_engine = FlightLogPDO.factory(config['logbook']['persistence'] if 'logbook' in config else 'JSON')
 	# pdo_engine.open(config_file)
-	pdo_engine.open(config['mysql_connector_python'])
+	pdo_engine.open(config['database'])
 
 	# take the opportunity to purge data hold in the persistence engine
-	pdo_engine.purge(config['logbook'].getint('purge'))
+	setup_purge_job(pdo_engine, config['logbook'].getint('purge'))
+	
+	# Initialize and start the REST API server
+	# api_port = int(config['api']['port']) if 'api' in config and 'port' in config['api'] else 5000
+	# api_host = config['api']['host'] if 'api' in config and 'host' in config['api'] else '0.0.0.0'
+	# api_server = LogbookApiServer(pdo_engine, host=api_host, port=api_port)
+	# api_server.start()
 
 	# start the APRS client
 	if 'aprs' in config:
@@ -93,26 +152,34 @@ def main():
 	try:
 		client.run(callback=logbook.handleBeacon, autoreconnect=True)
 	except (KeyboardInterrupt, SystemExit):
+		# Stop the API server
+		# logger.warning("Stopping API server...")
+		# api_server.stop()
+		
 		# close the logbook persistent engine
+		logger.warning("Closing database connection...")
 		logbook.pdo_engine.close()
 
 		# close the connection to aprs server.
+		logger.warning("Disconnecting from APRS server...")
 		client.disconnect()
 		
 		logger.warning('ACPH Flights logbook stopped...')
 	except Exception as e:
+		# Stop the API server
+		# api_server.stop()
 		logger.exception('ACPH Flights logbook stopped with error: {}'.format(e))
 
 if __name__ == '__main__':
 	try:
 		parser = argparse.ArgumentParser(description='ACPH Glider flight logbook daemon')
-		parser.add_argument("-i", "--ini", action='store', dest='config_file', help='path to the ini config file, default value is {}'.format(config_file),
+		parser.add_argument("-i", "--ini", action='store', dest='config_file', help='path to the ini config file',
 							 default='./acph-logbook.ini')
 							#  default='./acph-logbook.ini', required=True)
 		args = parser.parse_args()
 		config_file=args.config_file
 
-		main()
+		main(config_file)
 	except pid.PidFileError as error:
 		# print(type(error),error, error.args)
 		print(type(error),error)
