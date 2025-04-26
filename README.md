@@ -53,7 +53,7 @@ The section `[logbook]` is used to initialize general parameters for the logbook
 ognddb = local
 ; Airport codes database source: could be local or remote
 acdb = local
-; persistence could be MySQL or JSON
+; persistence could be MySQL or JSON or PostgreSQL
 persistence = MySQL
 ; number of days we keep logbook entry in the database
 purge = 30
@@ -248,7 +248,7 @@ tail -f -v ./logs/acph-aprs.log ./logs/api-server.log
 
 * process in realtime OGN APRS messages
 * for each aircraft detect events like take-off and landing and store them in a database
-* keep x days of retention in the database
+* keep 30 days of retention in the database
 * rely on the following open data resources
   * The [OGN devices database](http://ddb.glidernet.org/) from [OpenGliderNetwork](http://wiki.glidernet.org/) to identify any FLARM/OGN-equiped aircraft (type, model,...)
   * The [Airport codes & runway  database](https://ourairports.com/data/) from [OurAirports](https://ourairports.com/) to identify take-off and landing airfields
