@@ -180,7 +180,7 @@ Or using gunicron
 gunicorn --bind='127.0.0.1:8000' --bind='[::1]:8000' -w 1 --threads 2 'api_server:app'
 ```
 
-## How to run it locally using docker-compose
+## How to run it locally using docker compose
 
 `docker-compose.yml` configuration file allows you to easily spin up all the necessary services with a single command, providing an isolated and consistent environment for running locally on our machine and test your changes.
 
@@ -198,10 +198,10 @@ The services are:
 3. **Run the following command to start all the services:**
 
     ```bash
-    docker-compose -f docker-compose.yml up --detach
+    docker compose -f docker-compose.yml up --detach
 
     # or to build images 
-    docker-compose -f docker-compose.yml up --build --detach
+    docker compose -f docker-compose.yml up --build --detach
     ```
 
     The `--detach` flag runs the containers in detached mode (in the background).
@@ -209,7 +209,7 @@ The services are:
 5. **To stop all the running services**, use the following command:
 
     ```bash
-    docker-compose down
+    docker compose down
     ```
 
 ### Access pgAdmin
