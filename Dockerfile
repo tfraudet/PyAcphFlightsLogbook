@@ -1,6 +1,5 @@
-# FROM python:3.8.20-slim
-# FROM python:3.8.20-slim-bullseye
-FROM python:3.9.22-slim-bullseye
+FROM python:3.9.22-slim-bookworm
+# FROM python:3.9.22-slim-bullseye
 # FROM python:3.8.20-slim-bookworm
 # FROM python:3.8.20-alpine
 

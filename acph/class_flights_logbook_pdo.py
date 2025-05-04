@@ -46,11 +46,11 @@ class FlightLogPDO(ABC):
 		return []
 
 	def open(self, config) -> None:
-		self.logger.warning('Open persistence engine of type {}.'.format(self.__class__.__name__))
+		self.logger.debug('Open persistence engine of type {}.'.format(self.__class__.__name__))
 		pass
 
 	def close(self) -> None:
-		self.logger.warning('Close persistence engine.')
+		self.logger.debug('Close persistence engine.')
 		pass
 
 	def purge(self, data_older_than :int = 30) -> None:
@@ -174,7 +174,7 @@ class PosgresqlFlightLogPDO(FlightLogPDO):
 			cursor.execute(query)
 			self.cnx.commit()
 			self.logger.warning('Purge data created before {}, {} records deleted (purge setting={} retention day(s)).'.format(purge_date, cursor.rowcount,data_older_than))
-		except mysql.connector.Error as err:
+		except psycopg.Error as err:
 			self.logger.error('Unable to purge logbook entries.')
 			self.logger.error(err)
 		finally:
@@ -195,7 +195,7 @@ class PosgresqlFlightLogPDO(FlightLogPDO):
 
 				result.append(row)
 			self.cnx.commit()
-		except mysql.connector.Error as err:
+		except psycopg.Error as err:
 			self.logger.error('Unable to load logbook entries for aircraft id {} on date {}'.format(aircraft_id,date))
 			self.logger.error(err)
 		finally:
@@ -257,7 +257,7 @@ class PosgresqlFlightLogPDO(FlightLogPDO):
 			}
 			cursor.execute(query = query, params = query_data)
 			self.cnx.commit()
-		except mysql.connector.Error as err:
+		except psycopg.Error as err:
 			self.logger.error('Unable to persist logbook entry {} for the date {}'.format(logbook, date))
 			self.logger.error(err)
 		finally:

@@ -2,9 +2,7 @@ import logging
 import logging.config
 import os
 import configparser
-
-import mysql.connector
-import psycopg
+import signal
 
 from flask import Flask, jsonify, request, g
 from flask_cors import CORS
@@ -17,29 +15,19 @@ from acph.class_flights_logbook_pdo import FlightLogPDO
 app = Flask(__name__)
 CORS(app, resources=r'/api/*')  
 
-# Read config file
-config_file = './api-server.ini'
-config = configparser.ConfigParser()
-config.read(config_file)
+# Prepare defaults dictionary including environment variables
+env_defaults = {key.upper(): value for key, value in os.environ.items()}
 
-# Create logger
-logging.config.fileConfig(config_file)
+# Read config file and create the logger
+config_file = './api-server.ini'
+config = configparser.ConfigParser(defaults=env_defaults,interpolation=configparser.ExtendedInterpolation())
+config.read(config_file)
+logging.config.fileConfig(config)
 logger = logging.getLogger('acph.api')
 
-# set some value from environement variables
-if 'DB_NAME' in os.environ:
-	config['database']['database'] = os.environ['DB_NAME']
-if 'DB_USER' in os.environ:
-	config['database']['user'] = os.environ['DB_USER']
-if 'DB_PASSWORD' in os.environ:
-	config['database']['password'] = os.environ['DB_PASSWORD']
-if 'DB_HOST' in os.environ:
-	config['database']['host'] = os.environ['DB_HOST']
-if 'DB_PORT' in os.environ:
-	config['database']['port'] = os.environ['DB_PORT']
-
-if 'SLACK_WEBHOOK_URL' in os.environ:
-	config['handler_slackHandler']['args'] = os.environ['SLACK_WEBHOOK_URL']
+# Start ACPH Flights logbook - API server
+logger.critical('ACPH Flights logbook - API server version v2025.1')
+logger.warning('ACPH Flights logbook - API server starting with config file = {}.'.format(config_file))
 
 logger.info('Database connection parameters are: user={}, password={}, database={}, host={}, port={}'.format(
 		config['database']['user'],
@@ -47,6 +35,10 @@ logger.info('Database connection parameters are: user={}, password={}, database=
 		config['database']['database'], 
 		config['database']['host'], 
 		config['database']['port']))
+
+logger.info('SLACK_WEBHOOK_URL is: {}'.format(config['handler_slackHandler']['args']))
+
+logger.debug('Debug mode is enabled')
 
 def get_pdo_engine():
 	if 'pdo_engine' not in g:
@@ -130,10 +122,25 @@ def health_check():
 	else:
 		return jsonify({'status': 'ok'}), 200
 
+@app.after_request
+def log_request(response):
+	# app.logger.info(f"HTTP {request.method} {request.url} - Params: {request.args} - Status: {response.status_code}")
+	logger.info(f'"{request.method} {request.path}" - Status: {response.status_code}')
+	return response
+
+def graceful_shutdown(signum, frame):
+	logger.warning(f"Received signal {signum}, shutting down gracefully...")
+	os._exit(0)
+
+signal.signal(signal.SIGINT, graceful_shutdown)
+signal.signal(signal.SIGTERM, graceful_shutdown)
+
 # run using:
 #   flask --debug --app api_server run
 # or
 #   python api_server.py
+# or
+#   gunicorn --bind='127.0.0.1:5000' --bind='[::1]:5000' -w 1 --threads 4 'api_server:app'
 
 if __name__ == '__main__':
 	app.run(debug=False, host='0.0.0.0', port=5000)

@@ -5,7 +5,7 @@
 python acph-logbook.py -i $LOGBOOK_CONFIG_FILE &
 
 # Launch REST API serveur with 2 workers on port 8000	
-gunicorn --bind='0.0.0.0:8000' -w 2 'api_server:app' &
+gunicorn --bind='0.0.0.0:8000' -w 1 --threads 4 'api_server:app' &
 
 # Wait for any process to exit
 wait -n

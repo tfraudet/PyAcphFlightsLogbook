@@ -47,7 +47,6 @@ def setup_purge_job(pdo_engine: FlightLogPDO, days: int):
 		while True:
 			schedule.run_pending()
 			time.sleep(60)  # Check schedule every minute
-			# time.sleep(2)  # Check schedule every 2 seconds for testing
 	
 	# Create and start the purge scheduler thread
 	purge_thread = threading.Thread(target=purge_scheduler_thread, daemon=True)
@@ -56,32 +55,19 @@ def setup_purge_job(pdo_engine: FlightLogPDO, days: int):
  
 @pidfile('acph-flights-log.pid','./')
 def main(config_file = './acph-logbook.ini'):
-	config = configparser.ConfigParser()
-	config.read(config_file)
 
-	# create logger
-	logging.config.fileConfig(config_file)
-	# logging.config.fileConfig(config)
+	# Prepare defaults dictionary including environment variables
+	env_defaults = {key.upper(): value for key, value in os.environ.items()}
+
+	# Read config file and create the logger
+	config = configparser.ConfigParser(defaults=env_defaults,interpolation=configparser.ExtendedInterpolation())
+	config.read(config_file)
+	logging.config.fileConfig(config)
 	logger = logging.getLogger('acph.main')
 
 	# start ACPH Flights logbook daemon
-	logger.warning('ACPH Flights logbook version v2025-04-21')
-	logger.warning('ACPH Flights logbook starting with config file = {} (process ID is {}).'.format(config_file,os.getpid()))
-
-	# set some value from environement variables
-	if 'DB_NAME' in os.environ:
-		config['database']['database'] = os.environ['DB_NAME']
-	if 'DB_USER' in os.environ:
-		config['database']['user'] = os.environ['DB_USER']
-	if 'DB_PASSWORD' in os.environ:
-		config['database']['password'] = os.environ['DB_PASSWORD']
-	if 'DB_HOST' in os.environ:
-		config['database']['host'] = os.environ['DB_HOST']
-	if 'DB_PORT' in os.environ:
-		config['database']['port'] = os.environ['DB_PORT']
-	
-	if 'SLACK_WEBHOOK_URL' in os.environ:
-		config['handler_slackHandler']['args'] = os.environ['SLACK_WEBHOOK_URL']
+	logger.critical('ACPH Flights logbook - Main version v2025.1')
+	logger.warning('ACPH Flights logbook - Main starting with config file = {} (process ID is {}).'.format(config_file,os.getpid()))
 
 	logger.info('Database connection parameters are: user={}, password={}, database={}, host={}, port={}'.format(
 			config['database']['user'],

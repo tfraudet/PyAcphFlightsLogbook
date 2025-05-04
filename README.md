@@ -177,7 +177,7 @@ flask --app api_server run
 Or using gunicron
 
 ```bash
-gunicorn --bind='127.0.0.1:8000' --bind='[::1]:8000' -w 2 'api_server:app'
+gunicorn --bind='127.0.0.1:8000' --bind='[::1]:8000' -w 1 --threads 2 'api_server:app'
 ```
 
 ## How to run it locally using docker-compose

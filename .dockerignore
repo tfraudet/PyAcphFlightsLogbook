@@ -3,10 +3,11 @@
 **/.devcontainer
 **/.github
 
-**/flogenv
+**/.venv
 **/.vscode
 **/logs
 **/doc
+**/spikes
 
 **.dockerignore
 **.env
