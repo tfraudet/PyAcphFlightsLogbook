@@ -92,23 +92,23 @@ class FlightsLogBook:
 		return distance.geodesic((p1[0], p1[1]), (p2[0], p2[1]), ellipsoid='WGS-84').km
 	
 	def handlePosition(self, beacon, date):
-		self.logger.debug('--> handle beacon position, raw data: {raw_message}'.format(**beacon))
+		self.logger.debug('handle beacon position, raw data: {raw_message}'.format(**beacon))
 		if self.isAircraftBeacon(beacon) and self.filteringReceivers(beacon['receiver_name']) and self.filteringAircraft(beacon['address']):
 			self.handleAircraftPosition(beacon, date)
 		else:
-			self.logger.debug('--> handle beacon position, not an aircraft or receiver name filtered [beacon type is {beacon_type}, receiver name is {receiver_name}]'.format(**beacon))
+			self.logger.debug('handle beacon position, not an aircraft or receiver name filtered [beacon type is {beacon_type}, receiver name is {receiver_name}]'.format(**beacon))
 
 	def handleStatus(self, beacon, date):
 		self.logger.debug('handle beacon status, raw data: {raw_message}'.format(**beacon))
 
 	def handleComment(self, beacon, date):
-		self.logger.info('handle beacon comment, raw data: {raw_message}'.format(**beacon))
+		self.logger.debug('handle beacon comment, raw data: {raw_message}'.format(**beacon))
 
 	def handleServer(self, beacon, date):
-		self.logger.info('handle beacon server, raw data: {raw_message}'.format(**beacon))
+		self.logger.debug('handle beacon server, raw data: {raw_message}'.format(**beacon))
 
 	def handleWeather(self, beacon, date):
-		self.logger.info('handle beacon position weather, raw data: {raw_message}'.format(**beacon))
+		self.logger.debug('handle beacon position weather, raw data: {raw_message}'.format(**beacon))
 
 	def handleBeacon(self, raw_message, timestamp = None, date = None):
 		try:
