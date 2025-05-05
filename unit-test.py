@@ -91,7 +91,7 @@ def main():
 
 	# and run FlightsLogBook with that data, results are in xxxx
 	logger.info('Start to parse the file {}, date of the data is {}'.format(filepath,date_of_data))
-	max_line_to_process = 20000		# -1 for all
+	max_line_to_process = -1 # -1 for all
 	start_time = time.process_time()
 	with open(filepath) as fp:
 		numberOfLine = 0
