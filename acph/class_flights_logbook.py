@@ -7,6 +7,7 @@ import re
 from ogn.parser import parse, ParseError
 from geopy import distance
 from collections import deque
+from pytz import timezone as tz
 
 from acph.class_vptree import AcphVPTree
 
@@ -240,6 +241,9 @@ class FlightsLogBook:
 			beacon['climb_rate'] = round(beacon['climb_rate'],1) 
 		# self.logger.debug('Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {address} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
 	
+		# to fix the issue 'TypeError: can't subtract offset-naive and offset-aware datetimes'
+		beacon['timestamp'] = beacon['timestamp'].replace(tzinfo=tz('UTC'))
+
 		# look for current entry in the logbook for this aircraft_id at the date of the received beacon.
 		lg_entry = self.findLogbookEntryByID(aircraft_id,self.__forDate(beacon,date), OGN_SENDER_TYPES[beacon['aircraft_type']], ognDevice)
 		if (lg_entry is None):
@@ -349,7 +353,7 @@ class FlightsLogBook:
 			if not lg_entry.get('takeoff_time') and not lg_entry.get('takeoff_airport'):
 				lg_entry.update({'landing_time': beacon['timestamp'], 'status' : 'landed' , 'status_last_airport': nearest_airport, 'landing_airport': nearest_airport, 'landing_runway': self.detectRunway(beacon, nearest_airport) })
 			else:
-				flight_duration = beacon['timestamp'] - lg_entry.get('takeoff_time')
+				flight_duration = beacon['timestamp'] - lg_entry.get('takeoff_time').replace(tzinfo=tz('UTC'))
 				lg_entry.update({'landing_time': beacon['timestamp'], 'status' : 'landed' , 'status_last_airport': nearest_airport, 'landing_airport': nearest_airport, 'landing_runway': self.detectRunway(beacon, nearest_airport), 'flight_duration': str(flight_duration) })
 
 	def handleStateLanded(self, lg_entry, beacon, nearest_airport, nearest_airport_distance, ognDevice):
@@ -455,7 +459,7 @@ class FlightsLogBook:
 
 		# Try to detect winch tow launch
 		if tow_plane == '#unknown' and isinstance(lg_entry['takeoff_time'], datetime.datetime):
-			time_since_takeoff = (beacon['timestamp']-lg_entry['takeoff_time']).total_seconds()
+			time_since_takeoff = (beacon['timestamp']-lg_entry['takeoff_time'].replace(tzinfo=tz('UTC'))).total_seconds()
 			if time_since_takeoff > 60:
 				self.logger.debug('take-off more than 60 seconds ago, stop to try to detect winch tow lauch for {}'.format(self.ogn_devices_db.getAircraftRegistrationById(beacon['address'])))
 			elif self.average_climb_rate(lg_entry['last_positions'],5) >= WINCH_CLIMB_RATE_THRESHOLD:
@@ -466,7 +470,7 @@ class FlightsLogBook:
 		if tow_plane == '#unknown':
 			# default to autonome if takeoff time has been detected more than 3 minutes ago
 			if lg_entry['takeoff_time']:
-				if (beacon['timestamp']-lg_entry['takeoff_time']).total_seconds() > 180:
+				if (beacon['timestamp']-lg_entry['takeoff_time'].replace(tzinfo=tz('UTC'))).total_seconds() > 180:
 					self.logger.debug('takeoff time has been detected {} secondes ago, default launch type to autonome for {}'.format((beacon['timestamp']-lg_entry['takeoff_time']).total_seconds(), 
 						self.ogn_devices_db.getAircraftRegistrationById(beacon['address']) ))
 					tow_plane = 'autonome'
