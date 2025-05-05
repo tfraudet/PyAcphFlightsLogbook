@@ -471,7 +471,7 @@ class FlightsLogBook:
 			# default to autonome if takeoff time has been detected more than 3 minutes ago
 			if lg_entry['takeoff_time']:
 				if (beacon['timestamp']-lg_entry['takeoff_time'].replace(tzinfo=tz('UTC'))).total_seconds() > 180:
-					self.logger.debug('takeoff time has been detected {} secondes ago, default launch type to autonome for {}'.format((beacon['timestamp']-lg_entry['takeoff_time']).total_seconds(), 
+					self.logger.debug('takeoff time has been detected {} secondes ago, default launch type to autonome for {}'.format((beacon['timestamp']-lg_entry['takeoff_time'].replace(tzinfo=tz('UTC'))).total_seconds(), 
 						self.ogn_devices_db.getAircraftRegistrationById(beacon['address']) ))
 					tow_plane = 'autonome'
 
