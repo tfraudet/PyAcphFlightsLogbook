@@ -430,7 +430,10 @@ class FlightsLogBook:
 
 	# for glider detect launch type
 	def detectLaunchTypeForGlider(self, lg_entry, beacon, ognDevice, distance_threshold = 0.5):
-		self.logger.debug('Try to detect launch type for {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, imat= self.ogn_devices_db.getAircraftRegistrationById(beacon['address']), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
+		if beacon.get('climb_rate'):
+			self.logger.debug('Try to detect launch type for {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, imat= self.ogn_devices_db.getAircraftRegistrationById(beacon['address']), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
+		else:
+			self.logger.debug('Try to detect launch type for {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h, heading={track}°'.format(**beacon, imat= self.ogn_devices_db.getAircraftRegistrationById(beacon['address']), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
 
 		tow_plane = '#unknown'
 		# Try to detect tow plane:
