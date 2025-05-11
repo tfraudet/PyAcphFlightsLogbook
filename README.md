@@ -17,7 +17,7 @@ Main features:
 Future releases could have additional features :
 
 * Outlanding detection and location
-* REST APIs to get logbook by ICAO, by aircraft id, by date range,...
+* Other REST APIs
 * ...
 
 ## Online demo
@@ -190,6 +190,11 @@ The services are:
 * pgAdmin, a tool to administrate PostgreSQL databases
 * a python API server exposing glider fligths detected
 * the Python logbook program
+
+<div style="text-align: center;">
+  <span><em>Application architecture overview.</em></span>
+  <img src="./doc/architecture.png" alt="architecture diagram" />
+</div>
 
 ### Setup the environement
 
