@@ -1,16 +1,16 @@
-/.DS_Store
+**/.DS_Store
 /.vscode
-/unit-test.pstats
-/unit-test.png
 /acph-logbook-local.ini
-/unit-test.ini
-find-icao-test.py
-debug-aprs.py
+**/spikes
+logs/historical-data/
+logs/*.log
+**/db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+*.old
 
 # C extensions
 *.so
@@ -92,7 +92,6 @@ ipython_config.py
 
 # pyenv
 .python-version
-flogenv/
 
 # pipenv
 #   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.

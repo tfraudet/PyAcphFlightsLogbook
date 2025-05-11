@@ -94,7 +94,7 @@ def main():
 
 	print("ACPH LogBook - initialize database tables.")
 	try:
-		cnx = mysql.connector.connect(option_files='./acph-logbook.ini', option_groups='mysql_connector_python')
+		cnx = mysql.connector.connect(option_files='./acph-logbook.ini', option_groups='database')
 
 		cursor = cnx.cursor()
 		createTables(cursor)

@@ -7,6 +7,7 @@ import re
 from ogn.parser import parse, ParseError
 from geopy import distance
 from collections import deque
+from pytz import timezone as tz
 
 from acph.class_vptree import AcphVPTree
 
@@ -92,26 +93,27 @@ class FlightsLogBook:
 		return distance.geodesic((p1[0], p1[1]), (p2[0], p2[1]), ellipsoid='WGS-84').km
 	
 	def handlePosition(self, beacon, date):
-		self.logger.debug('--> handle beacon position, raw data: {raw_message}'.format(**beacon))
+		self.logger.debug('handle beacon position, raw data: {raw_message}'.format(**beacon))
 		if self.isAircraftBeacon(beacon) and self.filteringReceivers(beacon['receiver_name']) and self.filteringAircraft(beacon['address']):
 			self.handleAircraftPosition(beacon, date)
 		else:
-			self.logger.debug('--> handle beacon position, not an aircraft or receiver name filtered [beacon type is {beacon_type}, receiver name is {receiver_name}]'.format(**beacon))
+			self.logger.debug('handle beacon position, not an aircraft or receiver name filtered [beacon type is {beacon_type}, receiver name is {receiver_name}]'.format(**beacon))
 
 	def handleStatus(self, beacon, date):
 		self.logger.debug('handle beacon status, raw data: {raw_message}'.format(**beacon))
 
 	def handleComment(self, beacon, date):
-		self.logger.info('handle beacon comment, raw data: {raw_message}'.format(**beacon))
+		self.logger.debug('handle beacon comment, raw data: {raw_message}'.format(**beacon))
 
 	def handleServer(self, beacon, date):
-		self.logger.info('handle beacon server, raw data: {raw_message}'.format(**beacon))
+		self.logger.debug('handle beacon server, raw data: {raw_message}'.format(**beacon))
 
 	def handleWeather(self, beacon, date):
-		self.logger.info('handle beacon position weather, raw data: {raw_message}'.format(**beacon))
+		self.logger.debug('handle beacon position weather, raw data: {raw_message}'.format(**beacon))
 
 	def handleBeacon(self, raw_message, timestamp = None, date = None):
 		try:
+			self.logger.info(f'handle beacon with raw data: {raw_message}')
 			beacon = parse(raw_message, timestamp)
 			self.logger.debug('Receive beacon {aprs_type}, raw data: {raw_message}'.format(**beacon))
 			handlers = {
@@ -191,7 +193,8 @@ class FlightsLogBook:
 				 'takeoff_airport': '',
 				 'landing_time' : '',
 				 'landing_airport' : '',
-				 'flight_duration': '',
+				#  'flight_duration': '',
+				 'flight_duration': '00:00:00',
 				 'launch_type' : '#unknown',
 				 'flight_id' : len(logbook_for_aircraft) + 1,
 				 'last_positions' : deque(maxlen=BUFFER_AIRCRAFT_POSITION),
@@ -220,7 +223,7 @@ class FlightsLogBook:
 
 	def handleAircraftPosition(self, beacon, date):
 		self.counter_aircraft_beacon_position += 1
-		self.logger.info('handle aircraft beacon position #{}, raw data: {raw_message}'.format(self.counter_aircraft_beacon_position,**beacon))
+		self.logger.debug('handle aircraft beacon position #{}, raw data: {raw_message}'.format(self.counter_aircraft_beacon_position,**beacon))
 		aircraft_id = beacon['address']
 
 		# aircraft need to be in OGN database to be handle
@@ -238,6 +241,9 @@ class FlightsLogBook:
 			beacon['climb_rate'] = round(beacon['climb_rate'],1) 
 		# self.logger.debug('Sender (type {sender}, callsign: {name}), Receiver callsign: {receiver_name}, {aircraft} {address} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
 	
+		# to fix the issue 'TypeError: can't subtract offset-naive and offset-aware datetimes'
+		beacon['timestamp'] = beacon['timestamp'].replace(tzinfo=tz('UTC'))
+
 		# look for current entry in the logbook for this aircraft_id at the date of the received beacon.
 		lg_entry = self.findLogbookEntryByID(aircraft_id,self.__forDate(beacon,date), OGN_SENDER_TYPES[beacon['aircraft_type']], ognDevice)
 		if (lg_entry is None):
@@ -347,7 +353,7 @@ class FlightsLogBook:
 			if not lg_entry.get('takeoff_time') and not lg_entry.get('takeoff_airport'):
 				lg_entry.update({'landing_time': beacon['timestamp'], 'status' : 'landed' , 'status_last_airport': nearest_airport, 'landing_airport': nearest_airport, 'landing_runway': self.detectRunway(beacon, nearest_airport) })
 			else:
-				flight_duration = beacon['timestamp'] - lg_entry.get('takeoff_time')
+				flight_duration = beacon['timestamp'] - lg_entry.get('takeoff_time').replace(tzinfo=tz('UTC'))
 				lg_entry.update({'landing_time': beacon['timestamp'], 'status' : 'landed' , 'status_last_airport': nearest_airport, 'landing_airport': nearest_airport, 'landing_runway': self.detectRunway(beacon, nearest_airport), 'flight_duration': str(flight_duration) })
 
 	def handleStateLanded(self, lg_entry, beacon, nearest_airport, nearest_airport_distance, ognDevice):
@@ -424,7 +430,10 @@ class FlightsLogBook:
 
 	# for glider detect launch type
 	def detectLaunchTypeForGlider(self, lg_entry, beacon, ognDevice, distance_threshold = 0.5):
-		self.logger.debug('Try to detect launch type for {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, imat= self.ogn_devices_db.getAircraftRegistrationById(beacon['address']), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
+		if beacon.get('climb_rate'):
+			self.logger.debug('Try to detect launch type for {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h, heading={track}°, climb rate={climb_rate}m/s'.format(**beacon, imat= self.ogn_devices_db.getAircraftRegistrationById(beacon['address']), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
+		else:
+			self.logger.debug('Try to detect launch type for {aircraft} {imat} at {altitude}m, speed={ground_speed}km/h, heading={track}°'.format(**beacon, imat= self.ogn_devices_db.getAircraftRegistrationById(beacon['address']), aircraft=OGN_SENDER_TYPES[beacon['aircraft_type']], sender=ADDRESS_TYPES[beacon['address_type']]))
 
 		tow_plane = '#unknown'
 		# Try to detect tow plane:
@@ -453,7 +462,7 @@ class FlightsLogBook:
 
 		# Try to detect winch tow launch
 		if tow_plane == '#unknown' and isinstance(lg_entry['takeoff_time'], datetime.datetime):
-			time_since_takeoff = (beacon['timestamp']-lg_entry['takeoff_time']).total_seconds()
+			time_since_takeoff = (beacon['timestamp']-lg_entry['takeoff_time'].replace(tzinfo=tz('UTC'))).total_seconds()
 			if time_since_takeoff > 60:
 				self.logger.debug('take-off more than 60 seconds ago, stop to try to detect winch tow lauch for {}'.format(self.ogn_devices_db.getAircraftRegistrationById(beacon['address'])))
 			elif self.average_climb_rate(lg_entry['last_positions'],5) >= WINCH_CLIMB_RATE_THRESHOLD:
@@ -464,8 +473,8 @@ class FlightsLogBook:
 		if tow_plane == '#unknown':
 			# default to autonome if takeoff time has been detected more than 3 minutes ago
 			if lg_entry['takeoff_time']:
-				if (beacon['timestamp']-lg_entry['takeoff_time']).total_seconds() > 180:
-					self.logger.debug('takeoff time has been detected {} secondes ago, default launch type to autonome for {}'.format((beacon['timestamp']-lg_entry['takeoff_time']).total_seconds(), 
+				if (beacon['timestamp']-lg_entry['takeoff_time'].replace(tzinfo=tz('UTC'))).total_seconds() > 180:
+					self.logger.debug('takeoff time has been detected {} secondes ago, default launch type to autonome for {}'.format((beacon['timestamp']-lg_entry['takeoff_time'].replace(tzinfo=tz('UTC'))).total_seconds(), 
 						self.ogn_devices_db.getAircraftRegistrationById(beacon['address']) ))
 					tow_plane = 'autonome'
 

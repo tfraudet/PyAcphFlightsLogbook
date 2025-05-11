@@ -1,11 +1,10 @@
-![GitHub Release Date](https://img.shields.io/github/release-date/tfraudet/PyAcphFlightsLogbook) ![GitHub last commit](https://img.shields.io/github/last-commit/tfraudet/PyAcphFlightsLogbook)
-
 # PyAcphFlightsLogbook
 
-Flight logbook for **glider** written in Python that automates detection of takeoff and landing events (airfield and schedule) by processing the APRS traffic from the [Open Glider Network](http://wiki.glidernet.org/).
-As the program tracks events at aircraft level it can detect landing and take-off on different airfields. The detected take-off and landing times are approximate only. The accuracy is around 1 or 2 minutes.
+![GitHub Release Date](https://img.shields.io/github/release-date/tfraudet/PyAcphFlightsLogbook) ![GitHub last commit](https://img.shields.io/github/last-commit/tfraudet/PyAcphFlightsLogbook)
 
-This is a work in progress. Currently, in addition to take-off and landing events, the tool detects the launch method (aerotowing, self-launching or winch launching) and in the case of a towing, identifies the tow plane. It calculates also the flight duration.
+Python-based flight logbook for **gliders** that automates the detection of takeoff and landing events, including airfield and schedule, by analyzing APRS traffic from the [Open Glider Network](http://wiki.glidernet.org/). The program tracks events at the aircraft level, enabling detection of takeoffs and landings at different airfields. Detected takeoff and landing times are approximate, with an accuracy of 1 to 2 minutes.
+
+This project is a work in progress. In addition to takeoff and landing detection, the tool identifies the launch method (aerotow, self-launch, or winch launch) and, for aerotows, determines the tow plane. It also calculates flight duration.
 
 Main features:
 
@@ -18,55 +17,28 @@ Main features:
 Future releases could have additional features :
 
 * Outlanding detection and location
-* REST APIs to get logbook by ICAO, by aircraft id, by date range,...
+* Other REST APIs
 * ...
-
-## Usage
-
-Executing the logbook python program is straight forward. It supports 2 arguments that are optionals. For the prerequisites before launching the program see the [installation](#installation) section
-
-``` bash
-# execute the tool with default config file ./acph-logbook.ini
-python3 acph-logbook.py
-
-# or with a specific config file
-python3 acph-logbook.py -i path-to-my-config-file.ini
-```
-
-Example to get the help
-
-``` bash
-# get the help
-python3 acph-logbook.py -h
-
-#this will return the following output
-usage: acph-logbook.py [-h] [-i CONFIG_FILE]
-
-ACPH Glider flight logbook daemon
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -i CONFIG_FILE, --ini CONFIG_FILE path to the ini config file, default value is ./acph-logbook.ini
-```
 
 ## Online demo
 
-The program doesn't provide any APIs or front-end right now, but you can have a look to the implementation we did at [ACPH](https://aeroclub-issoire.fr) with a specific front-end develop for our website. There is also a REST API available to retrieve logbook for a specific date & airfield. To date processing of APRS aircraft beacons are limited to 200km around LFHA, so there is a chance that you don't see any data for your airport. :confused:
+You can have a look to the implementation we did at [ACPH](https://aeroclub-issoire.fr) with a specific front-end develop for our website. There is also a REST API available to retrieve logbook for a specific date & airfield. To date processing of APRS aircraft beacons are limited to 400km around LFHA, so there is a chance that you don't see any data for your airport. :confused:
 
-* [Responsive web front-end](https://aeroclub-issoire.fr/wp-content/themes/zerif-lite-acph/acph-logbook.html)
-* [REST API (example to get the LFHA logbook on August 29th, 2020)](https://aeroclub-issoire.fr/wp-json/acph/v1/logbook/2020-08-29/LFHA)
+* [Responsive web front-end](https://aeroclub-issoire.fr/logbook/)
+* [REST API (example to get the LFHA logbook on August 29th, 2020)](https://api.acph.synology.me:5001/api/v2/logbook/2020-08-29/LFHA)
 
 ![ACPH Glider logbook](./doc/screenshot.png)
 
 ### ACPH REST API endpoints reference
 
-| Resource | Base route | Preferred method | Description
-| --- | --- | --- | ---|
-| `logbook/<date>/<icao>` | `./wp-json/acph/v1` | GET | Retrieve the logbook of the day `date` for the airfield identified by it's `icao` code.
+| Resource | Base route | Preferred method | Description  |
+| --- | --- | --- | --- |
+| `/logbook/<date>/<icao>` | `/api/v2` | GET | Retrieve the logbook of the day `date` for the airfield identified by it's `icao` code. |
+| `/health` | | GET | Ping the server.  |
 
 ``` bash
 # Example: retrieve the logbook for LFHA on August 29th, 2020
-curl https://aeroclub-issoire.fr/wp-json/acph/v1/logbook/2020-08-29/LFHA
+curl https://api.acph.synology.me:5001/api/v2/logbook/2020-08-29/LFHA
 ```
 
 ## Configuration
@@ -81,7 +53,7 @@ The section `[logbook]` is used to initialize general parameters for the logbook
 ognddb = local
 ; Airport codes database source: could be local or remote
 acdb = local
-; persistence could be MySQL or JSON
+; persistence could be MySQL or JSON or PostgreSQL
 persistence = MySQL
 ; number of days we keep logbook entry in the database
 purge = 30
@@ -97,10 +69,10 @@ passcode = <aprs passcode>
 filter = <aprs filter>
 ```
 
-The section `[mysql_connector_python]` is used to initialize parameters for database connection
+The section `[database]` is used to initialize parameters for database connection
 
 ``` ini
-[mysql_connector_python]
+[database]
 database = <database-name>
 user = <user>
 password = <password>
@@ -128,30 +100,36 @@ args=('Put your webhook URL here',)
 ...
 ```
 
-## Installation
+## Requirements
 
-The program requires Python 3. It has been developed and test only with Python 3.8.5 and Python 3.7.3
+* pyhton 3.9
 
-``` bash
-# To know your python 3 version
-python3 -V
-```
+## How to run it locally with python3
 
-### Download & install python dependencies
-
-The logbook python program requires the following python packages. These packages have to be accessible through PYTHONPATH.
-
-* geographiclib v1.50
-* geopy v2.1.0
-* mysql-connector-python v8.0.23
-* ogn-client v1.0.1
-* pid v3.0.4
-* slack-logger v0.3.1
-
-The best option it's to install them using pip. As for example:
+We suggest you to create a virtual environment for running this app with Python 3. Clone this repository and open your terminal/command prompt in a folder.
 
 ```bash
-pip3 install geopy
+git clone https://github.com/tfraudet/PyAcphFlightsLogbook.git
+cd ./PyAcphFlightsLogbook
+python3 -m venv .venv
+```
+
+On Unix systems
+
+```bash
+source .venv/bin/activate
+```
+
+On Window systems
+
+```bash
+.venv\scripts\activate
+```
+
+Install the requirements
+
+```bash
+pip install -r requirements.txt
 ```
 
 ### Setup the MySql database
@@ -162,11 +140,120 @@ By default the program use a MySql database to store the results. Assuming you h
 python3 ./setup_db.py
 ```
 
+### Usage
+
+Executing the logbook python program is straight forward. It supports 2 arguments that are optionals.
+
+``` bash
+# execute the tool with default config file ./acph-logbook.ini
+python3 acph-logbook.py
+
+# or with a specific config file
+python3 acph-logbook.py -i path-to-my-config-file.ini
+```
+
+Example to get the help
+
+``` bash
+# get the help
+python3 acph-logbook.py -h
+
+#this will return the following output
+usage: acph-logbook.py [-h] [-i CONFIG_FILE]
+
+ACPH Glider flight logbook daemon
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i CONFIG_FILE, --ini CONFIG_FILE path to the ini config file, default value is ./acph-logbook.ini
+```
+
+You can run the API server directly with Flask for development purposes. The default configuration file for the API server is `api-server.ini`, where you can set up database access and logging configurations.
+
+```bash
+flask --app api_server run
+```
+
+Or using gunicron
+
+```bash
+gunicorn --bind='127.0.0.1:8000' --bind='[::1]:8000' -w 1 --threads 2 'api_server:app'
+```
+
+## How to run it locally using docker compose
+
+`docker-compose.yml` configuration file allows you to easily spin up all the necessary services with a single command, providing an isolated and consistent environment for running locally on our machine and test your changes.
+
+The services are:
+
+* a PostgreSQL database
+* pgAdmin, a tool to administrate PostgreSQL databases
+* a python API server exposing glider fligths detected
+* the Python logbook program
+
+<div style="text-align: center;">
+  <span><em>Application architecture overview.</em></span>
+  <img src="./doc/architecture.png" alt="architecture diagram" />
+</div>
+
+### Setup the environement
+
+1. **Ensure Docker and Docker Compose are installed** on your local machine. You can find installation instructions for your operating system on the official Docker website.
+2. **Navigate to the root directory of your project** in your terminal.
+3. **Run the following command to start all the services:**
+
+    ```bash
+    docker compose -f docker-compose.yml up --detach
+
+    # or to build images 
+    docker compose -f docker-compose.yml up --build --detach
+    ```
+
+    The `--detach` flag runs the containers in detached mode (in the background).
+4. **Once the containers are running**, you can access your application and its dependencies as defined in the `docker-compose.yml` file (e.g., via specific ports).
+5. **To stop all the running services**, use the following command:
+
+    ```bash
+    docker compose down
+    ```
+
+### Access pgAdmin
+
+* Open your browser and navigate to:[http://localhost:2660](http://localhost:2660)
+* Login with:
+  * Email: ```${PGADMIN_EMAIL}```
+  * Password: ```${PGADMIN_PASSWORD}```
+
+* And  Connect to the PostgreSQL in pgAdmin:
+  * Add a new server in pgAdmin
+  * Name: ACPH PostgreSQL
+  * Connection details:
+    * Host: database
+    * Port: 5432
+    * Database: ```${DB_NAME}```
+    * Username: ```${DB_USER}```
+    * Password: ```${DB_PASSWORD}```
+
+### Access log files
+
+To monitor the log files of python programs:
+
+```bash
+# the logbook log file
+tail -f ./logs/acph-aprs.log
+
+# the API server log file
+tail -f ./logs/api-server.log
+
+# or both
+tail -f -v ./logs/acph-aprs.log ./logs/api-server.log
+```
+
 ## Working principles
 
 * process in realtime OGN APRS messages
 * for each aircraft detect events like take-off and landing and store them in a database
-* keep x days of retention in the database
+* keep 30 days of retention in the database
 * rely on the following open data resources
   * The [OGN devices database](http://ddb.glidernet.org/) from [OpenGliderNetwork](http://wiki.glidernet.org/) to identify any FLARM/OGN-equiped aircraft (type, model,...)
   * The [Airport codes & runway  database](https://ourairports.com/data/) from [OurAirports](https://ourairports.com/) to identify take-off and landing airfields

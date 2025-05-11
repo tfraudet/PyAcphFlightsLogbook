@@ -55,9 +55,9 @@ class OurAirportsDatabase(AbstractAirportsDatabase):
 		return instance
 
 	@staticmethod
-	def withUrl(url_path = 'https://ourairports.com/data', include_closed = False):
-		# https://ourairports.com/data/airports.csv
-		# https://ourairports.com/data/runways.csv
+	def withUrl(url_path = 'https://davidmegginson.github.io/ourairports-data', include_closed = False):
+		# https://davidmegginson.github.io/ourairports-data/airports.csv
+		# https://davidmegginson.github.io/ourairports-data/runways.csv	
 		csv_airports_url =  url_path + '/airports.csv'
 		csv_runways_url = url_path + '/runways.csv'
 		instance = OurAirportsDatabase()

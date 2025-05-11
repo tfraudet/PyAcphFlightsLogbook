@@ -22,13 +22,15 @@ def main():
 	filepath = sys.argv[1]
 	date_of_data = filepath[len(filepath)-14:len(filepath)-4]
 
-	config_file='./unit-test.ini'
-	# read the config file
-	config = configparser.ConfigParser()
-	config.read(config_file)
+	# config_file='./spikes/unit-test.ini'
+	config_file = './acph-logbook-local.ini'
 
-	# create logger fo the main
-	# logging.config.fileConfig(config_file)
+	# Prepare defaults dictionary including environment variables
+	env_defaults = {key.upper(): value for key, value in os.environ.items()}
+
+	# Read config file and create the logger
+	config = configparser.ConfigParser(defaults=env_defaults,interpolation=configparser.ExtendedInterpolation())
+	config.read(config_file)
 	logging.config.fileConfig(config)
 	logger = logging.getLogger('acph.main')
 
@@ -61,14 +63,14 @@ def main():
 		logger.error("File {} does not exist. Exiting...".format(airports_db))
 		sys.exit()
 
-	# test if file that content aprs messages exist
+	# test if the file that content aprs messages exists
 	if not os.path.isfile(filepath):
 		logger.error("File path {} does not exist. Exiting...".format(filepath))
 		sys.exit()
 
 	# Create the PDO Engine to store the results on the fly: could be JSON or MySql
 	pdo_engine = FlightLogPDO.factory(config['logbook']['persistence'] if 'logbook' in config else 'JSON')
-	pdo_engine.open(config['mysql_connector_python'])
+	pdo_engine.open(config['database'])
 
 	# take the opportunity to purge data hold in the persistence engine
 	pdo_engine.purge(config['logbook'].getint('purge'))
@@ -89,7 +91,7 @@ def main():
 
 	# and run FlightsLogBook with that data, results are in xxxx
 	logger.info('Start to parse the file {}, date of the data is {}'.format(filepath,date_of_data))
-	max_line_to_process = -1		# -1 for all
+	max_line_to_process = -1 # -1 for all
 	start_time = time.process_time()
 	with open(filepath) as fp:
 		numberOfLine = 0

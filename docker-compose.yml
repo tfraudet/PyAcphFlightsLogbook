@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:15
+    container_name: postgres_acph
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "2665:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - acph_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_acph
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+      PGADMIN_LISTEN_PORT: 5050
+    ports:
+      - "2660:5050"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - acph_network
+    depends_on:
+      - database
+
+  logbook:
+    build: 
+      dockerfile: ./Dockerfile
+    image: tfraudet/pyflightslog
+    container_name: logbook_acph
+    restart: always
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      LOGBOOK_CONFIG_FILE: ${LOGBOOK_CONFIG_FILE}
+      SLACK_WEBHOOK_URL : ${SLACK_WEBHOOK_URL}
+    volumes:
+      - /Users/zazart/Documents/SiteWeb ACPH/PyAcphFlightsLog/logs:/app/logs
+    networks:
+      - acph_network
+    ports:
+      - "2661:8000"
+
+networks:
+  acph_network:
+    driver: bridge
+
+volumes:
+    postgres_data:
+    pgadmin_data:
