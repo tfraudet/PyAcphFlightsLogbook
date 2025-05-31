@@ -234,6 +234,8 @@ The services are:
     * Username: ```${DB_USER}```
     * Password: ```${DB_PASSWORD}```
 
+Note that the first time you need to create tables in the database. You can do this by running the following script `./db/setup_db.sql` in the pgAdmin query editor
+
 ### Access log files
 
 To monitor the log files of python programs:
