@@ -41,8 +41,8 @@ def main():
 		else:
 			json_filepath = './ogn-devices-ddb.json'
 			ogndb = OgnDevicesDatabase.withJsonFile(json_filepath)
-	except IOError:
-		logger.error("File {} does not exist. Exiting...".format(json_filepath))
+	except Exception as e:
+		logger.error("Error loading OGN devices database: {}".format(e))
 		sys.exit()
 
 	# load the airport database 
@@ -59,8 +59,8 @@ def main():
 		# Airports DB only with french airports.
 		listOfAirportsFiltered = airports_db.filterByCountry('FR')
 		logger.warning('After filtering on French airport, size of airport code database is {}'.format(len(listOfAirportsFiltered)))
-	except IOError:
-		logger.error("File {} does not exist. Exiting...".format(airports_db))
+	except Exception as e:
+		logger.error("Error loading airports database: {}".format(e))
 		sys.exit()
 
 	# test if the file that content aprs messages exists
@@ -73,7 +73,8 @@ def main():
 	pdo_engine.open(config['database'])
 
 	# take the opportunity to purge data hold in the persistence engine
-	pdo_engine.purge(config['logbook'].getint('purge'))
+	purge_days = config['logbook'].getint('purge', 30)  # Default to 30 days if not specified
+	pdo_engine.purge(purge_days)
 
 	# create the ACPH Flight logbook and build the logbook for LFHA
 	# logbook = FlightsLogBook(receivers_filter={'LFHA','LFHP'}, ogndb = ogndb, airports_db = listOfAirportsFiltered, pdo_engine = pdo_engine)
@@ -116,10 +117,8 @@ def main():
 				# 	logbook.handleBeacon(aprs_raw_data[0],  date_of_data)
 			except (KeyboardInterrupt, SystemExit):
 				break
-			# except Exception as err:
-			except:
-				# logger.error('Unexpected error when handling following aprs beacon {}'.format(aprs_raw_data[0]))
-				logger.exception('Unexpected error when handling following aprs beacon {}'.format(match.group(8)))
+			except Exception as e:
+				logger.exception('Unexpected error when handling following aprs beacon {line}')
 	stop_time = time.process_time()
 	logger.info('End of parsing, execution time {} seconds'.format(timedelta(seconds=stop_time-start_time)))
 

@@ -257,7 +257,7 @@ class FlightsLogBook:
 		toSave={
 			'altitude': beacon['altitude'],
 			'ground_speed': beacon['ground_speed'],
-			'climb_rate':  beacon.get('climb_rate',''),
+			'climb_rate':  beacon.get('climb_rate',0),
 			'track':  beacon['track'],
 			'latitude': beacon['latitude'],
 			'longitude': beacon['longitude'],
@@ -510,6 +510,12 @@ class FlightsLogBook:
 
 	def average_climb_rate(self, last_positions, n=3):
 		last_climb_rates = [ elem['climb_rate'] for elem in last_positions]
+
+		# if at least on of the value of last_climb_rates is not a number, return 0
+		if any(not isinstance(rate, (int, float)) for rate in last_climb_rates):
+			self.logger.warning(f'In average_climb_rate(), at least one of the last_climb_rates is not a number: {last_climb_rates}')
+			return 0
+		
 		if len(last_climb_rates)<=0:
 			return 0
 		else:
